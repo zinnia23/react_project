@@ -1,22 +1,25 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
+import Services from "./pages/Services";
 import Contact from "./pages/Contact";
-import Menu from "./pages/Menu";
+import Careers from "./pages/Careers";
 import Pagenotfound from "./pages/Pagenotfound";
+import About from './pages/About';
 function App() {
   return (
-    <div>
+
       <BrowserRouter>
+      
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/menu" element={<Menu />} />
+          <Route path="/services" element={<Services/>} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact Us" element={<Contact />} />
           <Route path="*" element={<Pagenotfound />} />
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
 

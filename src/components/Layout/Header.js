@@ -49,11 +49,18 @@ const Header = () => {
       </ul>
     </Box>
   );
+
   return (
     <>
       <Box>
         <AppBar component={"nav"} sx={{ bgcolor: "black" }}>
-          <Toolbar>
+          <Toolbar
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -66,12 +73,7 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              color={"goldenrod"}
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            >
+            <Typography color={"goldenrod"} variant="h6" component="div">
               <img src={Logo} alt="logo" height={"70"} width="250" />
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -82,16 +84,28 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/menu"}>Menu</NavLink>
+                  <NavLink to={"/services "}>Services </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/about"}>About</NavLink>
+                  <NavLink to={"/careers"}>Careers</NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/contact"}>Contact</NavLink>
+                  <NavLink to={"/About"}>About</NavLink>
                 </li>
               </ul>
             </Box>
+            <ul
+              className="navigation-menu" id="contact-button"
+            >
+              <li>
+                <NavLink to={"/contact"}>
+                  Contact
+                </NavLink>
+              </li>
+            </ul>
+            {/* <button >
+              <NavLink to={"/contact"}>Contact</NavLink>
+            </button> */}
           </Toolbar>
         </AppBar>
         <Box component="nav">
