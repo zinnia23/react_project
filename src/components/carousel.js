@@ -1,128 +1,74 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-// import SwipeableViews from 'react-swipeable-views';
-// import { autoPlay } from 'react-swipeable-views-utils';
-
-// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import Carousel from "react-bootstrap/Carousel";
+import ExampleCarouselImage from "../images/BG-Working-With-Entrepreneurs.png";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { Container , Grid} from "@mui/material";
+import "../styles/HomeStyles.css";
 const images = [
-    {
-      label: 'San Francisco – Oakland Bay Bridge, United States',
-      imgPath:
-        'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-      label: 'Bird',
-      imgPath:
-        'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-      label: 'Bali, Indonesia',
-      imgPath:
-        'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-    },
-    {
-      label: 'Goč, Serbia',
-      imgPath:
-        'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-  ];
-const Carousel = () => {
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = images.length;
-  
-    const handleNext = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-  
-    const handleBack = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-  
-    const handleStepChange = (step) => {
-      setActiveStep(step);
-    };
-    return (
-        <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-          <Paper
-            square
-            elevation={0}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              height: 50,
-              pl: 2,
-              bgcolor: 'background.default',
-            }}
-          >
-            {/* <Typography>{images[activeStep].label}</Typography> */}
-            <Typography>hello</Typography>
-          </Paper>
-          {/* <AutoPlaySwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={activeStep}
-            onChangeIndex={handleStepChange}
-            enableMouseEvents
-          >
-            {images.map((step, index) => (
-              <div key={step.label}>
-                {Math.abs(activeStep - index) <= 2 ? (
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 255,
-                      display: 'block',
-                      maxWidth: 400,
-                      overflow: 'hidden',
-                      width: '100%',
-                    }}
-                    src={step.imgPath}
-                    alt={step.label}
-                  />
-                ) : null}
-              </div>
-            ))}
-          </AutoPlaySwipeableViews> */}
-          {/* <MobileStepper
-            steps={maxSteps}
-            position="static"
-            activeStep={activeStep}
-            nextButton={
-              <Button
-                size="small"
-                onClick={handleNext}
-                disabled={activeStep === maxSteps - 1}
-              >
-                Next
-                {theme.direction === 'rtl' ? (
-                  <KeyboardArrowLeft />
-                ) : (
-                  <KeyboardArrowRight />
-                )}
-              </Button>
-            }
-            backButton={
-              <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                {theme.direction === 'rtl' ? (
-                  <KeyboardArrowRight />
-                ) : (
-                  <KeyboardArrowLeft />
-                )}
-                Back
-              </Button>
-            }
-          /> */}
-        </Box>
-      );
+  {
+    label: "Hash Technologies",
+    text: "We, at Hash Technologies, provide you world-class and highly satisfactory services across various verticals in IT-Services & HR Services.",
+    name: "Scott Hanks",
+    position: "Chief Officer",
+    imgPath:
+      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+  },
+  {
+    label: "Hash Technologies",
+    text: "In IT-Services we provide, Software & Hardware Solutions, DevSecOps, Digital Marketing, Web Development, Cloud Solutions, Data Management & Analytics, Machine Learning & AI, business technologies, consulting services, implementation services, advisory services and managed services.",
+    imgPath:
+      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
+  },
+  {
+    label: "Hash Technologies",
+    text: "In HR-Services we Provide, Professional Staffing, Talent Acquisition, Resource outsourcing, Project management, Leadership Development & Training/Coaching.",
+    imgPath:
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250",
+  },
+];
 
-
-}
-export default Carousel;
+const CarouselBox = () => {
+  return (
+    <Container sx={{ padding: "80px 15px" }}>
+      <img
+        src={ExampleCarouselImage}
+        style={{
+          position: "absolute",
+          width: "30%",
+          top: "110%",
+          left: "0",
+          height: "60%",
+        }}
+      ></img>
+      <Carousel interval={null} className="text-center">
+        {images.map((item) => {
+          return (
+            <Carousel.Item className="">
+              <Grid container spacing={6}>
+                <Grid item xs={12} sm={6}>
+                <img
+                  className="w-100"
+                  style={{ height: "60vh" }}
+                  src={item.imgPath}
+                  text="First slide"
+                />
+                {/* <Carousel.Caption>
+                <p>{item.label}</p>
+              </Carousel.Caption> */}
+                </Grid>
+                <Grid item xs={12} sm={6} p={15}>
+                <h2 class="text-dark">{item.label}</h2>
+                <p class="p-5 text-justify">"{item.text}"</p>
+                <h5 class="text-left text-dark">{item.name}</h5>
+                <p class="text-left">{item.position}</p>
+                </Grid>
+              </Grid>
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+    </Container>
+  );
+};
+export default CarouselBox;

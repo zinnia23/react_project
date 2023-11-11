@@ -98,7 +98,9 @@ color: #007bff;
 .stats-text{
   font-size: 20px;
 }
-
+.listitem{
+  padding: 0;
+}
 /* mobile view  */
 
 @media only screen and (max-width: 600px) {
@@ -132,4 +134,11 @@ color: #007bff;
     color: #121619;
     margin-bottom: 30px;
   }
+}
+
+.carousel-indicators button{
+  height: 10px!important;
+  width: 10px!important;
+  border-radius: 50%;
+  cursor: pointer;
 }

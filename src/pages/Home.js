@@ -3,6 +3,7 @@ import Layout from "./../components/Layout/Layout";
 import Carousel from "./../components/carousel";
 import Who from "./../components/who";
 import Logos from "./../components/logos";
+import Contact from "./../components/contactform";
 import { Link } from "react-router-dom";
 import Banner from "../images/homebg.mp4";
 import "../styles/HomeStyles.css";
@@ -11,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <Layout>
-        <div className="home">
+        <div className="home" style={{ marginBottom: "50px" }} >
           <div id="heading">
             <h1>Transform with Us</h1>
           </div>
@@ -25,6 +26,7 @@ const Home = () => {
         <Carousel />
         <Who />
         <Logos/>
+        <Contact/>
       </Layout>
     </div>
   );

@@ -8,7 +8,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import Logo from "../../images/logo.svg";
+import Logo from "../../images/mainlogo.jpeg";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
@@ -28,7 +28,7 @@ const Header = () => {
         component="div"
         sx={{ flexGrow: 1, my: 2 }}
       >
-        <img src={Logo} alt="logo" height={"70"} width="200" />
+        <img src={Logo} alt="logo" width="50" height="50"/>
       </Typography>
       <Divider />
       <ul className="mobile-navigation">

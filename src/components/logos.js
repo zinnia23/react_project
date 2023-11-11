@@ -2,7 +2,38 @@ import React from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Link, Grid, ImageList, ImageListItem } from "@mui/material";
 import image1 from './../images/card-3.jpg'
-
+const itemData = [
+    {
+        img: image1,
+        title: 'Breakfast',
+        rows: 2,
+        cols: 2,
+      },
+    {
+        img: image1,
+        title: 'Breakfast',
+        rows: 4,
+        cols: 2,
+      },
+    {
+        img: image1,
+        title: 'Breakfast',
+        rows: 2,
+        cols: 1,
+      },
+    {
+        img: image1,
+        title: 'Breakfast',
+        rows: 2,
+        cols: 2,
+      },
+    {
+        img: image1,
+        title: 'Breakfast',
+        rows: 2,
+        cols: 2,
+      },
+]
 function srcset(image, size, rows = 1, cols = 1) {
     return {
       src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
@@ -25,7 +56,7 @@ const Logos = () => {
         Diversity Is Our Superpower
       </Typography>
       <ImageList
-      sx={{ width: 500, height: 450 }}
+      sx={{ width: "100%", height: "auto" }}
       variant="quilted"
       cols={4}
       rowHeight={121}
@@ -33,7 +64,7 @@ const Logos = () => {
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
-            {...srcset(item.img.src, 121, item.rows, item.cols)}
+            {...srcset(item.img, 121, item.rows, item.cols)}
             alt={item.title}
             loading="lazy"
           />
@@ -44,11 +75,4 @@ const Logos = () => {
   );
 };
 export default Logos;
-const itemData = [
-    {
-        img: image1,
-        title: 'Breakfast',
-        rows: 2,
-        cols: 2,
-      },
-]
+
