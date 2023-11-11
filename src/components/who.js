@@ -28,20 +28,20 @@ const Who = () => {
         </Link>
         <Container  className="counterContainer">
           <Grid container mt={5} spacing={1} sx={{textAlign:"center"}}>
-            <Grid item xs={4} sx={{borderRight: "2px solid white"}}>
+            <Grid item xs={6} sm={4} sx={{borderRight: "2px solid white"}}>
               <Typography pb={2} class="timer count-number" >
                 14+
               </Typography>
               <Typography class="stats-text" >Years in Innovation</Typography>
             </Grid>
             
-            <Grid item xs={4} sx={{borderRight: "2px solid white"}}>
+            <Grid item xs={6} sm={4} sx={{borderRight: "2px solid white"}}>
               <Typography pb={2} class="timer count-number">
                 500+
               </Typography>
               <Typography class="stats-text">Engineering Team</Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6} sm={4}>
               <Typography pb={2} class="timer count-number">
                 2500+
               </Typography>
@@ -49,20 +49,20 @@ const Who = () => {
             </Grid>
           </Grid>
           <Grid container mt={5} spacing={1} sx={{textAlign:"center"}}>
-            <Grid item xs={4} sx={{borderRight: "2px solid white"}}>
+            <Grid item xs={6} sm={4} sx={{borderRight: "2px solid white"}}>
               <Typography pb={2} class="timer count-number" >
                 20+
               </Typography>
               <Typography class="stats-text" >Industries Served</Typography>
             </Grid>
             
-            <Grid item xs={4} sx={{borderRight: "2px solid white"}}>
+            <Grid item xs={6} sm={4} sx={{borderRight: "2px solid white"}}>
               <Typography pb={2} class="timer count-number">
                 600+
               </Typography>
               <Typography class="stats-text">Portfolio Startups</Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6} sm={4}>
               <Typography pb={2} class="timer count-number">
                 30+
               </Typography>

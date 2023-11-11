@@ -28,7 +28,7 @@ const Header = () => {
         component="div"
         sx={{ flexGrow: 1, my: 2 }}
       >
-        <img src={Logo} alt="logo" width="50" height="50"/>
+        <img src={Logo} alt="logo" width={"50px"}/>
       </Typography>
       <Divider />
       <ul className="mobile-navigation">
@@ -74,7 +74,7 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
             <Typography color={"goldenrod"} variant="h6" component="div">
-              <img src={Logo} alt="logo" height={"70"} width="250" />
+              <img src={Logo} alt="logo" height={"50"} width="50" />
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               <ul className="navigation-menu">

@@ -2,6 +2,10 @@ import React from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Link, Grid, ImageList, ImageListItem } from "@mui/material";
 import image1 from './../images/card-3.jpg'
+import image2 from './../images/HR.jpg'
+import image3 from './../images/card4.jpg'
+import image4 from './../images/card5.jpg'
+import image5 from './../images/career1.jpg'
 const itemData = [
     {
         img: image1,
@@ -10,25 +14,25 @@ const itemData = [
         cols: 2,
       },
     {
-        img: image1,
+        img: image2,
         title: 'Breakfast',
         rows: 4,
         cols: 2,
       },
     {
-        img: image1,
-        title: 'Breakfast',
-        rows: 2,
-        cols: 1,
-      },
-    {
-        img: image1,
+        img: image3,
         title: 'Breakfast',
         rows: 2,
         cols: 2,
       },
     {
-        img: image1,
+        img: image4,
+        title: 'Breakfast',
+        rows: 2,
+        cols: 2,
+      },
+    {
+        img: image5,
         title: 'Breakfast',
         rows: 2,
         cols: 2,
@@ -52,7 +56,7 @@ const Logos = () => {
         padding: "30px 15px 40px",
       }}
     >
-      <Typography align="center" sx={{ fontSize: "35px", fontWeight: "bold" }}>
+      <Typography align="center" pb={5} sx={{ fontSize: "35px", fontWeight: "bold" }}>
         Diversity Is Our Superpower
       </Typography>
       <ImageList

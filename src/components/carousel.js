@@ -51,7 +51,7 @@ const CarouselBox = () => {
           return (
             <Carousel.Item className="">
               <Grid container spacing={6}>
-                <Grid item xs={12} sm={6}>
+                <Grid item sm={12} md={6}>
                   <img
                     className="w-100"
                     style={{ height: "60vh" }}
@@ -59,7 +59,7 @@ const CarouselBox = () => {
                     text="First slide"
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} p={10} sx={{height:"500px"}}>
+                <Grid item sm={12} md={6} sx={{height:"500px"}}>
                   <h2 class="text-dark">{item.label}</h2>
                   <p class="p-5 text-justify">"{item.text}"</p>
                   <h5 class="text-left text-dark">{item.name}</h5>
