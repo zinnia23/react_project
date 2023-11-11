@@ -135,10 +135,26 @@ color: #007bff;
     margin-bottom: 30px;
   }
 }
-
+.carousel-item{
+  font-family: 'Ubuntu', sans-serif;
+  color: #000000;
+  }
+.carousel-indicators{
+  position: absolute;
+}
 .carousel-indicators button{
   height: 10px!important;
   width: 10px!important;
   border-radius: 50%;
   cursor: pointer;
+}
+.carousel-indicators [data-bs-target] {
+  background-color: #17a2b8 !important;
+}
+
+.carousel-control-prev-icon{
+  background-image: url(../images/prev.png) !important;
+}
+.carousel-control-next-icon{
+  background-image: url(../images/next.png) !important;
 }
