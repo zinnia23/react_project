@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
+:root{
+  --bs-link-color-rgb: #f8f8f8!important
+}
 * {
   margin: 0;
   padding: 0;

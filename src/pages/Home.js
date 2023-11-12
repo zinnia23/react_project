@@ -11,7 +11,6 @@ import "../styles/HomeStyles.css";
 const Home = () => {
   return (
     <div>
-      <Layout>
         <div className="home" style={{ marginBottom: "50px" }} >
           <div id="heading">
             <h1>Transform with Us</h1>
@@ -27,7 +26,6 @@ const Home = () => {
         <Who />
         <Logos/>
         <Contact/>
-      </Layout>
     </div>
   );
 };

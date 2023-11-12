@@ -1,0 +1,8 @@
+.team-banner{
+    background-image: url("../images/Team-Hero-Banner.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    z-index: -1;
+}

@@ -4,7 +4,6 @@ import { Box, Typography } from "@mui/material";
 
 const Services = () => {
   return (
-    <Layout>
       <Box
         sx={{
           my: 15,
@@ -57,7 +56,6 @@ const Services = () => {
           Aspernatur beatae deleniti illo autem!
         </p>
       </Box>
-    </Layout>
   );
 };
 

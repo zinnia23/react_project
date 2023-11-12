@@ -1,6 +1,5 @@
 import React from "react";
 import { MenuList } from "../data/data";
-import Layout from "../components/Layout/Layout";
 import {
   Box,
   Card,
@@ -12,9 +11,10 @@ import {
 
 const Careers = () => {
   return (
-    <Layout>
+    <>
       <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-        {MenuList.map((menu) => (
+        <h1>define relevant data</h1>
+        {/* {MenuList.map((menu) => (
           <Card sx={{ maxWidth: "390px", display: "flex", m: 2 }}>
             <CardActionArea>
               <CardMedia
@@ -31,9 +31,9 @@ const Careers = () => {
               </CardContent>
             </CardActionArea>
           </Card>
-        ))}
+        ))} */}
       </Box>
-    </Layout>
+    </>
   );
 };
 

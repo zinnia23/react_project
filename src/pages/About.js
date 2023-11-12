@@ -1,8 +1,17 @@
 import React from "react";
-import Layout from "../components/Layout/Layout";
+import "../styles/About.css";
+import { Box, Grid } from "@mui/material";
 
-export default function About() {
-  return <Layout>
-    <p>asdasd</p>
-  </Layout>;
-}
+const About = () => {
+  return (
+    <Box component={"Section"} className="team-banner">
+      <Grid container className="align-items-center">
+        <Grid item sm={12} md={12} className="text-center">
+          <h1 >Heelo</h1>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+export default About;

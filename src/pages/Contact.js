@@ -17,7 +17,7 @@ import {
 
 const Contact = () => {
   return (
-    <Layout>
+    <>
       <Box sx={{ my: 5, ml: 10, "& h4": { fontWeight: "bold", mb: 2 } }}>
         <Typography variant="h4">Contact My Resturant</Typography>
         <p>
@@ -70,7 +70,7 @@ const Contact = () => {
           </Table>
         </TableContainer>
       </Box>
-    </Layout>
+    </>
   );
 };
 
