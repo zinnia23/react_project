@@ -1,29 +1,40 @@
 import React from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Button, Grid, TextField } from "@mui/material";
-import background from "./../images/contactbg.jpg";
 
-const Contactform = () => {
+
+
+const Contactform = ({ details }) => {
+  const { img, title, desc,color } = details[0];
   return (
-    <div style={{ backgroundImage: `url(${background})`, padding: "20px" }}>
+    <div style={{ backgroundImage: `url(${img})`, padding: "20px" }}>
       <Container
         sx={{
           alignItems: "center",
           justifyContent: "center",
           color: "black",
-          padding: "80px",
+          padding: "30px 80px",
         }}
       >
         <Typography
           align="center"
-          color="white"
+          color={color}
           pb={4}
-          sx={{ fontSize: "35px", fontWeight: "bold" }}
+          sx={{ fontFamily:  `'Ubuntu', sans-serif`,fontSize: "35px", fontWeight: "bold" }}
         >
-          We'd love to hear from you!
+          {title}
+        </Typography>
+        <Typography
+          align="justify"
+          paragraph
+          color={color}
+          pb={4}
+          sx={{fontSize: "20px" }}
+        >
+          {desc}
         </Typography>
         <Container sx={{ backgroundColor: "white", padding: "100px",height: "auto" }}>
-          <Grid container spacing={2} pb={5}>
+          <Grid container spacing={2} pb={3}>
             <Grid item sm={12} md={4}>
               <TextField
                 required
@@ -52,7 +63,7 @@ const Contactform = () => {
               />
             </Grid>
           </Grid>
-          <Grid container spacing={2} pb={5}>
+          <Grid container spacing={2} pb={3}>
             <Grid item sm={12} md={4}>
               <TextField
                 required
@@ -81,7 +92,7 @@ const Contactform = () => {
               />
             </Grid>
           </Grid>
-          <Grid container spacing={2} pb={5}>
+          <Grid container spacing={2} pb={3}>
             <Grid item sm={12} md={4}>
               <TextField
                 fullWidth

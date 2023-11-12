@@ -1,5 +1,5 @@
 
-.navigation-menu {
+/* .navigation-menu {
   list-style: none;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
 .navigation-menu li a {
   text-decoration: none;
   color: white;
-}
+} */
 .active {
   color: #17a2b8 !important;
   font-weight: bold !important;
@@ -20,14 +20,19 @@
 /* mobile view */
 .mobile-navigation {
   list-style: none;
+  background-color: black;
+
 }
 .mobile-navigation li {
   margin-top: 20px;
 }
 .mobile-navigation li a {
+  display: flex;
+  align-items: start;
+  justify-content: left;
   text-decoration: none;
-  font-size: 1.4rem;
-  color: black;
+  font-size: 18px;
+  color: white;
 }
 #contact-button{
   background-color: #17a2b8;

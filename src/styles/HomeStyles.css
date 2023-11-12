@@ -104,6 +104,10 @@ color: #007bff;
 .listitem{
   padding: 0;
 }
+.effect:hover{
+  background-image: linear-gradient(#4589FF, #08BDBA);
+  color: white;
+}
 /* mobile view  */
 
 @media only screen and (max-width: 600px) {

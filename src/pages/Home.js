@@ -7,7 +7,15 @@ import Contact from "./../components/contactform";
 import { Link } from "react-router-dom";
 import Banner from "../images/homebg.mp4";
 import "../styles/HomeStyles.css";
+import background from "./../images/contactbg.jpg";
 
+const details = [
+  {
+      img: background,
+      title: `We'd love tohear from you`,
+      color:"white"
+    },
+]
 const Home = () => {
   return (
     <div>
@@ -25,7 +33,7 @@ const Home = () => {
         <Carousel />
         <Who />
         <Logos/>
-        <Contact/>
+        <Contact details={details}/>
     </div>
   );
 };
