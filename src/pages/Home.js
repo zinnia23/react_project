@@ -12,7 +12,7 @@ import background from "./../images/contactbg.jpg";
 const details = [
   {
       img: background,
-      title: `We'd love tohear from you`,
+      title: `We'd love to hear from you`,
       color:"white"
     },
 ]

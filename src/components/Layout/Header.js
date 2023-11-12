@@ -19,8 +19,8 @@ import { Container } from "react-bootstrap";
 const pages = [
   { name: "Home", link: "/" },
   { name: "Services", link: "/services" },
-  { name: "Careers", link: "/careers" },
   { name: "Our Team", link: "/about" },
+  { name: "About", link: "/careers" },
 ];
 
 const Header = () => {
@@ -52,20 +52,14 @@ const Header = () => {
           <NavLink to={"/services"}>Services</NavLink>
         </li>
         <li>
-          <NavLink to={"/services"}>Services</NavLink>
-        </li>
-        <li>
           <NavLink to={"/about"}>Our Team</NavLink>
         </li>
         <li>
+          <NavLink to={"/careers"}>About</NavLink>
+        </li>
+        <li>
           <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
-            <Button
-              sx={{
-                color: "white",
-                backgroundColor: "#17a2b8",
-                ml:"-10px"
-              }}
-            >
+            <Button id="headerbutton">
               Contact
             </Button>
           </NavLink>
@@ -140,14 +134,7 @@ const Header = () => {
               })}
             </Box>
             <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
-              <Button
-                sx={{
-                  ml: 2,
-                  color: "white",
-                  display: "block",
-                  backgroundColor: "#17a2b8",
-                }}
-              >
+              <Button id="headerbutton" >
                 Contact
               </Button>
             </NavLink>

@@ -21,7 +21,7 @@ const details = [
 const Contact = () => {
   return (
     <>
-       <div className="home" style={{ marginBottom: "50px" }} >
+       <div className="home" >
           <Typography align="center" sx={{fontFamily: `'Ubuntu', sans-serif`}}>
             <h1 className="text-light" style={{fontSize: "65px"}}>We'd love to</h1>
             <h1 style={{fontSize: "65px", color:"#17a2b8"}}>Hear from you!</h1>

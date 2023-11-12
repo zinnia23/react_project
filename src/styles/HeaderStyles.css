@@ -13,6 +13,17 @@
   text-decoration: none;
   color: white;
 } */
+#headerbutton{
+  color: white;
+  background-color: #17a2b8;
+  margin-left:3px;
+  cursor: pointer;
+}
+#headerbutton:hover{
+  color: white;
+  background-color: #17a2b8;
+  margin-left:3px;
+}
 .active {
   color: #17a2b8 !important;
   font-weight: bold !important;

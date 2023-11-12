@@ -101,16 +101,46 @@ color: #007bff;
 .stats-text{
   font-size: 20px;
 }
-.listitem{
-  padding: 0;
+.css-1p823my-MuiListItem-root{
+  padding-left: 0 !important;
+  padding-bottom: 0 !important;
+}
+.css-10hburv-MuiTypography-root{
+  font-size: 14px !important;
+  cursor: pointer !important;
 }
 .effect:hover{
   background-image: linear-gradient(#4589FF, #08BDBA);
   color: white;
 }
+#learnbutton{
+  color: white;
+  border: 2px solid white;
+
+}
+#learnbutton:hover{
+  color: white;
+  border: 2px solid #17a2b8;
+}
+#headerbutton{
+  color: white;
+  background-color: #17a2b8;
+  margin-left:3px;
+  cursor: pointer;
+}
+#headerbutton:hover{
+  color: white;
+  background-color: #17a2b8;
+  margin-left:3px;
+}
+#footerbox{
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+}
 /* mobile view  */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .home {
     justify-content: center;
     align-items: center;
@@ -140,6 +170,15 @@ color: #007bff;
     background-color: white;
     color: #121619;
     margin-bottom: 30px;
+  }
+  #footerbox{
+    display: block;
+    align-items:center;
+    justify-content: center;
+  }
+  #divide{
+    border-top: 1px solid white;
+
   }
 }
 .carousel-item{
