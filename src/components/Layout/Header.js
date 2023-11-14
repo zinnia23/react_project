@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   AppBar,
   Box,
+  Grid,
   Divider,
   Drawer,
   IconButton,
@@ -10,11 +11,10 @@ import {
   Typography,
 } from "@mui/material";
 import Logo from "../../images/mainlogo.jpeg";
-
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
-import { Container } from "react-bootstrap";
+import { Container, Nav } from "react-bootstrap";
 
 const pages = [
   { name: "Home", link: "/" },
@@ -22,7 +22,66 @@ const pages = [
   { name: "Our Team", link: "/about" },
   { name: "About", link: "/careers" },
 ];
-
+const listofservices = {
+  "Application Development & Maintenance": [
+    { name: "Mobile Application Development", link: "" },
+    { name: "Custom Web Development", link: "" },
+    { name: "Product Discovery", link: "" },
+    { name: "DevOps as a Service", link: "" },
+    { name: "Salesforce Consulting", link: "" },
+    { name: "AWS Activate", link: "" },
+  ],
+  "Emerging Technologies": [
+    { name: "Artificial Intelligence", link: "" },
+    { name: "Blockchain", link: "" },
+    { name: "Internet of Things", link: "" },
+    { name: "Extended Reality", link: "" },
+  ],
+  Creative: [
+    { name: "Prototyping", link: "" },
+    { name: "User Experience Design", link: "" },
+  ],
+  Technologies: [
+    { name: "Python Development", link: "" },
+    { name: "React Native Development", link: "" },
+    { name: "ReactJS Development", link: "" },
+    { name: "PHP Development", link: "" },
+    { name: "Angular Development", link: "" },
+    { name: "Full Stack Developers", link: "" },
+    { name: "WordPress Development", link: "" },
+  ],
+};
+const returnServicesMenu = () => {
+  return (
+    <Grid container className="smallscreen" >
+      {Object.keys(listofservices).map((heading) => {
+        return (
+          <>
+            {/* <Grid item xs={12} md={3}> */}
+            <Typography
+              className="text"
+              sx={{
+                fontFamily: `'Ubuntu', sans-serif !important`,
+                fontSize: `20px !important`,
+                color: "#17a2b8 !important",
+              }}
+              variant="h5"
+              width={{ sm: "100%", md: "20%" }}
+            >
+              {heading}
+            </Typography>
+            {listofservices[heading].map((v) => {
+              return (
+                <Typography sx={{ padding: "0.5rem 0" }}>{v.name}</Typography>
+              );
+            })}
+            {/* </Grid> */}
+          </>
+        );
+      })}
+    </Grid>
+  );
+};
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   // hndle menu click
@@ -30,9 +89,20 @@ const Header = () => {
     setMobileOpen(!mobileOpen);
   };
   //menu drawer
-
+  const handleServicesClick = () => {
+    if (document.getElementById("service-menu").hidden == true || document.getElementById("service-menu-s").hidden == true ) {
+      document.getElementById("service-menu").hidden = false;
+      document.getElementById("service-menu-s").hidden = false;
+    } else {
+      document.getElementById("service-menu").hidden = true;
+      document.getElementById("service-menu-s").hidden = true;
+      // document.getElementById("service-menu").style.display = "none";
+    }
+  };
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box 
+    // onClick={handleDrawerToggle}
+     sx={{ textAlign: "center" }}>
       {/* <Typography
         color={"goldenrod"}
         variant="h6"
@@ -49,7 +119,10 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/services"}>Services</NavLink>
+          <NavLink to="#" onClick={handleServicesClick}>Services</NavLink>
+          <Container hidden id="service-menu-s" className="smallservice">
+            {returnServicesMenu()}
+          </Container>
         </li>
         <li>
           <NavLink to={"/about"}>Our Team</NavLink>
@@ -59,9 +132,7 @@ const Header = () => {
         </li>
         <li>
           <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
-            <Button id="headerbutton">
-              Contact
-            </Button>
+            <Button id="headerbutton">Contact</Button>
           </NavLink>
         </li>
       </ul>
@@ -113,13 +184,14 @@ const Header = () => {
               {pages.map((page) => {
                 return (
                   <NavLink
-                    activeClassName={"active"}
-                    to={page.link}
+                  activeClassName={"active"}
+                  className={"button-header"}
+                  to={page.link}
                     style={{ textDecoration: "none" }}
+                    onClick={page.name == "Services" ? handleServicesClick : ""}
                   >
                     <Button
                       key={page.name}
-                      // onClick={handleCloseNavMenu}
                       sx={{
                         my: 2,
                         display: "block",
@@ -134,23 +206,35 @@ const Header = () => {
               })}
             </Box>
             <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
-              <Button id="headerbutton" >
-                Contact
-              </Button>
+              <Button id="headerbutton">Contact</Button>
             </NavLink>
             {/* </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar> */}
           </Toolbar>
+          <Container
+            id="service-menu"
+            className="service-dropdown"
+            hidden
+>
+            <Typography
+              variant="h5"
+              sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "16px" }}
+            >
+              SERVICES
+            </Typography>
+            {returnServicesMenu()}
+          </Container>
         </Container>
       </AppBar>
+
       <Box component="nav">
         <Drawer
           anchor="top"
-          variant="temporary"
+          variant="persistent"
           open={mobileOpen}
-          onClose={handleDrawerToggle}
+          // onClose={handleDrawerToggle}
           sx={{
             display: { sm: "block", md: "none" },
             "& .MuiDrawer-paper": {
@@ -170,5 +254,4 @@ const Header = () => {
     </Box>
   );
 };
-
 export default Header;
