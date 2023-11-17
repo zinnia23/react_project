@@ -16,7 +16,7 @@ import {
   Container,
   TextField,
 } from "@mui/material";
-import Logo from "./../../images/mainlogo.jpeg";
+import Logo from "./../../images/mainlogo.png";
 import "../../styles/HomeStyles.css";
 import Form from "react-bootstrap/Form";
 
@@ -53,7 +53,7 @@ const Footer = () => {
       <Box sx={{ bgcolor: "black", color: "white", padding: "100px" }}>
         <Grid container spacing={8} pb={3}>
           <Grid item xs={12} md={6}>
-            <img src={Logo} alt="logo" width="100" />
+            <img src={Logo} alt="logo" height="200" width="200" />
             <Typography paragraph pt={3} sx={{ fontSize: "15px" }}>
               Founded in 2021, Hash Technologies has come a long way growing in
               different sectors like Public/Private Healthcare Education

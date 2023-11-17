@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -7,6 +8,8 @@ import Careers from "./pages/Careers";
 import Pagenotfound from "./pages/Pagenotfound";
 import About from "./pages/About";
 import Layout from "./components/Layout/Layout";
+
+require('events').EventEmitter.defaultMaxListeners = 15;
 function App() {
   return (
     <BrowserRouter>

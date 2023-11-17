@@ -10,7 +10,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import Logo from "../../images/mainlogo.jpeg";
+import Logo from "../../images/mainlogo.png";
+import MiniLogo from "../../images/minilogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
@@ -168,7 +169,7 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
             <Typography color={"goldenrod"} variant="h6" component="div">
-              <img src={Logo} alt="logo" height={"50"} width="50" />
+              <img src={MiniLogo} alt="logo" height="50" width="50" />
             </Typography>
             <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
               {pages.map((page) => {

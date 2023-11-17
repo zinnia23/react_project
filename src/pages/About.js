@@ -176,9 +176,9 @@ export default function Ourteam() {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <StyledTab label="Item One" {...a11yProps(0)} />
-            <StyledTab label="Item Two" {...a11yProps(1)} />
-            <StyledTab label="Item Three" {...a11yProps(2)} />
+            <StyledTab label="USA" {...a11yProps(0)} />
+            <StyledTab label="India" {...a11yProps(1)} />
+            <StyledTab label="Pakistan" {...a11yProps(2)} />
           </StyledTabs>
         </Box>
         <Container>

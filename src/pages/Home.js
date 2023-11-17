@@ -21,7 +21,7 @@ const Home = () => {
     <div>
         <div className="home" style={{ marginBottom: "50px" }} >
           <div id="heading">
-            <h1>Transform with Us</h1>
+            <h1>Delivering Tech solutions</h1>
           </div>
           <Link to="/menu" className="learn-button">
             LEARN MORE
