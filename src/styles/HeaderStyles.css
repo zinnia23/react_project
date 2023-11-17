@@ -17,6 +17,7 @@
   padding-top: 20px !important;
   flex-direction: column !important;
   height: 60vh !important
+
 }
 .service-dropdown{
   padding: 3em 7em !important;
@@ -86,6 +87,7 @@ color: rgba(255, 255, 255, 0.5);
     padding-top: 1 !important;
     overflow-y: scroll !important;
     text-align: left !important;
+
   }
   .service-dropdown{
     height: 50vh;
@@ -93,10 +95,10 @@ color: rgba(255, 255, 255, 0.5);
     display: none !important;
   }
   .smallservice{
-    height: 50vh;
+    height: 50vh !important;
     padding: 1em !important;
-    background: white;
-  color: black;
-  width: 99%;
+    background: white !important;
+  color: black !important;
+  width: 99% !important;
   }
 }

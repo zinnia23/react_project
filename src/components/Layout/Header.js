@@ -72,7 +72,7 @@ const returnServicesMenu = () => {
             </Typography>
             {listofservices[heading].map((v) => {
               return (
-                <Typography sx={{ padding: "0.5rem 0" }}>{v.name}</Typography>
+                <Typography sx={{ padding: "0.7rem 0" }}>{v.name}</Typography>
               );
             })}
             {/* </Grid> */}
@@ -155,16 +155,6 @@ const Header = () => {
               justifyContent: "space-between",
             }}
           >
-            {/* <Navbar.Toggle aria-controls="navbarScroll" /> */}
-            {/* <Navbar.Collapse id="navbarScroll" > */}
-            {/* <Nav
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-              navbarScroll
-            > */}
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -208,10 +198,6 @@ const Header = () => {
             <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
               <Button id="headerbutton">Contact</Button>
             </NavLink>
-            {/* </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
           </Toolbar>
           <Container
             id="service-menu"
