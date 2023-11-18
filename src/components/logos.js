@@ -56,7 +56,7 @@ const Logos = () => {
         padding: "30px 15px 40px",
       }}
     >
-      <Typography align="center" pb={5} sx={{ fontSize: "35px", fontWeight: "bold" }}>
+      <Typography align="center" pb={5} sx={{ fontSize: "35px",fontFamily: `'Ubuntu', sans-serif` }}>
         Diversity Is Our Superpower
       </Typography>
       <ImageList

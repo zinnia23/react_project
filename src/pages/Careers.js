@@ -20,16 +20,15 @@ const details = [
 const Careers = () => {
   return (
     <>
-      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+      <Box id="about-image" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         <div className="home" style={{ marginBottom: "50px" }}>
           <Typography
             align="center"
             sx={{ fontFamily: `'Ubuntu', sans-serif` }}
           >
-            <h1 style={{ fontSize: "65px", color: "#17a2b8" }}>Who We Are !</h1>
+            <h1 style={{ fontSize: "65px", color: "white" }}>Who We Are !</h1>
           </Typography>
         </div>
-        <img src={Image} className="background-video"></img>
       </Box>
       <Container sx={{ fontFamily: `'Ubuntu', sans-serif` }}>
         <Grid container p={5} spacing={5}>

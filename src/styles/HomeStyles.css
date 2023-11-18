@@ -14,14 +14,14 @@ body{
 }
 #heading{
   background-color: rgb(0, 0, 0, 0.8);  /* border-left: red ; */
-  height: auto;
+  width: auto;
   box-sizing: border-box;
   position: absolute;
   padding: 10px; 
 }
 #heading h1{
   font-weight: bold;
-  font-size: 70px;
+  font-size: 6vw;
   color: white;
   text-align: center;
 }
@@ -30,7 +30,7 @@ body{
   border-left: 7px solid #17a2b8;
   border-bottom: 7px solid #17a2b8;
   border-top: 7px solid #17a2b8;
-  top: -7px;
+  top: 0px;
   left: -7px;
   height: 100%;
   width: 75px;
@@ -41,7 +41,7 @@ body{
   border-right: 7px solid #17a2b8;
   border-bottom: 7px solid #17a2b8;
   border-top: 7px solid #17a2b8;
-  top: -7px;
+  top: 0px;
   right: -7px;
   height: 100%;
   width: 75px;
@@ -52,7 +52,7 @@ body{
   color: white;
   position: absolute;
   top:70%;
-  font-size: 20px;
+  font-size: 3vw;
   font-weight: bold; 
   display: inline-block;
   text-decoration: none;
@@ -65,13 +65,10 @@ body{
   margin-top: 15px;
   
 }
-
 .learn-button:hover{
   color: #17a2b8;
 
 }
-
-
 .background-video {
   position: absolute;
   top: 0;
@@ -138,6 +135,15 @@ color: #007bff;
   align-items:center;
   justify-content: space-between;
 }
+.statspadd {
+  padding: 15px 0;
+}
+#counterContainer-large{
+  display: block;
+}
+#counterContainer-small{
+  display: none;
+}
 /* mobile view  */
 
 @media only screen and (max-width: 768px) {
@@ -180,6 +186,13 @@ color: #007bff;
     border-top: 1px solid white;
 
   }
+  #counterContainer-large{
+    display: none;
+  }
+  #counterContainer-small{
+    display: block;
+  }
+
 }
 .carousel-item{
   font-family: 'Ubuntu', sans-serif;

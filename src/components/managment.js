@@ -15,7 +15,12 @@ const Managment = ({ details }) => {
                   <Card.Img
                     variant="top"
                     src={item.img}
-                    style={{ borderRadius: "50%", width: "150px",paddingBottom:"10px" }}                  
+                    style={{
+                      borderRadius: "50%",
+                      width: "150px",
+                      paddingBottom: "10px",
+                      
+                    }}
                   />
                   <Typography
                     align="center"
@@ -27,7 +32,9 @@ const Managment = ({ details }) => {
                   >
                     {item.name}
                   </Typography>
-                  <Typography variant="h5" align="center">
+                  <Typography align="center"  sx={{
+                      fontSize: "16px",
+                    }}>
                     {item.text}
                   </Typography>
                 </div>
@@ -42,7 +49,11 @@ const Managment = ({ details }) => {
                   >
                     {item.name}
                   </Typography>
-                  <Typography align="left" pb={1} sx={{fontSize:"23px", fontWeight:"600"}}>
+                  <Typography
+                    align="left"
+                    pb={1}
+                    sx={{ fontSize: "23px", fontWeight: "600" }}
+                  >
                     {item.text}
                   </Typography>
                   <Typography
@@ -59,7 +70,7 @@ const Managment = ({ details }) => {
               </Card>
             </Grid>
           );
-        })} 
+        })}
       </Grid>
     </section>
   );

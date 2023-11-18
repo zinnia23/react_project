@@ -38,6 +38,7 @@
     display: block;
     align-items: center;
     justify-content: center;
+    width: auto;
 }
 #hoverbody{
     color: white;
@@ -59,6 +60,33 @@
     padding: 40px;
     color: white;
     font-family: 'Ubuntu', sans-serif;
+}
+#image-team{
+        background-color: steelblue;
+        background-image: url(../images/team.jpg);
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: multiply;
+        color: #fff;
+   
+}
+#about-image{
+    background-color: steelblue;
+    background-image: url(../images/aboutbg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+
+}
+#contact-image{
+    background-color: steelblue;
+    background-image: url(../images/contact.jpg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+
 }
   @media only screen and (max-width: 900px) {
     #mission{

@@ -63,7 +63,7 @@ const returnServicesMenu = () => {
               className="text"
               sx={{
                 fontFamily: `'Ubuntu', sans-serif !important`,
-                fontSize: `20px !important`,
+                fontSize: `22px !important`,
                 color: "#17a2b8 !important",
               }}
               variant="h5"
@@ -121,9 +121,9 @@ const Header = () => {
         </li>
         <li>
           <NavLink to="#" onClick={handleServicesClick}>Services</NavLink>
-          <Container hidden id="service-menu-s" className="smallservice">
+          <Box hidden id="service-menu-s" className="smallservice">
             {returnServicesMenu()}
-          </Container>
+          </Box>
         </li>
         <li>
           <NavLink to={"/about"}>Our Team</NavLink>
@@ -168,9 +168,9 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography color={"goldenrod"} variant="h6" component="div">
+            <NavLink to={"/"} color={"goldenrod"} variant="h6" component="div">
               <img src={MiniLogo} alt="logo" height="50" width="50" />
-            </Typography>
+            </NavLink>
             <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
               {pages.map((page) => {
                 return (
@@ -200,21 +200,22 @@ const Header = () => {
               <Button id="headerbutton">Contact</Button>
             </NavLink>
           </Toolbar>
-          <Container
+          
+        </Container>
+      </AppBar>
+      <Container
             id="service-menu"
             className="service-dropdown"
             hidden
 >
             <Typography
               variant="h5"
-              sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "16px" }}
+              sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "19px" }}
             >
               SERVICES
             </Typography>
             {returnServicesMenu()}
           </Container>
-        </Container>
-      </AppBar>
 
       <Box component="nav">
         <Drawer

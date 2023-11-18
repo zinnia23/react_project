@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import "../styles/About.css";
 import { Container, Box, Typography, Tabs, Tab } from "@mui/material";
-import Image from "../images/Team-Hero-Banner.jpg";
+import Image from "../images/team.jpg";
 import Managment from "../components/managment";
 import Avatar1 from "../images/avatar (1).svg";
 import Avatar2 from "../images/avatar (2).svg";
@@ -153,7 +153,7 @@ export default function Ourteam() {
 
   return (
     <>
-      <div className="home" style={{ marginBottom: "50px" }}>
+      <div id="image-team" className="home" style={{ marginBottom: "50px" }}>
         <Typography align="center" sx={{ fontFamily: `'Ubuntu', sans-serif` }}>
           <h1 className="text-light" style={{ fontSize: "65px" }}>
             Bringing Out the Best
@@ -161,7 +161,7 @@ export default function Ourteam() {
           <h1 style={{ fontSize: "65px", color: "#17a2b8" }}>in Each Other!</h1>
         </Typography>
       </div>
-      <img src={Image} className="background-video"></img>
+      {/* <img className="background-video"></img> */}
 
       <Box sx={{ width: "100%" }}>
         <Box
