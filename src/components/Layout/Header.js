@@ -10,7 +10,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import Logo from "../../images/mainlogo.jpeg";
+import Logo from "../../images/mainlogo.png";
+import MiniLogo from "../../images/minilogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
@@ -53,7 +54,7 @@ const listofservices = {
 };
 const returnServicesMenu = () => {
   return (
-    <Grid container className="smallscreen">
+    <Container className="smallscreen">
       {Object.keys(listofservices).map((heading) => {
         return (
           <>
@@ -62,29 +63,32 @@ const returnServicesMenu = () => {
               className="text"
               sx={{
                 fontFamily: `'Ubuntu', sans-serif !important`,
-                fontSize: `20px !important`,
+                fontSize: `22px !important`,
                 color: "#17a2b8 !important",
               }}
               variant="h5"
-              width={{ sm: "100%", md: "20%" }}
+              width={{ sm: "100%", md: "30%" }}
             >
               {heading}
             </Typography>
             {listofservices[heading].map((v) => {
               return (
-                <Typography sx={{ padding: "0.5rem 0" }}>{v.name}</Typography>
+                <Typography sx={{ paddingTop: "5px" }}>{v.name}</Typography>
               );
             })}
             {/* </Grid> */}
           </>
         );
       })}
-    </Grid>
+    </Container>
   );
 };
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const serviceMenu = useRef();
+  const serviceButton = useRef();
+  const serviceMenuS = useRef();
+  const serviceButtonS = useRef();
   // hndle menu click
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -92,11 +96,19 @@ const Header = () => {
   //menu drawer
   const handleServicesClick = () => {
     serviceMenu.current.hidden = !serviceMenu.current.hidden;
-    document.querySelectorAll("a.button-header").forEach((item, key) => {
+    serviceMenuS.current.hidden = !serviceMenuS.current.hidden;
+    if (!serviceMenu.current.hidden) {
+      serviceButton.current.classList.add("active");
+      serviceButtonS.current.classList.add("active");
+    } else {
+      serviceButton.current.classList.remove("active");
+      serviceButtonS.current.classList.remove("active");
+    }
+    document.querySelectorAll("a.mobile-service-button").forEach((item) => {
       item.classList.remove("active");
-      if (key == 1) {
-        item.style.color = "#17a2b8";
-      }
+    });
+    document.querySelectorAll("a.button-header").forEach((item) => {
+      item.classList.remove("active");
     });
   };
 
@@ -106,25 +118,53 @@ const Header = () => {
       sx={{ textAlign: "center" }}
     >
       <ul className="mobile-navigation">
-        <li>
-          <NavLink activeClassName="active" to={"/"}>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <Anchor to="#" onClick={handleServicesClick}>
-            Services
-          </Anchor>
-          <Container hidden id="service-menu-s" className="smallservice">
-            {returnServicesMenu()}
-          </Container>
-        </li>
-        <li>
+        {pages.map((item) => {
+          if (item.name != "Services") {
+            return (
+              <li>
+                <NavLink
+                  activeClassName="active"
+                  className={"mobile-service-button"}
+                  to={item.link}
+                  onClick={() => {
+                    serviceButton.current.classList.remove("active");
+                    serviceButtonS.current.classList.remove("active");
+                    serviceMenu.current.hidden = true;
+                    serviceMenuS.current.hidden = true;
+                  }}
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            );
+          } else {
+            return (
+              <li>
+                <Anchor
+                  onClick={handleServicesClick}
+                  ref={serviceButtonS}
+                  to="#"
+                >
+                  Services
+                </Anchor>
+                <Container
+                  hidden
+                  id="service-menu-s"
+                  ref={serviceMenuS}
+                  className="smallservice"
+                >
+                  {returnServicesMenu()}
+                </Container>
+              </li>
+            );
+          }
+        })}
+        {/* <li>
           <NavLink to={"/our-team"}>Our Team</NavLink>
         </li>
         <li>
           <NavLink to={"/about"}>About</NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
             <Button id="headerbutton">Contact</Button>
@@ -162,9 +202,9 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography color={"goldenrod"} variant="h6" component="div">
-              <img src={Logo} alt="logo" height={"50"} width="50" />
-            </Typography>
+            <NavLink to={"/"} color={"goldenrod"} variant="h6" component="div">
+              <img src={MiniLogo} alt="logo" height="50" width="50" />
+            </NavLink>
             <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
               {pages.map((page) => {
                 if (page.name != "Services") {
@@ -176,9 +216,9 @@ const Header = () => {
                       style={{ textDecoration: "none" }}
                       onClick={() => {
                         serviceMenu.current.hidden = true;
-                        document.querySelectorAll(
-                          "a.button-header"
-                        )[1].style.color = "white";
+                        serviceMenuS.current.hidden = true;
+                        serviceButton.current.classList.remove("active");
+                        serviceButtonS.current.classList.remove("active");
                       }}
                     >
                       <Button
@@ -189,7 +229,6 @@ const Header = () => {
                           color: "inherit",
                         }}
                         to={page.link}
-                        // onClick={}
                       >
                         {page.name}
                       </Button>
@@ -202,15 +241,17 @@ const Header = () => {
                       className={"button-header"}
                       style={{ textDecoration: "none" }}
                       onClick={handleServicesClick}
+                      href="/#"
+
                     >
                       <Button
+                        ref={serviceButton}
                         key={page.name}
                         sx={{
                           my: 2,
                           display: "block",
                           color: "inherit",
                         }}
-                        to={page.link}
                       >
                         {page.name}
                       </Button>
@@ -222,27 +263,19 @@ const Header = () => {
             <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
               <Button id="headerbutton">Contact</Button>
             </NavLink>
-            {/* </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
           </Toolbar>
-          <Container
-            id=""
-            ref={serviceMenu}
-            className="service-dropdown"
-            hidden
-          >
-            <Typography
-              variant="h5"
-              sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "16px" }}
-            >
-              SERVICES
-            </Typography>
-            {returnServicesMenu()}
-          </Container>
         </Container>
       </AppBar>
+
+      <Container  ref={serviceMenu} className="service-dropdown" hidden>
+        <Typography
+          variant="h5"
+          sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "19px" }}
+        >
+          SERVICES
+        </Typography>
+        {returnServicesMenu()}
+      </Container>
 
       <Box component="nav">
         <Drawer
