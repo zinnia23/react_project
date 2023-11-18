@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   AppBar,
   Box,
@@ -14,13 +14,13 @@ import Logo from "../../images/mainlogo.jpeg";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
-import { Container, Nav } from "react-bootstrap";
+import { Anchor, Container, Nav } from "react-bootstrap";
 
 const pages = [
   { name: "Home", link: "/" },
-  { name: "Services", link: "/services" },
-  { name: "Our Team", link: "/about" },
-  { name: "About", link: "/careers" },
+  { name: "Services", link: "" },
+  { name: "Our Team", link: "/our-team" },
+  { name: "About", link: "/about" },
 ];
 const listofservices = {
   "Application Development & Maintenance": [
@@ -53,7 +53,7 @@ const listofservices = {
 };
 const returnServicesMenu = () => {
   return (
-    <Grid container className="smallscreen" >
+    <Grid container className="smallscreen">
       {Object.keys(listofservices).map((heading) => {
         return (
           <>
@@ -84,34 +84,27 @@ const returnServicesMenu = () => {
 };
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const serviceMenu = useRef();
   // hndle menu click
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
   //menu drawer
   const handleServicesClick = () => {
-    if (document.getElementById("service-menu").hidden == true || document.getElementById("service-menu-s").hidden == true ) {
-      document.getElementById("service-menu").hidden = false;
-      document.getElementById("service-menu-s").hidden = false;
-    } else {
-      document.getElementById("service-menu").hidden = true;
-      document.getElementById("service-menu-s").hidden = true;
-      // document.getElementById("service-menu").style.display = "none";
-    }
+    serviceMenu.current.hidden = !serviceMenu.current.hidden;
+    document.querySelectorAll("a.button-header").forEach((item, key) => {
+      item.classList.remove("active");
+      if (key == 1) {
+        item.style.color = "#17a2b8";
+      }
+    });
   };
+
   const drawer = (
-    <Box 
-    // onClick={handleDrawerToggle}
-     sx={{ textAlign: "center" }}>
-      {/* <Typography
-        color={"goldenrod"}
-        variant="h6"
-        component="div"
-        sx={{ flexGrow: 1, mx: 2 }}
-      >
-        <img src={Logo} alt="logo" width={"50px"} />
-      </Typography>
-      <Divider /> */}
+    <Box
+      // onClick={handleDrawerToggle}
+      sx={{ textAlign: "center" }}
+    >
       <ul className="mobile-navigation">
         <li>
           <NavLink activeClassName="active" to={"/"}>
@@ -119,16 +112,18 @@ const Header = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="#" onClick={handleServicesClick}>Services</NavLink>
+          <Anchor to="#" onClick={handleServicesClick}>
+            Services
+          </Anchor>
           <Container hidden id="service-menu-s" className="smallservice">
             {returnServicesMenu()}
           </Container>
         </li>
         <li>
-          <NavLink to={"/about"}>Our Team</NavLink>
+          <NavLink to={"/our-team"}>Our Team</NavLink>
         </li>
         <li>
-          <NavLink to={"/careers"}>About</NavLink>
+          <NavLink to={"/about"}>About</NavLink>
         </li>
         <li>
           <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
@@ -155,16 +150,6 @@ const Header = () => {
               justifyContent: "space-between",
             }}
           >
-            {/* <Navbar.Toggle aria-controls="navbarScroll" /> */}
-            {/* <Navbar.Collapse id="navbarScroll" > */}
-            {/* <Nav
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-              navbarScroll
-            > */}
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -182,27 +167,56 @@ const Header = () => {
             </Typography>
             <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
               {pages.map((page) => {
-                return (
-                  <NavLink
-                  activeClassName={"active"}
-                  className={"button-header"}
-                  to={page.link}
-                    style={{ textDecoration: "none" }}
-                    onClick={page.name == "Services" ? handleServicesClick : ""}
-                  >
-                    <Button
-                      key={page.name}
-                      sx={{
-                        my: 2,
-                        display: "block",
-                        color: "inherit",
-                      }}
+                if (page.name != "Services") {
+                  return (
+                    <NavLink
+                      activeClassName={"active"}
+                      className={"button-header"}
                       to={page.link}
+                      style={{ textDecoration: "none" }}
+                      onClick={() => {
+                        serviceMenu.current.hidden = true;
+                        document.querySelectorAll(
+                          "a.button-header"
+                        )[1].style.color = "white";
+                      }}
                     >
-                      {page.name}
-                    </Button>
-                  </NavLink>
-                );
+                      <Button
+                        key={page.name}
+                        sx={{
+                          my: 2,
+                          display: "block",
+                          color: "inherit",
+                        }}
+                        to={page.link}
+                        // onClick={}
+                      >
+                        {page.name}
+                      </Button>
+                    </NavLink>
+                  );
+                } else {
+                  return (
+                    <Anchor
+                      activeClassName={"active"}
+                      className={"button-header"}
+                      style={{ textDecoration: "none" }}
+                      onClick={handleServicesClick}
+                    >
+                      <Button
+                        key={page.name}
+                        sx={{
+                          my: 2,
+                          display: "block",
+                          color: "inherit",
+                        }}
+                        to={page.link}
+                      >
+                        {page.name}
+                      </Button>
+                    </Anchor>
+                  );
+                }
               })}
             </Box>
             <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
@@ -214,10 +228,11 @@ const Header = () => {
       </Navbar> */}
           </Toolbar>
           <Container
-            id="service-menu"
+            id=""
+            ref={serviceMenu}
             className="service-dropdown"
             hidden
->
+          >
             <Typography
               variant="h5"
               sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "16px" }}

@@ -1,4 +1,4 @@
-body{
+body {
   overflow-x: hidden;
 }
 .home {
@@ -12,14 +12,14 @@ body{
   background-size: cover;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-#heading{
-  background-color: rgb(0, 0, 0, 0.8);  /* border-left: red ; */
+#heading {
+  background-color: rgb(0, 0, 0, 0.8); /* border-left: red ; */
   height: auto;
   box-sizing: border-box;
   position: absolute;
-  padding: 10px; 
+  padding: 10px;
 }
-#heading h1{
+#heading h1 {
   font-weight: bold;
   font-size: 70px;
   color: white;
@@ -47,30 +47,26 @@ body{
   width: 75px;
   position: absolute;
 }
-.learn-button{
+.learn-button {
   background-color: transparent;
   color: white;
   position: absolute;
-  top:70%;
+  top: 70%;
   font-size: 20px;
-  font-weight: bold; 
+  font-weight: bold;
   display: inline-block;
   text-decoration: none;
-
 }
-.learn-button::after{
+.learn-button::after {
   content: "";
   border-bottom: 7px solid #17a2b8;
   display: block;
   margin-top: 15px;
-  
 }
 
-.learn-button:hover{
+.learn-button:hover {
   color: #17a2b8;
-
 }
-
 
 .background-video {
   position: absolute;
@@ -81,61 +77,60 @@ body{
   object-fit: cover;
   z-index: -1;
 }
-.background{
-  background-color: #17a2b8;
+.background {
+  background-image: linear-gradient(to right, #0abbbe, #3992f3);
   padding: 50px 15px;
 }
-.learnMore{
+.learnMore {
   display: flex;
-   align-items:center;
-   justify-content: center;
-   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.learnMore:hover{
-color: #007bff;
+.learnMore:hover {
+  color: #007bff;
 }
-.count-number{
+.count-number {
   font-size: 35px;
   font-weight: bold;
 }
-.stats-text{
+.stats-text {
   font-size: 20px;
 }
-.css-1p823my-MuiListItem-root{
+.css-1p823my-MuiListItem-root {
   padding-left: 0 !important;
   padding-bottom: 0 !important;
 }
-.css-10hburv-MuiTypography-root{
+.css-10hburv-MuiTypography-root {
   font-size: 14px !important;
   cursor: pointer !important;
 }
-.effect:hover{
-  background-image: linear-gradient(#4589FF, #08BDBA);
+.effect:hover {
+  background-image: linear-gradient(#4589ff, #08bdba);
   color: white;
 }
-#learnbutton{
+#learnbutton {
   color: white;
   border: 2px solid white;
-
 }
-#learnbutton:hover{
+#learnbutton:hover {
   color: white;
   border: 2px solid #17a2b8;
 }
-#headerbutton{
+#headerbutton {
   color: white;
   background-color: #17a2b8;
-  margin-left:3px;
+  margin-left: 3px;
   cursor: pointer;
 }
-#headerbutton:hover{
+#headerbutton:hover {
   color: white;
   background-color: #17a2b8;
-  margin-left:3px;
+  margin-left: 3px;
 }
-#footerbox{
+#footerbox {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: space-between;
 }
 /* mobile view  */
@@ -171,28 +166,27 @@ color: #007bff;
     color: #121619;
     margin-bottom: 30px;
   }
-  #footerbox{
+  #footerbox {
     display: block;
-    align-items:center;
+    align-items: center;
     justify-content: center;
   }
-  #divide{
+  #divide {
     border-top: 1px solid white;
-
   }
 }
-.carousel-item{
-  font-family: 'Ubuntu', sans-serif;
-  }
-.carousel-item p{
+.carousel-item {
+  font-family: "Ubuntu", sans-serif;
+}
+.carousel-item p {
   color: #17a2b8 !important ;
 }
-.carousel-indicators{
+.carousel-indicators {
   position: absolute;
 }
-.carousel-indicators button{
-  height: 10px!important;
-  width: 10px!important;
+.carousel-indicators button {
+  height: 10px !important;
+  width: 10px !important;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -200,9 +194,35 @@ color: #007bff;
   background-color: #17a2b8 !important;
 }
 
-.carousel-control-prev-icon{
+.carousel-control-prev-icon {
   background-image: url(../images/prev.png) !important;
 }
-.carousel-control-next-icon{
+.carousel-control-next-icon {
   background-image: url(../images/next.png) !important;
+}
+
+@property --num0 {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+[data-number="14"] {
+  animation: identifier 1s forwards alternate ease-in-out;
+  counter-reset: num0 var(--num0);
+}
+/* [data-number="14"]:hover {
+  --num: 14;
+} */
+[data-number="14"]::after {
+  content: counter(num0) "+";
+}
+
+@keyframes identifier {
+  from {
+    --num0: 0;
+  }
+  to {
+    --num0: 14;
+  }
 }
