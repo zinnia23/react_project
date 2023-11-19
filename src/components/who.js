@@ -1,44 +1,95 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Link, Grid } from "@mui/material";
-import line from "../images/line.png";
 
 const Who = (props) => {
-  let [count1, setCount1] = useState(0);
-  let [count2, setCount2] = useState(0);
-  let [count3, setCount3] = useState(0);
-  let [count4, setCount4] = useState(0);
-  let [count5, setCount5] = useState(0);
-  let [count6, setCount6] = useState(0);
-  const ref = useRef();
-  // ref.current.addEventListner("scroll", () => {
-  //   console.log('asdasd')
-  // });
-  const handleclick = () => {
-    let i = 0;
-    setCount2(500);
-    setInterval(() => {
-      if (i > 14) {
-        return;
-      }
-      setCount1(i++);
-      console.log(i);
-    }, 50);
-    // setInterval(() => {
-    //   if (i > 2500) {
-    //     return;
-    //   }
-    //   setCount2(i++);
-    //   console.log(i);
-    // });
+  // let [count1, setCount1] = useState(0);
+  // let [count2, setCount2] = useState(0);
+  // let [count3, setCount3] = useState(0);
+  // let [count4, setCount4] = useState(0);
+  // let [count5, setCount5] = useState(0);
+  // let [count6, setCount6] = useState(0);
+  // const ref = useRef();
+  // // ref.current.addEventListner("scroll", () => {
+  // //   console.log('asdasd')
+  // // });
+  // const handleclick = () => {
+  //   let i = 0;
+  //   setCount2(500);
+  //   setInterval(() => {
+  //     if (i > 14) {
+  //       return;
+  //     }
+  //     setCount1(i++);
+  //     console.log(i);
+  //   }, 50);
+  //   // setInterval(() => {
+  //   //   if (i > 2500) {
+  //   //     return;
+  //   //   }
+  //   //   setCount2(i++);
+  //   //   console.log(i);
+  //   // });
 
-    setCount3(2500);
-    setCount4(20);
-    setCount5(600);
-    setCount6(30);
-  };
+  //   setCount3(2500);
+  //   setCount4(20);
+  //   setCount5(600);
+  //   setCount6(30);
+  // };
+
+  const [isAlreadyRun, setIsAlreadyRun] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      const counterContainer = document.querySelector(".counterContainer");
+      const counters = document.querySelectorAll(".count-number");
+      const triggerBottom = counterContainer.getBoundingClientRect().top + window.innerHeight / 2;
+
+      if (window.scrollY >= triggerBottom && !isAlreadyRun) {
+
+        // counters.forEach((counter) => {
+        //   const bottomOfObject =
+        //     counter.offsetTop + counter.offsetHeight / 2;
+        //   const bottomOfWindow =
+        //     window.scrollY + window.innerHeight;
+
+        //   // if (bottomOfWindow > bottomOfObject + 20) {
+        //     if (!isAlreadyRun) {
+            counters.forEach((count) => {
+              const animateCount = () => {
+                const target = +count.getAttribute("data-target");
+                const duration = 700;
+                const increment = target / duration;
+
+                let currentCount = 0;
+                const counterAnimation = setInterval(() => {
+                  currentCount += increment;
+                  count.innerText = Math.ceil(currentCount) + "+";
+
+                  if (currentCount >= target) {
+                    clearInterval(counterAnimation);
+                    count.innerText = target + "+";
+                  }
+                });
+              };
+
+              animateCount();
+            });
+
+            setIsAlreadyRun(true);
+        //   }
+        // }
+      };
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isAlreadyRun]);
   return (
-    <section className="background" ref={ref} onClick={handleclick}>
+    <section className="background">
       <Container
         className="who-text"
         sx={{ alignItems: "center", justifyContent: "center", color: "white" }}
@@ -61,23 +112,23 @@ const Who = (props) => {
         <Link className="learnMore" underline="none" variant="h5" color="white">
           Learn More
         </Link>
-        <Container id="counterContainer-large">
+        <Container className="counterContainer" id="counterContainer-large">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="14">
                 14+
               </Typography>
               <Typography class="stats-text">Years in Innovation</Typography>
             </Grid>
 
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="500">
                 500+
               </Typography>
               <Typography class="stats-text">Engineering Team</Typography>
             </Grid>
             <Grid item xs={6} sm={4}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="2500">
                 2500+
               </Typography>
               <Typography class="stats-text">Products Delivered</Typography>
@@ -85,56 +136,36 @@ const Who = (props) => {
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="20">
                 20+
               </Typography>
               <Typography class="stats-text">Industries Served</Typography>
             </Grid>
 
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="600">
                 600+
               </Typography>
               <Typography class="stats-text">Portfolio Startups</Typography>
             </Grid>
-            <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number">
+            <Grid item xs={6} sm={4}>
+              <Typography pb={2} class="timer count-number" data-target="30"> 
                 30+
               </Typography>
               <Typography class="stats-text">Innovation Events</Typography>
             </Grid>
           </Grid>
-          {/* <div class="w-100"></div>
-          <div class="col statspad">
-            <div class="counter-box">
-              <h2 class="stats-text">
-                <span
-                  class="counter"
-                  data-number="14"
-                  data-sign="+"
-                  data-signtwo=""
-                  data-signthree="K"
-                >
-                  14+
-                </span>
-              </h2>
-              <p class="para-terms-count-text">Years in Innovation</p>
-            </div>
-          </div>
-          <div class="col-1 statspadd text-center d-block">
-            <img src={line} alt="stats-separator" class="" width="20"/>
-          </div> */}
         </Container>
-        <Container id="counterContainer-small">
+        <Container className="counterContainer" id="counterContainer-small">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="14">
                 14+
               </Typography>
               <Typography class="stats-text">Years in Innovation</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="500">
                 500+
               </Typography>
               <Typography class="stats-text">Engineering Team</Typography>
@@ -142,13 +173,13 @@ const Who = (props) => {
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="2500">
                 2500+
               </Typography>
               <Typography class="stats-text">Products Delivered</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="20">
                 20+
               </Typography>
               <Typography class="stats-text">Industries Served</Typography>
@@ -156,13 +187,13 @@ const Who = (props) => {
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="600">
                 600+
               </Typography>
               <Typography class="stats-text">Portfolio Startups</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer count-number" data-target="30">
                 30+
               </Typography>
               <Typography class="stats-text">Innovation Events</Typography>
@@ -175,3 +206,59 @@ const Who = (props) => {
 };
 
 export default Who;
+// JavaScript logic for counter animation on scroll
+// window.addEventListener("scroll", () => {
+//   const counters = document.querySelectorAll(".timer");
+//   const triggerBottom = (window.innerHeight / 5) * 4;
+
+//   counters.forEach((counter) => {
+//     const counterTop = counter.getBoundingClientRect().top;
+
+//     if (counterTop < triggerBottom) {
+//       const updateCount = () => {
+//         const target = +counter.getAttribute("data-target");
+//         const count = +counter.innerText;
+//         const increment = target / 200; // Change the animation speed if needed
+
+//         if (count < target) {
+//           counter.innerText = Math.ceil(count + increment);
+//           setTimeout(updateCount, 1);
+//         } else {
+//           counter.innerText = target;
+//         }
+//       };
+
+//       updateCount();
+//     }
+//   });
+// });
+var isAlreadyRun = false;
+
+// $(window).scroll( function(){
+
+//     $('#counterContainer-large').each( function(i){
+
+//         var bottom_of_object = $(this).position().top + $(this).outerHeight() / 2;
+//         var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+
+//             if( bottom_of_window > ( bottom_of_object + 20 )  ){
+// 				if (!isAlreadyRun) {
+// 					$('.count-number').each(function () {
+	            	
+// 	                $(this).prop('Counter', 0).animate({
+// 	                    Counter: $(this).text()
+// 	                }, {
+// 	                        duration: 3500,
+// 	                        easing: 'swing',
+// 	                        step: function (now) {
+// 	                            $(this).text(Math.ceil(now));
+// 	                        }
+// 	                    });
+// 	            	});
+// 				}
+//                 isAlreadyRun = true;
+//             }
+//     }); 
+
+// });
