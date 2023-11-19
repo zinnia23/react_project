@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./../components/Layout/Layout";
 import Carousel from "./../components/carousel";
 import Who from "./../components/who";
@@ -17,9 +17,12 @@ const details = [
   },
 ];
 const Home = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  });
   return (
     <div>
-      <div className="home" style={{ marginBottom: "80px" }}>
+      <div className="home" style={{ marginBottom: "50px" }}>
         <div id="heading">
           <h1>Transform with Us</h1>
         </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect} from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
 import "../styles/About.css";
 import Image from "../images/aboutbg.jpg";
@@ -18,6 +18,10 @@ const details = [
     },
 ]
 const About = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  });
+
   return (
     <>
       <Box id="about-image" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>

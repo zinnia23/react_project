@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
@@ -10,6 +10,7 @@ import Layout from "./components/Layout/Layout";
 
 require("events").EventEmitter.defaultMaxListeners = 15;
 function App() {
+
   return (
     <BrowserRouter>
       <Layout>
