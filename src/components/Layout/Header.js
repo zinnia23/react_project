@@ -57,29 +57,52 @@ const listofservices = {
 const returnServicesMenu = () => {
   return (
     <Container className="smallscreen">
-      {Object.keys(listofservices).map((heading) => {
-        return (
-          <>
-            {/* <Grid item xs={12} md={3}> */}
-            <Typography
-              className="text"
-              sx={{
-                fontFamily: `'Ubuntu', sans-serif !important`,
-                color: "rgb(54 177 191) !important",
-              }}
-              width={{ sm: "100%", md: "30%" }}
-            >
-              {heading}
-            </Typography>
-            {listofservices[heading].map((v) => {
-              return (
-                <Typography sx={{ paddingTop: "5px" }}>{v.name}</Typography>
-              );
-            })}
-            {/* </Grid> */}
-          </>
-        );
-      })}
+      <Typography
+        variant="h5"
+        sx={{
+          fontFamily: `'Ubuntu', sans-serif`,
+          fontSize: "19px",
+          width: "100%",
+        }}
+      >
+        SERVICES
+      </Typography>
+      <Box
+        width={"100%"}
+        sx={{
+          flexDirection: "column",
+          display: "flex",
+          flexWrap: "wrap",
+          alignContent: "space-between",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          height: "100%",
+        }}
+      >
+        {Object.keys(listofservices).map((heading) => {
+          return (
+            <>
+              {/* <Grid item xs={12} md={3}> */}
+              <Typography
+                className="text"
+                sx={{
+                  fontFamily: `'Ubuntu', sans-serif !important`,
+                  color: "rgb(54 177 191) !important",
+                }}
+                width={{ sm: "100%", md: "30%" }}
+              >
+                {heading}
+              </Typography>
+              {listofservices[heading].map((v) => {
+                return (
+                  <Typography sx={{ paddingTop: "15px" }}>{v.name}</Typography>
+                );
+              })}
+              {/* </Grid> */}
+            </>
+          );
+        })}
+      </Box>
     </Container>
   );
 };
@@ -101,26 +124,31 @@ const Header = () => {
       };
     }, [ref]);
   };
-  const useOutsideClickAlerter = (ref) => {
+  const useOutsideClickAlerter = (ref, buttonRef) => {
     useEffect(() => {
       function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
+        if (
+          ref.current &&
+          !ref.current.contains(event.target) &&
+          !buttonRef.current.contains(event.target)
+        ) {
           serviceMenu.current.hidden = true;
         }
       }
-      document.addEventListener("mousedown", handleClickOutside);
+
+      document.addEventListener("click", handleClickOutside);
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener("click", handleClickOutside);
       };
-    }, [ref]);
+    }, [ref, buttonRef]);
   };
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const serviceMenu = useRef();
-  useOutsideClickAlerter(serviceMenu);
   const navbarRef = useRef();
   useScrollAlerter(navbarRef);
   const serviceButton = useRef();
+  useOutsideClickAlerter(serviceMenu, serviceButton);
   const serviceMenuS = useRef();
   const serviceButtonS = useRef();
   // hndle menu click
@@ -134,9 +162,7 @@ const Header = () => {
   };
 
   const drawer = (
-    <Box
-      sx={{ textAlign: "center" }}
-    >
+    <Box sx={{ textAlign: "center" }}>
       <ul className="mobile-navigation">
         {pages.map((item) => {
           if (item.name != "Services") {
@@ -148,8 +174,6 @@ const Header = () => {
                   className={"mobile-service-button"}
                   to={item.link}
                   onClick={() => {
-                    serviceButton.current.classList.remove("active");
-                    serviceButtonS.current.classList.remove("active");
                     serviceMenu.current.hidden = true;
                     serviceMenuS.current.hidden = true;
                   }}
@@ -207,119 +231,116 @@ const Header = () => {
 
   return (
     <Box>
-      <AppBar
-        component={"nav"}
-        className="sticky-top"
-        sx={{ bgcolor: "rgb(0 0 0/50%)", padding: "0 25px" }}
-        ref={navbarRef}
-      >
-        <Container maxWidth="xl">
-          <Toolbar
-            disableGutters
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
+      <Box sx={{}}>
+        <AppBar
+          component={"nav"}
+          className="sticky-top"
+          sx={{ bgcolor: "rgb(0 0 0/50%)", padding: "0 25px" }}
+          ref={navbarRef}
+        >
+          <Container maxWidth="xl">
+            <Toolbar
+              disableGutters
               sx={{
-                mr: 2,
-                display: { md: "none" },
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
-              onClick={handleDrawerToggle}
             >
-              <MenuIcon />
-            </IconButton>
-            <NavLink
-              className={"logo"}
-              to={"/"}
-              color={"goldenrod"}
-              variant="h6"
-              component="div"
-            >
-              <img src={MiniLogo} alt="logo" height="50" width="50" />
-            </NavLink>
-            <Box
-              width={"100%"}
-              sx={{ display: { xs: "none", md: "block" }, mr: 1 }}
-            >
-              <ul
-                className="w-100"
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  margin: 0,
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                sx={{
+                  mr: 2,
+                  display: { md: "none" },
+                }}
+                onClick={handleDrawerToggle}
+              >
+                <MenuIcon />
+              </IconButton>
+              <NavLink
+                className={"logo"}
+                to={"/"}
+                color={"goldenrod"}
+                variant="h6"
+                component="div"
+              >
+                <img src={MiniLogo} alt="logo" height="50" width="50" />
+              </NavLink>
+              <Box
+                width={"100%"}
+                sx={{ display: { xs: "none", md: "block" }, mr: 1 }}
+              >
+                <ul
+                  className="w-100"
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: 0,
+                  }}
+                >
+                  {pages.map((page) => {
+                    if (page.name != "Services") {
+                      return (
+                        <li className="header-items">
+                          <NavLink
+                            activeClassName={"active"}
+                            className={"button-header"}
+                            to={page.link}
+                            style={{}}
+                          >
+                            {page.name}
+                          </NavLink>
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li className="header-items">
+                          <Anchor
+                            ref={serviceButton}
+                            activeClassName={"active"}
+                            onClick={handleServicesClick}
+                            className={"button-header drop-down"}
+                            style={{
+                              textDecoration: "none",
+                              my: 2,
+                              display: "block",
+                              color: "inherit",
+                            }}
+                          >
+                            {page.name}
+                          </Anchor>
+                        </li>
+                      );
+                    }
+                  })}
+                </ul>
+              </Box>
+              {/* <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}> */}
+              <Button
+                to={"/contact-us"}
+                className="btn btn-primary"
+                onClick={() => {
+                  navigate("/contact-us");
+                }}
+                sx={{
+                  width: "9%",
                 }}
               >
-                {pages.map((page) => {
-                  if (page.name != "Services") {
-                    return (
-                      <li className="header-items">
-                        <NavLink
-                          activeClassName={"active"}
-                          className={"button-header"}
-                          to={page.link}
-                          style={{}}
-                        >
-                          {page.name}
-                        </NavLink>
-                      </li>
-                    );
-                  } else {
-                    return (
-                      <li className="header-items">
-                        <Anchor
-                          activeClassName={"active"}
-                          onClick={handleServicesClick}
-                          className={"button-header drop-down"}
-                          style={{
-                            textDecoration: "none",
-                            my: 2,
-                            display: "block",
-                            color: "inherit",
-                          }}
-                        >
-                          {page.name}
-                        </Anchor>
-                      </li>
-                    );
-                  }
-                })}
-              </ul>
-            </Box>
-            {/* <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}> */}
-            <Button
-              to={"/contact-us"}
-              className="btn btn-primary"
-              onClick={() => {
-                navigate("/contact-us");
-              }}
-              sx={{
-                width: "9%",
-              }}
-            >
-              Contact
-            </Button>
-            {/* </NavLink> */}
-          </Toolbar>
-        </Container>
-      </AppBar>
+                Contact
+              </Button>
+              {/* </NavLink> */}
+            </Toolbar>
+          </Container>
+        </AppBar>
 
-      <Container ref={serviceMenu} className="service-dropdown" hidden>
-        <Typography
-          variant="h5"
-          sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "19px" }}
-        >
-          SERVICES
-        </Typography>
-        {returnServicesMenu()}
-      </Container>
+        <Container ref={serviceMenu} className="service-dropdown" hidden>
+          {returnServicesMenu()}
+        </Container>
+      </Box>
 
       <Box component="nav">
         <Drawer
@@ -332,16 +353,13 @@ const Header = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: "100%",
-              top: "64px",
+              top: "0",
               backgroundColor: "black",
             },
           }}
         >
           {drawer}
         </Drawer>
-      </Box>
-      <Box>
-        <Toolbar />
       </Box>
     </Box>
   );

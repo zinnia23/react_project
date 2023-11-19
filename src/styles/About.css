@@ -63,6 +63,7 @@
 }
 #image-team{
         background-color: steelblue;
+        height: 100vh;
         background-image: url(../images/team.jpg);
         background-size: cover;
         background-position: center;
@@ -71,6 +72,7 @@
    
 }
 #about-image{
+    height: 100vh;
     background-color: steelblue;
     background-image: url(../images/aboutbg.jpg);
     background-size: cover;

@@ -5,12 +5,12 @@ import line from "../images/line.png";
 import "../styles/who.scss";
 
 const Who = (props) => {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      console.log(entry);
-    });
-  });
-  obs.observe(document.querySelector(".who-text"));
+  // const obs = new IntersectionObserver((entries) => {
+  //   entries.forEach((entry) => {
+  //     console.log(entry);
+  //   });
+  // });
+  // obs.observe(document.querySelector(".who-text"));
   let [count1, setCount1] = useState(0);
   let [count2, setCount2] = useState(0);
   let [count3, setCount3] = useState(0);
@@ -108,7 +108,7 @@ const Who = (props) => {
               </Typography>
               <Typography class="stats-text">Portfolio Startups</Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} sm={4}>
               <Typography pb={2} class="timer count-number">
                 30+
               </Typography>
