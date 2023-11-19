@@ -70,13 +70,22 @@ const returnServicesMenu = () => {
       <Box
         width={"100%"}
         sx={{
-          flexDirection: "column",
-          display: "flex",
-          flexWrap: "wrap",
-          alignContent: "space-between",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          height: "100%",
+          // flexDirection: "column",
+          // display: "flex",
+          // flexWrap: "wrap",
+          // alignContent: "space-between",
+          // justifyContent: "flex-start",
+          // alignItems: "flex-start",
+          // height: "100%",
+          '@media (min-width: 900px)': { // Example: for medium screens and above (768px and higher)
+            flexDirection: "column",
+            display: "flex",
+            flexWrap: "wrap",
+            alignContent: "space-between",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            height: "100%",
+          }
         }}
       >
         {Object.keys(listofservices).map((heading) => {
@@ -88,6 +97,7 @@ const returnServicesMenu = () => {
                 sx={{
                   fontFamily: `'Ubuntu', sans-serif !important`,
                   color: "rgb(54 177 191) !important",
+                  padding: "8px 0",
                 }}
                 width={{ sm: "100%", md: "30%" }}
               >
@@ -95,7 +105,7 @@ const returnServicesMenu = () => {
               </Typography>
               {listofservices[heading].map((v) => {
                 return (
-                  <Typography sx={{ paddingTop: "15px" }}>{v.name}</Typography>
+                  <Typography sx={{ padding: "12px 0" }}>{v.name}</Typography>
                 );
               })}
               {/* </Grid> */}
@@ -212,19 +222,18 @@ const Header = () => {
         <li>
           <NavLink to={"/about"}>About</NavLink>
         </li> */}
-        <li>
-          {/* <NavLink  style={{ textDecoration: "none" }}> */}
-          <Button
-            to={"/contact-us"}
-            className="btn btn-primary"
-            onClick={() => {
-              navigate("/contact-us");
-            }}
-          >
-            Contact
-          </Button>
-          {/* </NavLink> */}
-        </li>
+        {/* <li> */}
+        {/* <NavLink  style={{ textDecoration: "none" }}> */}
+        <Button
+          to={"/contact-us"}
+          class="btn btn-primary"
+          onClick={() => {
+            navigate("/contact-us");
+          }}
+          style={{ float: "left", margin: "6px 0" }}
+        >
+          Contact
+        </Button>
       </ul>
     </Box>
   );
@@ -270,7 +279,7 @@ const Header = () => {
               </NavLink>
               <Box
                 width={"100%"}
-                sx={{ display: { xs: "none", md: "block" }, mr: 1 }}
+                sx={{ display: { xs: "none", md: "flex" }, mr: 1, alignItems:"center", justifyContent:"space-between" }}
               >
                 <ul
                   className="w-100"
@@ -317,22 +326,21 @@ const Header = () => {
                       );
                     }
                   })}
+                  {/* <li> */}
+                    
+                  {/* </li> */}
                 </ul>
+                <Button
+                      to={"/contact-us"}
+                      class="btn btn-primary"
+                      onClick={() => {
+                        navigate("/contact-us");
+                      }}
+                      style={{float:"right"}}
+                    >
+                      Contact
+                    </Button>
               </Box>
-              {/* <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}> */}
-              <Button
-                to={"/contact-us"}
-                className="btn btn-primary"
-                onClick={() => {
-                  navigate("/contact-us");
-                }}
-                sx={{
-                  width: "9%",
-                }}
-              >
-                Contact
-              </Button>
-              {/* </NavLink> */}
             </Toolbar>
           </Container>
         </AppBar>
@@ -353,7 +361,7 @@ const Header = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: "100%",
-              top: "0",
+              top: "12%",
               backgroundColor: "black",
             },
           }}
