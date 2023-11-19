@@ -50,11 +50,11 @@ const team = [
 const Footer = () => {
   return (
     <>
-      <Box sx={{ bgcolor: "black", color: "white", padding: "100px" }}>
+      <Box sx={{ bgcolor: "black", color: "white", padding:{xs:"50px",md:"100px" }}}>
         <Grid container spacing={8} pb={3}>
           <Grid item xs={12} md={6}>
-            <img src={Logo} alt="logo" height="200" width="200" />
-            <Typography paragraph pt={3} sx={{ fontSize: "15px" }}>
+            <img src={Logo} alt="logo" width="200" />
+            <Typography paragraph sx={{ fontSize: "15px" }}>
               Founded in 2021, Hash Technologies has come a long way growing in
               different sectors like Public/Private Healthcare Education
               Hospitality Retail Banking Financials & Manufacturing Etc To
@@ -110,12 +110,13 @@ const Footer = () => {
           </Grid>
         </Grid>
         <Divider sx={{ borderColor: "white" }} />
-        <Box id="footerbox">
-          <div class="pb-4 pr-4">
-            <Typography pt={3} sx={{ fontFamily: `'Ubuntu', sans-serif` }}>
+        <Grid container>
+          <Grid item xs={12} md={4} pb={2}>
+            <Typography pt={3} sx={{ fontFamily: `'Ubuntu', sans-serif`, textAlign:{xs:"center",md:"left"} }}>
               Stay Connected With Our Latest Insights
             </Typography>
             <Box
+            pt={2}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -132,14 +133,15 @@ const Footer = () => {
                 Submit
               </Button>
             </Box>
-          </div>
-          <div id="divide" class="pb-4 pl-4">
+          </Grid>
+          <Grid item xs={12} md={4} pb={2}>
             <Typography pt={3} align="center" sx={{ fontFamily: `'Ubuntu', sans-serif` }}>
               Let's Connect
             </Typography>
-            <Box           
-              sx={{
-                my: 0.6,
+            <Box
+            pl={{md:3}}          
+              sx={{               
+                my: 1,
                 display:"flex",
                 alignItems:"center",
                 justifyContent:"center",
@@ -161,27 +163,27 @@ const Footer = () => {
               <YouTubeIcon />
               <FacebookIcon />
             </Box>
-          </div>
-          <div id="divide">
-            <Typography align="center" sx={{ fontSize: "13px", color: "#17a2b8" }}>
+          </Grid>
+          <Grid item xs={12} md={4} pb={2}>
+            <Typography pt={3} sx={{ fontSize: "13px", color: "#17a2b8",textAlign:{xs:"center"} }}>
               © 2023 Hash Technologies LLC
             </Typography>
             <Box
               pt={2}
             >
               <Typography
-                pr={1}
-                align="center"
+                // pr={1}        
                 sx={{
                   fontSize: "10px",
                   color: "white",
+                  textAlign:{xs:"center"}
                 }}
               >
                 Site Map | Terms of Use | Privacy Policy
               </Typography>
             </Box>
-          </div>
-        </Box>       
+          </Grid>
+        </Grid>       
       </Box>
     </>
   );

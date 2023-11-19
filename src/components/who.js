@@ -43,47 +43,34 @@ const Who = (props) => {
     function handleScroll() {
       const counterContainer = document.querySelector(".counterContainer");
       const counters = document.querySelectorAll(".count-number");
-      const triggerBottom = counterContainer.getBoundingClientRect().top + window.innerHeight / 2;
+      const triggerBottom =
+        counterContainer.getBoundingClientRect().top + window.innerHeight / 2;
 
       if (window.scrollY >= triggerBottom && !isAlreadyRun) {
+        counters.forEach((count) => {
+          const animateCount = () => {
+            const target = +count.getAttribute("data-target");
+            const duration = 700;
+            const increment = target / duration;
 
-        // counters.forEach((counter) => {
-        //   const bottomOfObject =
-        //     counter.offsetTop + counter.offsetHeight / 2;
-        //   const bottomOfWindow =
-        //     window.scrollY + window.innerHeight;
+            let currentCount = 0;
+            const counterAnimation = setInterval(() => {
+              currentCount += increment;
+              count.innerText = Math.ceil(currentCount) + "+";
 
-        //   // if (bottomOfWindow > bottomOfObject + 20) {
-        //     if (!isAlreadyRun) {
-            counters.forEach((count) => {
-              const animateCount = () => {
-                const target = +count.getAttribute("data-target");
-                const duration = 700;
-                const increment = target / duration;
-
-                let currentCount = 0;
-                const counterAnimation = setInterval(() => {
-                  currentCount += increment;
-                  count.innerText = Math.ceil(currentCount) + "+";
-
-                  if (currentCount >= target) {
-                    clearInterval(counterAnimation);
-                    count.innerText = target + "+";
-                  }
-                });
-              };
-
-              animateCount();
+              if (currentCount >= target) {
+                clearInterval(counterAnimation);
+                count.innerText = target + "+";
+              }
             });
+          };
 
-            setIsAlreadyRun(true);
-        //   }
-        // }
-      };
+          animateCount();
+        });
+        setIsAlreadyRun(true);
+      }
     }
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -153,7 +140,7 @@ const Who = (props) => {
               <Typography class="stats-text">Portfolio Startups</Typography>
             </Grid>
             <Grid item xs={6} sm={4}>
-              <Typography pb={2} class="timer count-number" data-target="30"> 
+              <Typography pb={2} class="timer count-number" data-target="30">
                 30+
               </Typography>
               <Typography class="stats-text">Innovation Events</Typography>
@@ -245,11 +232,10 @@ var isAlreadyRun = false;
 //         var bottom_of_object = $(this).position().top + $(this).outerHeight() / 2;
 //         var bottom_of_window = $(window).scrollTop() + $(window).height();
 
-
 //             if( bottom_of_window > ( bottom_of_object + 20 )  ){
 // 				if (!isAlreadyRun) {
 // 					$('.count-number').each(function () {
-	            	
+
 // 	                $(this).prop('Counter', 0).animate({
 // 	                    Counter: $(this).text()
 // 	                }, {
@@ -263,6 +249,6 @@ var isAlreadyRun = false;
 // 				}
 //                 isAlreadyRun = true;
 //             }
-//     }); 
+//     });
 
 // });

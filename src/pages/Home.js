@@ -19,7 +19,7 @@ const details = [
 const Home = () => {
   return (
     <div>
-      <div className="home" style={{ marginBottom: "50px" }}>
+      <div className="home" style={{ marginBottom: "80px" }}>
         <div id="heading">
           <h1>Transform with Us</h1>
         </div>

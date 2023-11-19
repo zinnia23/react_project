@@ -60,6 +60,9 @@ const returnServicesMenu = () => {
       <Typography
         variant="h5"
         sx={{
+          "@media (max-width: 900px)": {
+            display: "none",
+          },
           fontFamily: `'Ubuntu', sans-serif`,
           fontSize: "19px",
           width: "100%",
@@ -70,14 +73,8 @@ const returnServicesMenu = () => {
       <Box
         width={"100%"}
         sx={{
-          // flexDirection: "column",
-          // display: "flex",
-          // flexWrap: "wrap",
-          // alignContent: "space-between",
-          // justifyContent: "flex-start",
-          // alignItems: "flex-start",
-          // height: "100%",
-          '@media (min-width: 900px)': { // Example: for medium screens and above (768px and higher)
+          "@media (min-width: 900px)": {
+            // Example: for medium screens and above (768px and higher)
             flexDirection: "column",
             display: "flex",
             flexWrap: "wrap",
@@ -85,7 +82,7 @@ const returnServicesMenu = () => {
             justifyContent: "flex-start",
             alignItems: "flex-start",
             height: "100%",
-          }
+          },
         }}
       >
         {Object.keys(listofservices).map((heading) => {
@@ -204,14 +201,14 @@ const Header = () => {
                 >
                   Services
                 </Anchor>
-                <Container
+                <Box
                   hidden
                   id="service-menu-s"
                   ref={serviceMenuS}
                   className="smallservice"
                 >
                   {returnServicesMenu()}
-                </Container>
+                </Box>
               </li>
             );
           }
@@ -279,7 +276,12 @@ const Header = () => {
               </NavLink>
               <Box
                 width={"100%"}
-                sx={{ display: { xs: "none", md: "flex" }, mr: 1, alignItems:"center", justifyContent:"space-between" }}
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  mr: 1,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
               >
                 <ul
                   className="w-100"
@@ -327,19 +329,19 @@ const Header = () => {
                     }
                   })}
                   {/* <li> */}
-                    
+
                   {/* </li> */}
                 </ul>
                 <Button
-                      to={"/contact-us"}
-                      class="btn btn-primary"
-                      onClick={() => {
-                        navigate("/contact-us");
-                      }}
-                      style={{float:"right"}}
-                    >
-                      Contact
-                    </Button>
+                  to={"/contact-us"}
+                  class="btn btn-primary"
+                  onClick={() => {
+                    navigate("/contact-us");
+                  }}
+                  style={{ float: "right" }}
+                >
+                  Contact
+                </Button>
               </Box>
             </Toolbar>
           </Container>

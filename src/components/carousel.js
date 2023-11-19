@@ -4,7 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 import ExampleCarouselImage from "../images/BG-Working-With-Entrepreneurs.png";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Container, Grid } from "@mui/material";
-// import "../styles/HomeStyles.css";
+import "../styles/HomeStyles.css";
 import CEO from "../images/CEO.jpg";
 import CO from "../images/career1.jpg";
 import HR from "../images/HR.jpg";
@@ -49,7 +49,7 @@ const CarouselBox = () => {
       <Carousel interval={null} className="text-center">
         {images.map((item) => {
           return (
-            <Carousel.Item className="">
+            <Carousel.Item >
               <Grid container spacing={6}>
                 <Grid item sm={12} md={6}>
                   <img
