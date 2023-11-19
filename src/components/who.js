@@ -95,7 +95,11 @@ const Who = (props) => {
         sx={{ alignItems: "center", justifyContent: "center", color: "white" }}
         onScr
       >
-        <Typography variant="h4" align="center" sx={{fontFamily: `'Ubuntu', sans-serif`}}>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ fontFamily: `'Ubuntu', sans-serif` }}
+        >
           Who We Are
         </Typography>
         <Typography paragraph align="center" pt={4}>
@@ -183,7 +187,7 @@ const Who = (props) => {
                 20+
               </Typography>
               <Typography class="stats-text">Industries Served</Typography>
-            </Grid>           
+            </Grid>
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>

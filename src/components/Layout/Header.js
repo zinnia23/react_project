@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   AppBar,
   Box,
@@ -9,13 +9,15 @@ import {
   Button,
   Toolbar,
   Typography,
+  List,
 } from "@mui/material";
 import Logo from "../../images/mainlogo.png";
 import MiniLogo from "../../images/minilogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink } from "react-router-dom";
+import { NavLink, Router } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
 import { Anchor, Container, Nav } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const pages = [
   { name: "Home", link: "/" },
@@ -55,38 +57,108 @@ const listofservices = {
 const returnServicesMenu = () => {
   return (
     <Container className="smallscreen">
-      {Object.keys(listofservices).map((heading) => {
-        return (
-          <>
-            {/* <Grid item xs={12} md={3}> */}
-            <Typography
-              className="text"
-              sx={{
-                fontFamily: `'Ubuntu', sans-serif !important`,
-                fontSize: `22px !important`,
-                color: "#17a2b8 !important",
-              }}
-              variant="h5"
-              width={{ sm: "100%", md: "30%" }}
-            >
-              {heading}
-            </Typography>
-            {listofservices[heading].map((v) => {
-              return (
-                <Typography sx={{ paddingTop: "5px" }}>{v.name}</Typography>
-              );
-            })}
-            {/* </Grid> */}
-          </>
-        );
-      })}
+      <Typography
+        variant="h5"
+        sx={{
+          fontFamily: `'Ubuntu', sans-serif`,
+          fontSize: "19px",
+          width: "100%",
+        }}
+      >
+        SERVICES
+      </Typography>
+      <Box
+        width={"100%"}
+        sx={{
+          // flexDirection: "column",
+          // display: "flex",
+          // flexWrap: "wrap",
+          // alignContent: "space-between",
+          // justifyContent: "flex-start",
+          // alignItems: "flex-start",
+          // height: "100%",
+          '@media (min-width: 900px)': { // Example: for medium screens and above (768px and higher)
+            flexDirection: "column",
+            display: "flex",
+            flexWrap: "wrap",
+            alignContent: "space-between",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            height: "100%",
+          }
+        }}
+      >
+        {Object.keys(listofservices).map((heading) => {
+          return (
+            <>
+              {/* <Grid item xs={12} md={3}> */}
+              <Typography
+                className="text"
+                sx={{
+                  fontFamily: `'Ubuntu', sans-serif !important`,
+                  color: "rgb(54 177 191) !important",
+                  padding: "8px 0",
+                }}
+                width={{ sm: "100%", md: "30%" }}
+              >
+                {heading}
+              </Typography>
+              {listofservices[heading].map((v) => {
+                return (
+                  <Typography sx={{ padding: "12px 0" }}>{v.name}</Typography>
+                );
+              })}
+              {/* </Grid> */}
+            </>
+          );
+        })}
+      </Box>
     </Container>
   );
 };
+
 const Header = () => {
+  const useScrollAlerter = (ref) => {
+    useEffect(() => {
+      const handleScroll = (event) => {
+        if (window.scrollY > 200) {
+          // console.log(window.scrollY);
+          navbarRef.current.style.backgroundColor = "rgb(0 0 0/100%)";
+        } else {
+          navbarRef.current.style.backgroundColor = "rgb(0 0 0/50%)";
+        }
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, [ref]);
+  };
+  const useOutsideClickAlerter = (ref, buttonRef) => {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (
+          ref.current &&
+          !ref.current.contains(event.target) &&
+          !buttonRef.current.contains(event.target)
+        ) {
+          serviceMenu.current.hidden = true;
+        }
+      }
+
+      document.addEventListener("click", handleClickOutside);
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }, [ref, buttonRef]);
+  };
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
   const serviceMenu = useRef();
+  const navbarRef = useRef();
+  useScrollAlerter(navbarRef);
   const serviceButton = useRef();
+  useOutsideClickAlerter(serviceMenu, serviceButton);
   const serviceMenuS = useRef();
   const serviceButtonS = useRef();
   // hndle menu click
@@ -97,26 +169,10 @@ const Header = () => {
   const handleServicesClick = () => {
     serviceMenu.current.hidden = !serviceMenu.current.hidden;
     serviceMenuS.current.hidden = !serviceMenuS.current.hidden;
-    if (!serviceMenu.current.hidden) {
-      serviceButton.current.classList.add("active");
-      serviceButtonS.current.classList.add("active");
-    } else {
-      serviceButton.current.classList.remove("active");
-      serviceButtonS.current.classList.remove("active");
-    }
-    document.querySelectorAll("a.mobile-service-button").forEach((item) => {
-      item.classList.remove("active");
-    });
-    document.querySelectorAll("a.button-header").forEach((item) => {
-      item.classList.remove("active");
-    });
   };
 
   const drawer = (
-    <Box
-      // onClick={handleDrawerToggle}
-      sx={{ textAlign: "center" }}
-    >
+    <Box sx={{ textAlign: "center" }}>
       <ul className="mobile-navigation">
         {pages.map((item) => {
           if (item.name != "Services") {
@@ -124,11 +180,10 @@ const Header = () => {
               <li>
                 <NavLink
                   activeClassName="active"
+                  key={item.name}
                   className={"mobile-service-button"}
                   to={item.link}
                   onClick={() => {
-                    serviceButton.current.classList.remove("active");
-                    serviceButtonS.current.classList.remove("active");
                     serviceMenu.current.hidden = true;
                     serviceMenuS.current.hidden = true;
                   }}
@@ -143,7 +198,9 @@ const Header = () => {
                 <Anchor
                   onClick={handleServicesClick}
                   ref={serviceButtonS}
-                  to="#"
+                  className="drop-down"
+
+                  // to="#"
                 >
                   Services
                 </Anchor>
@@ -165,117 +222,133 @@ const Header = () => {
         <li>
           <NavLink to={"/about"}>About</NavLink>
         </li> */}
-        <li>
-          <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
-            <Button id="headerbutton">Contact</Button>
-          </NavLink>
-        </li>
+        {/* <li> */}
+        {/* <NavLink  style={{ textDecoration: "none" }}> */}
+        <Button
+          to={"/contact-us"}
+          class="btn btn-primary"
+          onClick={() => {
+            navigate("/contact-us");
+          }}
+          style={{ float: "left", margin: "6px 0" }}
+        >
+          Contact
+        </Button>
       </ul>
     </Box>
   );
 
   return (
     <Box>
-      <AppBar
-        component={"nav"}
-        className="sticky-top"
-        sx={{ bgcolor: "black", padding: "0 25px" }}
-      >
-        <Container maxWidth="xl">
-          <Toolbar
-            disableGutters
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              sx={{
-                mr: 2,
-                display: { md: "none" },
-              }}
-              onClick={handleDrawerToggle}
-            >
-              <MenuIcon />
-            </IconButton>
-            <NavLink to={"/"} color={"goldenrod"} variant="h6" component="div">
-              <img src={MiniLogo} alt="logo" height="50" width="50" />
-            </NavLink>
-            <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-              {pages.map((page) => {
-                if (page.name != "Services") {
-                  return (
-                    <NavLink
-                      activeClassName={"active"}
-                      className={"button-header"}
-                      to={page.link}
-                      style={{ textDecoration: "none" }}
-                      onClick={() => {
-                        serviceMenu.current.hidden = true;
-                        serviceMenuS.current.hidden = true;
-                        serviceButton.current.classList.remove("active");
-                        serviceButtonS.current.classList.remove("active");
-                      }}
-                    >
-                      <Button
-                        key={page.name}
-                        sx={{
-                          my: 2,
-                          display: "block",
-                          color: "inherit",
-                        }}
-                        to={page.link}
-                      >
-                        {page.name}
-                      </Button>
-                    </NavLink>
-                  );
-                } else {
-                  return (
-                    <Anchor
-                      activeClassName={"active"}
-                      className={"button-header"}
-                      style={{ textDecoration: "none" }}
-                      onClick={handleServicesClick}
-                      href="/#"
-
-                    >
-                      <Button
-                        ref={serviceButton}
-                        key={page.name}
-                        sx={{
-                          my: 2,
-                          display: "block",
-                          color: "inherit",
-                        }}
-                      >
-                        {page.name}
-                      </Button>
-                    </Anchor>
-                  );
-                }
-              })}
-            </Box>
-            <NavLink to={"/contact-us"} style={{ textDecoration: "none" }}>
-              <Button id="headerbutton">Contact</Button>
-            </NavLink>
-          </Toolbar>
-        </Container>
-      </AppBar>
-
-      <Container  ref={serviceMenu} className="service-dropdown" hidden>
-        <Typography
-          variant="h5"
-          sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "19px" }}
+      <Box sx={{}}>
+        <AppBar
+          component={"nav"}
+          className="sticky-top"
+          sx={{ bgcolor: "rgb(0 0 0/50%)", padding: "0 25px" }}
+          ref={navbarRef}
         >
-          SERVICES
-        </Typography>
-        {returnServicesMenu()}
-      </Container>
+          <Container maxWidth="xl">
+            <Toolbar
+              disableGutters
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                sx={{
+                  mr: 2,
+                  display: { md: "none" },
+                }}
+                onClick={handleDrawerToggle}
+              >
+                <MenuIcon />
+              </IconButton>
+              <NavLink
+                className={"logo"}
+                to={"/"}
+                color={"goldenrod"}
+                variant="h6"
+                component="div"
+              >
+                <img src={MiniLogo} alt="logo" height="50" width="50" />
+              </NavLink>
+              <Box
+                width={"100%"}
+                sx={{ display: { xs: "none", md: "flex" }, mr: 1, alignItems:"center", justifyContent:"space-between" }}
+              >
+                <ul
+                  className="w-100"
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: 0,
+                  }}
+                >
+                  {pages.map((page) => {
+                    if (page.name != "Services") {
+                      return (
+                        <li className="header-items">
+                          <NavLink
+                            activeClassName={"active"}
+                            className={"button-header"}
+                            to={page.link}
+                            style={{}}
+                          >
+                            {page.name}
+                          </NavLink>
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li className="header-items">
+                          <Anchor
+                            ref={serviceButton}
+                            activeClassName={"active"}
+                            onClick={handleServicesClick}
+                            className={"button-header drop-down"}
+                            style={{
+                              textDecoration: "none",
+                              my: 2,
+                              display: "block",
+                              color: "inherit",
+                            }}
+                          >
+                            {page.name}
+                          </Anchor>
+                        </li>
+                      );
+                    }
+                  })}
+                  {/* <li> */}
+                    
+                  {/* </li> */}
+                </ul>
+                <Button
+                      to={"/contact-us"}
+                      class="btn btn-primary"
+                      onClick={() => {
+                        navigate("/contact-us");
+                      }}
+                      style={{float:"right"}}
+                    >
+                      Contact
+                    </Button>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+
+        <Container ref={serviceMenu} className="service-dropdown" hidden>
+          {returnServicesMenu()}
+        </Container>
+      </Box>
 
       <Box component="nav">
         <Drawer
@@ -288,16 +361,13 @@ const Header = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: "100%",
-              top: "64px",
+              top: "12%",
               backgroundColor: "black",
             },
           }}
         >
           {drawer}
         </Drawer>
-      </Box>
-      <Box>
-        <Toolbar />
       </Box>
     </Box>
   );

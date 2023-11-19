@@ -17,23 +17,8 @@ const details = [
   },
 ];
 const Home = () => {
-  const [statbarbool, setstatebarbool] = useState(false);
-  const handleOnScroll = () => {
-    if (
-      window.scrollY +
-        window.innerHeight -
-        document.querySelector("section.background").offsetTop >
-      0
-    ) {
-      setstatebarbool(true);
-      console.log("true");
-    }
-    return()=>{
-      
-    }
-  };
   return (
-    <div onWheel={handleOnScroll}>
+    <div>
       <div className="home" style={{ marginBottom: "50px" }}>
         <div id="heading">
           <h1>Transform with Us</h1>
@@ -46,7 +31,7 @@ const Home = () => {
         <source src={Banner} type="video/mp4" />
       </video>
       <Carousel />
-      <Who changeStats={statbarbool} />
+      <Who />
       <Logos />
       <Contact details={details} />
     </div>
