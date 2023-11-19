@@ -29,18 +29,24 @@ const Location = () => {
             <Grid item xs={12} md={4}>
               <Card className="effect" style={{ minHeight: "350px" }}>
                 <Card.Body>
-                  <img src={Usa} class="pb-4"></img>
+                  <div class="location-card">
+                    <img src={Usa} class="pb-4"></img>
+                  </div>
                   <div class="p-3">
                     <Typography
+                      align="center"
                       sx={{
                         fontFamily: `'Ubuntu', sans-serif`,
                         fontSize: "28px",
                       }}
-                      pb={4}
                     >
                       USA
                     </Typography>
-                    <Card.Text>40315 Michigan Ave, Canton, Michigan 48188, US</Card.Text>
+                  </div>
+                  <div class="p-3">
+                    <Card.Text align="center">
+                      40315 Michigan Ave, Canton, Michigan 48188, US
+                    </Card.Text>
                   </div>
                 </Card.Body>
               </Card>
@@ -48,18 +54,24 @@ const Location = () => {
             <Grid item xs={12} md={4}>
               <Card className="effect" style={{ minHeight: "350px" }}>
                 <Card.Body>
-                  <img src={india} class="p-3" ></img>
+                  <div class="location-card">
+                    <img src={india} class="p-3"></img>
+                  </div>
                   <div class="p-3">
                     <Typography
+                      align="center"
                       sx={{
                         fontFamily: `'Ubuntu', sans-serif`,
                         fontSize: "28px",
                       }}
-                      pb={4}
                     >
                       India
                     </Typography>
-                    <Card.Text>Hyderabad, Telangana 500008.</Card.Text>
+                  </div>
+                  <div class="p-3">
+                    <Card.Text align="center">
+                      Hyderabad, Telangana 500008.
+                    </Card.Text>
                   </div>
                 </Card.Body>
               </Card>
@@ -67,18 +79,24 @@ const Location = () => {
             <Grid item xs={12} md={4}>
               <Card className="effect" style={{ minHeight: "350px" }}>
                 <Card.Body>
-                  <img src={pak} class="p-3" width="129px"></img>
+                  <div class="location-card">
+                    <img src={pak} class="p-3" width="129px"></img>
+                  </div>
                   <div class="p-3">
                     <Typography
+                      align="center"
                       sx={{
                         fontFamily: `'Ubuntu', sans-serif`,
                         fontSize: "28px",
                       }}
-                      pb={4}
                     >
                       Pakistan
                     </Typography>
-                    <Card.Text>Hyderabad, Telangana 500008.</Card.Text>
+                  </div>
+                  <div class="p-3">
+                    <Card.Text align="center">
+                      Hyderabad, Telangana 500008.
+                    </Card.Text>
                   </div>
                 </Card.Body>
               </Card>

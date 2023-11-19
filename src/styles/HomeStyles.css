@@ -90,10 +90,10 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-family: 'Ubuntu', sans-serif
+  font-family: 'Ubuntu', sans-serif !important
 }
 .learnMore:hover {
-  color: #007bff;
+  color: #0056b3;
 }
 .count-number {
   font-size: 35px;
@@ -109,6 +109,11 @@ body {
 .css-10hburv-MuiTypography-root {
   font-size: 14px !important;
   cursor: pointer !important;
+}
+.location-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .effect:hover {
   background-image: linear-gradient(#4589ff, #08bdba);

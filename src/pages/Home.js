@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Layout from "./../components/Layout/Layout";
+import React, { useState } from "react";
 import Carousel from "./../components/carousel";
 import Who from "./../components/who";
 import Logos from "./../components/logos";
@@ -17,7 +16,7 @@ const details = [
   },
 ];
 const Home = () => {
-  useEffect(() => {
+  useState(() => {
     window.scroll(0, 0);
   });
   return (
@@ -26,7 +25,7 @@ const Home = () => {
         <div id="heading">
           <h1>Transform with Us</h1>
         </div>
-        <Link to="/menu" className="learn-button">
+        <Link to="/contact-us" className="learn-button">
           LEARN MORE
         </Link>
       </div>

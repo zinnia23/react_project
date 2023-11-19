@@ -1,4 +1,4 @@
-import React , {useEffect} from "react";
+import React , {useState} from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
 import "../styles/About.css";
 import Image from "../images/aboutbg.jpg";
@@ -18,7 +18,7 @@ const details = [
     },
 ]
 const About = () => {
-  useEffect(() => {
+  useState(() => {
     window.scroll(0, 0);
   });
 
@@ -26,12 +26,21 @@ const About = () => {
     <>
       <Box id="about-image" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         <div className="home" style={{ marginBottom: "50px" }}>
-          <Typography
-            align="center"
-            sx={{ fontFamily: `'Ubuntu', sans-serif` }}
-          >
-            <h1 style={{ fontSize: "65px", color: "white" }}>Who We Are !</h1>
-          </Typography>
+        <Typography
+          variant="h1"
+          align="center"
+          className="text-light"
+          sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px" }}
+        >
+          Learn About
+        </Typography>
+        <Typography
+          variant="h1"
+          align="center"
+          style={{fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8" }}
+        >
+          Who We Are!
+        </Typography>
         </div>
       </Box>
       <Container sx={{ fontFamily: `'Ubuntu', sans-serif` }}>

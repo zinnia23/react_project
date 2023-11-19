@@ -2,19 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   AppBar,
   Box,
-  Grid,
-  Divider,
   Drawer,
   IconButton,
   Button,
   Toolbar,
   Typography,
-  List,
 } from "@mui/material";
-import Logo from "../../images/mainlogo.png";
 import MiniLogo from "../../images/minilogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink, Router } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
 import { Anchor, Container, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -88,7 +84,6 @@ const returnServicesMenu = () => {
         {Object.keys(listofservices).map((heading) => {
           return (
             <>
-              {/* <Grid item xs={12} md={3}> */}
               <Typography
                 className="text"
                 sx={{
@@ -105,7 +100,6 @@ const returnServicesMenu = () => {
                   <Typography sx={{ padding: "12px 0" }}>{v.name}</Typography>
                 );
               })}
-              {/* </Grid> */}
             </>
           );
         })}
@@ -195,9 +189,7 @@ const Header = () => {
                 <Anchor
                   onClick={handleServicesClick}
                   ref={serviceButtonS}
-                  className="drop-down"
-
-                  // to="#"
+                  className={"drop-down"}
                 >
                   Services
                 </Anchor>
@@ -213,14 +205,6 @@ const Header = () => {
             );
           }
         })}
-        {/* <li>
-          <NavLink to={"/our-team"}>Our Team</NavLink>
-        </li>
-        <li>
-          <NavLink to={"/about"}>About</NavLink>
-        </li> */}
-        {/* <li> */}
-        {/* <NavLink  style={{ textDecoration: "none" }}> */}
         <Button
           to={"/contact-us"}
           class="btn btn-primary"
@@ -363,7 +347,7 @@ const Header = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: "100%",
-              top: "12%",
+              top: "13%",
               backgroundColor: "black",
             },
           }}

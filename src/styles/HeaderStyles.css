@@ -137,7 +137,7 @@ ul li.header-items {
 .drop-down::after {
   display: inline-block;
   margin-left: 0.255em;
-  vertical-align: 0.255em;
+  vertical-align: 2px;
   content: "";
   border-top: 0.3em solid;
   border-right: 0.3em solid transparent;
@@ -145,6 +145,6 @@ ul li.header-items {
   border-left: 0.3em solid transparent;
 }
 
-a.button-header.drop-down:hover {
+.drop-down:hover {
   color: aqua;
 }

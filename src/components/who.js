@@ -2,41 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Link, Grid } from "@mui/material";
 
-const Who = (props) => {
-  // let [count1, setCount1] = useState(0);
-  // let [count2, setCount2] = useState(0);
-  // let [count3, setCount3] = useState(0);
-  // let [count4, setCount4] = useState(0);
-  // let [count5, setCount5] = useState(0);
-  // let [count6, setCount6] = useState(0);
-  // const ref = useRef();
-  // // ref.current.addEventListner("scroll", () => {
-  // //   console.log('asdasd')
-  // // });
-  // const handleclick = () => {
-  //   let i = 0;
-  //   setCount2(500);
-  //   setInterval(() => {
-  //     if (i > 14) {
-  //       return;
-  //     }
-  //     setCount1(i++);
-  //     console.log(i);
-  //   }, 50);
-  //   // setInterval(() => {
-  //   //   if (i > 2500) {
-  //   //     return;
-  //   //   }
-  //   //   setCount2(i++);
-  //   //   console.log(i);
-  //   // });
-
-  //   setCount3(2500);
-  //   setCount4(20);
-  //   setCount5(600);
-  //   setCount6(30);
-  // };
-
+const Who = () => {
   const [isAlreadyRun, setIsAlreadyRun] = useState(false);
 
   useEffect(() => {
@@ -50,7 +16,7 @@ const Who = (props) => {
         counters.forEach((count) => {
           const animateCount = () => {
             const target = +count.getAttribute("data-target");
-            const duration = 700;
+            const duration = 500;
             const increment = target / duration;
 
             let currentCount = 0;
@@ -100,7 +66,7 @@ const Who = (props) => {
           Talent Acquisition, Resource outsourcing, Project management,
           Leadership Development & Training/Coaching.
         </Typography>
-        <Link className="learnMore" underline="none" variant="h5" color="white">
+        <Link className="learnMore" underline="none" variant="h5" color="white" href="/about">
           Learn More
         </Link>
         <Container className="counterContainer" id="counterContainer-large">
@@ -195,60 +161,4 @@ const Who = (props) => {
     </section>
   );
 };
-
 export default Who;
-// JavaScript logic for counter animation on scroll
-// window.addEventListener("scroll", () => {
-//   const counters = document.querySelectorAll(".timer");
-//   const triggerBottom = (window.innerHeight / 5) * 4;
-
-//   counters.forEach((counter) => {
-//     const counterTop = counter.getBoundingClientRect().top;
-
-//     if (counterTop < triggerBottom) {
-//       const updateCount = () => {
-//         const target = +counter.getAttribute("data-target");
-//         const count = +counter.innerText;
-//         const increment = target / 200; // Change the animation speed if needed
-
-//         if (count < target) {
-//           counter.innerText = Math.ceil(count + increment);
-//           setTimeout(updateCount, 1);
-//         } else {
-//           counter.innerText = target;
-//         }
-//       };
-
-//       updateCount();
-//     }
-//   });
-// });
-var isAlreadyRun = false;
-
-// $(window).scroll( function(){
-
-//     $('#counterContainer-large').each( function(i){
-
-//         var bottom_of_object = $(this).position().top + $(this).outerHeight() / 2;
-//         var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-//             if( bottom_of_window > ( bottom_of_object + 20 )  ){
-// 				if (!isAlreadyRun) {
-// 					$('.count-number').each(function () {
-
-// 	                $(this).prop('Counter', 0).animate({
-// 	                    Counter: $(this).text()
-// 	                }, {
-// 	                        duration: 3500,
-// 	                        easing: 'swing',
-// 	                        step: function (now) {
-// 	                            $(this).text(Math.ceil(now));
-// 	                        }
-// 	                    });
-// 	            	});
-// 				}
-//                 isAlreadyRun = true;
-//             }
-//     });
-
-// });
