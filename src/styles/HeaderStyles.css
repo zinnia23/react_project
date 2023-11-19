@@ -23,7 +23,6 @@
   align-items: flex-start;
   height: inherit;
   background-color: white !important;
-
 }
 .service-dropdown {
   margin-top: 40px !important;
@@ -41,26 +40,29 @@
 /* .css-ag7rrr-MuiTypography-root{
   font-family: 'Ubuntu', sans-serif !important;
   font-size: 20px !important;
-  color:#17a2b8 !important;
+  color:aqua !important;
  
 } */
 .css-ahj2mt-MuiTypography-root {
   font-size: 16px !important;
 }
-#headerbutton {
-  color: white;
-  background-color: #17a2b8;
-  margin-left: 3px;
-  cursor: pointer;
+.logo {
+  padding: 25px 0;
 }
-#headerbutton:hover {
-  color: white;
-  background-color: #17a2b8;
-  margin-left: 3px;
+ul li.header-items {
+  padding: 15px 10px 15px;
 }
-.button-header:hover {
-  color: rgba(255, 255, 255, 0.5);
-  /* background-color: rgba(255, 255, 255, 0.466); */
+.btn.btn-primary {
+  background-color: #17a2b8 !important;
+  color: white;
+}
+.button-header {
+  text-decoration: none;
+  font-size: large;
+  margin: 2 0;
+  display: block;
+  padding: 8px;
+  color: inherit;
 }
 .active {
   color: #17a2b8 !important;
@@ -83,7 +85,7 @@
   color: white;
 }
 #contact-button {
-  background-color: #17a2b8;
+  background-color: aqua;
   padding: 10px;
   border-radius: 10px;
 }
@@ -126,4 +128,25 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #555;
   }
+}
+.header-items {
+  padding: 1em;
+  list-style: none;
+}
+.header-items:hover {
+  color: aqua;
+}
+.drop-down::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+
+a.button-header.drop-down:hover {
+  color: aqua;
 }

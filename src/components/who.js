@@ -2,8 +2,15 @@ import React, { useRef, useState } from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Link, Grid } from "@mui/material";
 import line from "../images/line.png";
+import "../styles/who.scss";
 
 const Who = (props) => {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      console.log(entry);
+    });
+  });
+  obs.observe(document.querySelector(".who-text"));
   let [count1, setCount1] = useState(0);
   let [count2, setCount2] = useState(0);
   let [count3, setCount3] = useState(0);
@@ -44,7 +51,11 @@ const Who = (props) => {
         sx={{ alignItems: "center", justifyContent: "center", color: "white" }}
         onScr
       >
-        <Typography variant="h4" align="center" sx={{fontFamily: `'Ubuntu', sans-serif`}}>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ fontFamily: `'Ubuntu', sans-serif` }}
+        >
           Who We Are
         </Typography>
         <Typography paragraph align="center" pt={4}>
@@ -64,14 +75,14 @@ const Who = (props) => {
         <Container id="counterContainer-large">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer" data-count="14">
                 14+
               </Typography>
               <Typography class="stats-text">Years in Innovation</Typography>
             </Grid>
 
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer" data-count="15">
                 500+
               </Typography>
               <Typography class="stats-text">Engineering Team</Typography>
@@ -128,13 +139,13 @@ const Who = (props) => {
         <Container id="counterContainer-small">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer" data-count="14">
                 14+
               </Typography>
               <Typography class="stats-text">Years in Innovation</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number">
+              <Typography pb={2} class="timer" data-count="15">
                 500+
               </Typography>
               <Typography class="stats-text">Engineering Team</Typography>
@@ -152,7 +163,7 @@ const Who = (props) => {
                 20+
               </Typography>
               <Typography class="stats-text">Industries Served</Typography>
-            </Grid>           
+            </Grid>
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
