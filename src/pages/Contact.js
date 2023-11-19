@@ -20,6 +20,10 @@ const details = [
     },
 ]
 const Contact = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  });
+
   return (
     <>
        <div className="home" id="contact-image" >

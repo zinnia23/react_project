@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import "../styles/About.css";
@@ -145,6 +145,9 @@ function a11yProps(index) {
 
 export default function Ourteam() {
   const [value, setValue] = React.useState(0);
+  useEffect(() => {
+    window.scroll(0, 0);
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
