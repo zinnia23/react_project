@@ -1,11 +1,61 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Button, Grid, TextField } from "@mui/material";
 
-
-
 const Contactform = ({ details }) => {
-  const { img, title, desc,color } = details[0];
+  const { img, title, desc, color } = details[0];
+
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    jobTitle: "",
+    workEmail: "",
+    city: "",
+    country: "",
+    website: "",
+    howDidYouHear: "",
+    message: "",
+  });
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("YOUR_API_ENDPOINT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Form submitted successfully!");
+        // Optionally, you can reset the form fields after successful submission
+        setFormData({
+          name: "",
+          company: "",
+          jobTitle: "",
+          workEmail: "",
+          city: "",
+          country: "",
+          website: "",
+          howDidYouHear: "",
+          message: "",
+        });
+      } else {
+        console.error("Error submitting form:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+  };
   return (
     <div style={{ backgroundImage: `url(${img})`, padding: "20px" }}>
       <Container
@@ -13,14 +63,18 @@ const Contactform = ({ details }) => {
           alignItems: "center",
           justifyContent: "center",
           color: "black",
-          padding: {xs:"30px",md:"30px 80px"},
+          padding: { xs: "30px", md: "30px 80px" },
         }}
       >
         <Typography
           align="center"
           color={color}
           pb={4}
-          sx={{ fontFamily:  `'Ubuntu', sans-serif`,fontSize: "35px", fontWeight: "bold" }}
+          sx={{
+            fontFamily: `'Ubuntu', sans-serif`,
+            fontSize: "35px",
+            fontWeight: "bold",
+          }}
         >
           {title}
         </Typography>
@@ -29,11 +83,13 @@ const Contactform = ({ details }) => {
           paragraph
           color={color}
           pb={2}
-          sx={{fontSize: "20px" }}
+          sx={{ fontSize: "20px" }}
         >
           {desc}
         </Typography>
-        <Container sx={{ backgroundColor: "white", padding: "70px",height: "100%" }}>
+        <Container
+          sx={{ backgroundColor: "white", padding: "70px", height: "100%" }}
+        >
           <Grid container spacing={2} pb={3}>
             <Grid item xs={12} md={4}>
               <TextField
@@ -42,6 +98,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="Name"
                 placeholder="Enter Name"
+                value={formData.name}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -51,6 +109,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="Company"
                 placeholder="Enter Company"
+                value={formData.company}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -60,6 +120,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="Job Title"
                 placeholder="Enter Job Title"
+                value={formData.jobTitle}
+                onChange={handleInputChange}
               />
             </Grid>
           </Grid>
@@ -71,6 +133,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="Work Email"
                 placeholder="Enter Email"
+                value={formData.workEmail}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -80,6 +144,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="City"
                 placeholder="Enter City"
+                value={formData.city}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -89,6 +155,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="Country"
                 placeholder="Enter Country"
+                value={formData.country}
+                onChange={handleInputChange}
               />
             </Grid>
           </Grid>
@@ -99,6 +167,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="Website"
                 placeholder="Enter Website"
+                value={formData.website}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -108,6 +178,8 @@ const Contactform = ({ details }) => {
                 id="outlined-required"
                 label="How Did You Hear About Us"
                 placeholder=""
+                value={formData.howDidYouHear}
+                onChange={handleInputChange}
               />
             </Grid>
           </Grid>
@@ -117,8 +189,17 @@ const Contactform = ({ details }) => {
             id="outlined-required"
             label="Message"
             placeholder="Enter Your Message"
+            value={formData.message}
+            onChange={handleInputChange}
           />
-          <Button large sx={{float: "right", mt: 2}} variant="contained">Submit</Button>
+          <Button
+            large
+            sx={{ float: "right", mt: 2 }}
+            variant="contained"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
         </Container>
       </Container>
     </div>
