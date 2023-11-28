@@ -17,7 +17,7 @@ const details = [
   },
 ];
 const Home = () => {
-  useEffect(() => {
+  useState(() => {
     window.scroll(0, 0);
   });
   return (
@@ -26,7 +26,7 @@ const Home = () => {
         <div id="heading">
           <h1>Transform with Us</h1>
         </div>
-        <Link to="/menu" className="learn-button">
+        <Link to="/contact-us" className="learn-button">
           LEARN MORE
         </Link>
       </div>

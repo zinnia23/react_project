@@ -1,9 +1,8 @@
-import React,{useEffect} from "react";
+import React,{useState} from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import "../styles/About.css";
 import { Container, Box, Typography, Tabs, Tab } from "@mui/material";
-import Image from "../images/team.jpg";
 import Managment from "../components/managment";
 import Avatar1 from "../images/avatar (1).svg";
 import Avatar2 from "../images/avatar (2).svg";
@@ -145,7 +144,7 @@ function a11yProps(index) {
 
 export default function Ourteam() {
   const [value, setValue] = React.useState(0);
-  useEffect(() => {
+  useState(() => {
     window.scroll(0, 0);
   });
 
@@ -172,7 +171,6 @@ export default function Ourteam() {
           in Each Other!
         </Typography>
       </div>
-      {/* <img className="background-video"></img> */}
 
       <Box sx={{ width: "100%" }}>
         <Box

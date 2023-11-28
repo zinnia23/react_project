@@ -90,9 +90,10 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-family: 'Ubuntu', sans-serif !important
 }
 .learnMore:hover {
-  color: #007bff;
+  color: #0056b3;
 }
 .count-number {
   font-size: 35px;
@@ -108,6 +109,11 @@ body {
 .css-10hburv-MuiTypography-root {
   font-size: 14px !important;
   cursor: pointer !important;
+}
+.location-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .effect:hover {
   background-image: linear-gradient(#4589ff, #08bdba);
@@ -187,6 +193,12 @@ body {
   #divide {
     border-top: 1px solid white;
   }
+  #counterContainer-large{
+    display: none;
+  }
+  #counterContainer-small{
+    display: block;
+  }
 }
 .carousel-item {
   font-family: "Ubuntu", sans-serif;
@@ -196,6 +208,7 @@ body {
 }
 .carousel-indicators {
   position: absolute;
+  z-index: 1 !important;
 }
 .carousel-indicators button {
   height: 10px !important;
@@ -214,28 +227,6 @@ body {
   background-image: url(../images/next.png) !important;
 }
 
-@property --num0 {
-  syntax: "<integer>";
-  inherits: false;
-  initial-value: 0;
-}
 
-[data-number="14"] {
-  animation: identifier 1s forwards alternate ease-in-out;
-  counter-reset: num0 var(--num0);
-}
-/* [data-number="14"]:hover {
-  --num: 14;
-} */
-[data-number="14"]::after {
-  content: counter(num0) "+";
-}
 
-@keyframes identifier {
-  from {
-    --num0: 0;
-  }
-  to {
-    --num0: 14;
-  }
-}
+

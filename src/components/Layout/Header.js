@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   AppBar,
   Box,
-  Grid,
-  Divider,
   Drawer,
   IconButton,
   Button,
@@ -11,7 +9,6 @@ import {
   Typography,
   List,
 } from "@mui/material";
-import Logo from "../../images/mainlogo.png";
 import MiniLogo from "../../images/minilogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, Router } from "react-router-dom";
@@ -60,6 +57,9 @@ const returnServicesMenu = () => {
       <Typography
         variant="h5"
         sx={{
+          "@media (max-width: 900px)": {
+            display: "none",
+          },
           fontFamily: `'Ubuntu', sans-serif`,
           fontSize: "19px",
           width: "100%",
@@ -70,14 +70,8 @@ const returnServicesMenu = () => {
       <Box
         width={"100%"}
         sx={{
-          // flexDirection: "column",
-          // display: "flex",
-          // flexWrap: "wrap",
-          // alignContent: "space-between",
-          // justifyContent: "flex-start",
-          // alignItems: "flex-start",
-          // height: "100%",
-          '@media (min-width: 900px)': { // Example: for medium screens and above (768px and higher)
+          "@media (min-width: 900px)": {
+            // Example: for medium screens and above (768px and higher)
             flexDirection: "column",
             display: "flex",
             flexWrap: "wrap",
@@ -85,13 +79,12 @@ const returnServicesMenu = () => {
             justifyContent: "flex-start",
             alignItems: "flex-start",
             height: "100%",
-          }
+          },
         }}
       >
         {Object.keys(listofservices).map((heading) => {
           return (
             <>
-              {/* <Grid item xs={12} md={3}> */}
               <Typography
                 className="text"
                 sx={{
@@ -108,7 +101,6 @@ const returnServicesMenu = () => {
                   <Typography sx={{ padding: "12px 0" }}>{v.name}</Typography>
                 );
               })}
-              {/* </Grid> */}
             </>
           );
         })}
@@ -198,32 +190,22 @@ const Header = () => {
                 <Anchor
                   onClick={handleServicesClick}
                   ref={serviceButtonS}
-                  className="drop-down"
-
-                  // to="#"
+                  className={"drop-down"}
                 >
                   Services
                 </Anchor>
-                <Container
+                <Box
                   hidden
                   id="service-menu-s"
                   ref={serviceMenuS}
                   className="smallservice"
                 >
                   {returnServicesMenu()}
-                </Container>
+                </Box>
               </li>
             );
           }
         })}
-        {/* <li>
-          <NavLink to={"/our-team"}>Our Team</NavLink>
-        </li>
-        <li>
-          <NavLink to={"/about"}>About</NavLink>
-        </li> */}
-        {/* <li> */}
-        {/* <NavLink  style={{ textDecoration: "none" }}> */}
         <Button
           to={"/contact-us"}
           class="btn btn-primary"
@@ -279,7 +261,12 @@ const Header = () => {
               </NavLink>
               <Box
                 width={"100%"}
-                sx={{ display: { xs: "none", md: "flex" }, mr: 1, alignItems:"center", justifyContent:"space-between" }}
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  mr: 1,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
               >
                 <ul
                   className="w-100"
@@ -327,19 +314,19 @@ const Header = () => {
                     }
                   })}
                   {/* <li> */}
-                    
+
                   {/* </li> */}
                 </ul>
                 <Button
-                      to={"/contact-us"}
-                      class="btn btn-primary"
-                      onClick={() => {
-                        navigate("/contact-us");
-                      }}
-                      style={{float:"right"}}
-                    >
-                      Contact
-                    </Button>
+                  to={"/contact-us"}
+                  class="btn btn-primary"
+                  onClick={() => {
+                    navigate("/contact-us");
+                  }}
+                  style={{ float: "right" }}
+                >
+                  Contact
+                </Button>
               </Box>
             </Toolbar>
           </Container>
@@ -361,7 +348,7 @@ const Header = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: "100%",
-              top: "12%",
+              top: "13%",
               backgroundColor: "black",
             },
           }}

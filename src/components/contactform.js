@@ -13,7 +13,7 @@ const Contactform = ({ details }) => {
           alignItems: "center",
           justifyContent: "center",
           color: "black",
-          padding: "30px 80px",
+          padding: {xs:"30px",md:"30px 80px"},
         }}
       >
         <Typography
@@ -28,14 +28,14 @@ const Contactform = ({ details }) => {
           align="justify"
           paragraph
           color={color}
-          pb={4}
+          pb={2}
           sx={{fontSize: "20px" }}
         >
           {desc}
         </Typography>
-        <Container sx={{ backgroundColor: "white", padding: "100px",height: "auto" }}>
+        <Container sx={{ backgroundColor: "white", padding: "70px",height: "100%" }}>
           <Grid container spacing={2} pb={3}>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
@@ -44,7 +44,7 @@ const Contactform = ({ details }) => {
                 placeholder="Enter Name"
               />
             </Grid>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
@@ -53,7 +53,7 @@ const Contactform = ({ details }) => {
                 placeholder="Enter Company"
               />
             </Grid>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
@@ -64,7 +64,7 @@ const Contactform = ({ details }) => {
             </Grid>
           </Grid>
           <Grid container spacing={2} pb={3}>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
@@ -73,7 +73,7 @@ const Contactform = ({ details }) => {
                 placeholder="Enter Email"
               />
             </Grid>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
@@ -82,7 +82,7 @@ const Contactform = ({ details }) => {
                 placeholder="Enter City"
               />
             </Grid>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
@@ -93,7 +93,7 @@ const Contactform = ({ details }) => {
             </Grid>
           </Grid>
           <Grid container spacing={2} pb={3}>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
                 id="outlined-required"
@@ -101,7 +101,7 @@ const Contactform = ({ details }) => {
                 placeholder="Enter Website"
               />
             </Grid>
-            <Grid item sm={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
