@@ -33,26 +33,26 @@ const images = [
 ];
 
 const CarouselBox = () => {
-  const [imagesData, setImagesData] = useState([]);
+  // const [imagesData, setImagesData] = useState([]);
 
-  useEffect(() => {
-    // Fetch data from your API endpoint
-    const fetchData = async () => {
-      try {
-        const response = await fetch("YOUR_API_ENDPOINT");
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setImagesData(data); // Set the retrieved data to the state
+  // useEffect(() => {
+  //   // Fetch data from your API endpoint
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("YOUR_API_ENDPOINT");
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await response.json();
+  //       setImagesData(data); // Set the retrieved data to the state
         
-      } catch (error) {
-        console.error('There was a problem fetching data:', error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error('There was a problem fetching data:', error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Container sx={{ padding: "80px 15px" }}>
@@ -80,10 +80,10 @@ const CarouselBox = () => {
                   />
                 </Grid>
                 <Grid item sm={12} md={6} sx={{height:"500px"}}>
-                  <h2 class="text-dark">{item.label}</h2> // same here
-                  <p class="p-5 text-justify">"{item.text}"</p> // same here
-                  <h5 class="text-left text-dark">{item.name}</h5> // same here
-                  <p class="text-left">{item.position}</p> // same here
+                  <h2 class="text-dark">{item.label}</h2> 
+                  <p class="p-5 text-justify">"{item.text}"</p> 
+                  <h5 class="text-left text-dark">{item.name}</h5> 
+                  <p class="text-left">{item.position}</p> 
                 </Grid>
               </Grid>
             </Carousel.Item>

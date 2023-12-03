@@ -96,11 +96,11 @@ body {
   color: #0056b3;
 }
 .count-number {
-  font-size: 35px;
-  font-weight: bold;
+  font-size: 35px !important;
+  font-weight: bold !important;
 }
-.stats-text {
-  font-size: 20px;
+.css-ahj2mt-MuiTypography-root {
+  font-size: 20px !important;
 }
 .css-1p823my-MuiListItem-root {
   padding-left: 0 !important;

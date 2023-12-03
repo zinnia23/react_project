@@ -3,7 +3,7 @@ import "../styles/HomeStyles.css";
 import { Container, Typography, Button, Grid, TextField } from "@mui/material";
 
 const Contactform = ({ details }) => {
-  const { img, title, desc, color } = details[0];
+  const { img, title, desc, color } = details;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -95,7 +95,7 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                id="outlined-required"
+              
                 label="Name"
                 placeholder="Enter Name"
                 value={formData.name}
@@ -106,7 +106,7 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                id="outlined-required"
+              
                 label="Company"
                 placeholder="Enter Company"
                 value={formData.company}
@@ -117,7 +117,7 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                id="outlined-required"
+              
                 label="Job Title"
                 placeholder="Enter Job Title"
                 value={formData.jobTitle}
@@ -130,7 +130,7 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                id="outlined-required"
+              
                 label="Work Email"
                 placeholder="Enter Email"
                 value={formData.workEmail}
@@ -141,7 +141,7 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                id="outlined-required"
+              
                 label="City"
                 placeholder="Enter City"
                 value={formData.city}
@@ -152,7 +152,7 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                id="outlined-required"
+              
                 label="Country"
                 placeholder="Enter Country"
                 value={formData.country}
@@ -164,7 +164,7 @@ const Contactform = ({ details }) => {
             <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
-                id="outlined-required"
+              
                 label="Website"
                 placeholder="Enter Website"
                 value={formData.website}
@@ -175,7 +175,7 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                id="outlined-required"
+              
                 label="How Did You Hear About Us"
                 placeholder=""
                 value={formData.howDidYouHear}
@@ -186,14 +186,14 @@ const Contactform = ({ details }) => {
           <TextField
             fullWidth
             pb={5}
-            id="outlined-required"
+          
             label="Message"
             placeholder="Enter Your Message"
             value={formData.message}
             onChange={handleInputChange}
           />
           <Button
-            large
+            
             sx={{ float: "right", mt: 2 }}
             variant="contained"
             onClick={handleSubmit}

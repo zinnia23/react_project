@@ -8,13 +8,12 @@ import Banner from "../images/homebg.mp4";
 import "../styles/HomeStyles.css";
 import background from "./../images/contactbg.jpg";
 
-const details = [
-  {
-    img: background,
-    title: `We'd love to hear from you`,
-    color: "white",
-  },
-];
+const details = {
+  img: background,
+  title: `We'd love to hear from you`,
+  desc: `We'd love to hear from you`,
+  color: "white",
+};
 const Home = () => {
   useState(() => {
     window.scroll(0, 0);

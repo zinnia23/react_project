@@ -81,6 +81,22 @@ ul li.header-items {
   padding: 10px;
   border-radius: 10px;
 }
+.anchorstyle{
+    margin: 0;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: normal !important;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    padding: 12px 0; 
+    text-decoration: none;
+}
+.anchorstyle:hover{
+  color: black !important
+}
+#navlink {
+  color: black !important;
+}
 @media  (min-width: 901px) and (max-width: 990px) {
   .smallscreen {
     padding: 1em 2em !important;;

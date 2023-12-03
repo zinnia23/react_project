@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import {
   AppBar,
   Box,
@@ -14,98 +14,51 @@ import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
 import { Anchor, Container, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import im from "../../images/aboutbg.jpg";
+import { DataContext, useData } from "../../DataContext";
 
 const pages = [
-  { name: "Home", link: "/" },
-  { name: "Services", link: "" },
-  { name: "Our Team", link: "/our-team" },
-  { name: "About", link: "/about" },
+  { id: 1, name: "Home", link: "/" },
+  { id: 2, name: "Services", link: "" },
+  { id: 3, name: "Our Team", link: "/our-team" },
+  { id: 4, name: "About", link: "/about" },
 ];
 const listofservices = {
   "Application Development & Maintenance": [
-    { name: "Mobile Application Development", link: "" },
-    { name: "Custom Web Development", link: "" },
-    { name: "Product Discovery", link: "" },
-    { name: "DevOps as a Service", link: "" },
-    { name: "Salesforce Consulting", link: "" },
-    { name: "AWS Activate", link: "" },
+    {
+      id: 1,
+      name: "Mobile Application Development",  // i m using data from these arrays "name,desc,image"
+      //so whatever data u want to apply I'll say plz hardcode it in these arrays accordingly. 
+      //Bari mushkil se apply hua ha yar
+      link: "/services",
+      desc: "hahdoadajdpaid",
+      image: im,
+    },
+    { id: 2, name: "Custom Web Development", link: "/services" },
+    { id: 3, name: "Product Discovery", link: "/services" },
+    { id: 4, name: "DevOps as a Service", link: "/services" },
+    { id: 5, name: "Salesforce Consulting", link: "/services" },
+    { id: 6, name: "AWS Activate", link: "/services" },
   ],
   "Emerging Technologies": [
-    { name: "Artificial Intelligence", link: "" },
-    { name: "Blockchain", link: "" },
-    { name: "Internet of Things", link: "" },
-    { name: "Extended Reality", link: "" },
+    { id: 7, name: "Artificial Intelligence", link: "/services" },
+    { id: 8, name: "Blockchain", link: "/services" },
+    { id: 9, name: "Internet of Things", link: "/services" },
+    { id: 10, name: "Extended Reality", link: "/services" },
   ],
   Creative: [
-    { name: "Prototyping", link: "" },
-    { name: "User Experience Design", link: "" },
+    { id: 11, name: "Prototyping", link: "/services" },
+    { id: 12, name: "User Experience Design", link: "/services" },
   ],
   Technologies: [
-    { name: "Python Development", link: "" },
-    { name: "React Native Development", link: "" },
-    { name: "ReactJS Development", link: "" },
-    { name: "PHP Development", link: "" },
-    { name: "Angular Development", link: "" },
-    { name: "Full Stack Developers", link: "" },
-    { name: "WordPress Development", link: "" },
+    { id: 13, name: "Python Development", link: "/services" },
+    { id: 14, name: "React Native Development", link: "/services" },
+    { id: 15, name: "ReactJS Development", link: "/services" },
+    { id: 16, name: "PHP Development", link: "/services" },
+    { id: 17, name: "Angular Development", link: "/services" },
+    { id: 18, name: "Full Stack Developers", link: "/services" },
+    { id: 19, name: "WordPress Development", link: "/services" },
   ],
-};
-const returnServicesMenu = () => {
-  return (
-    <Container className="smallscreen">
-      <Typography
-        variant="h5"
-        sx={{
-          "@media (max-width: 900px)": {
-            display: "none",
-          },
-          fontFamily: `'Ubuntu', sans-serif`,
-          fontSize: "19px",
-          width: "100%",
-        }}
-      >
-        SERVICES
-      </Typography>
-      <Box
-        width={"100%"}
-        sx={{
-          "@media (min-width: 900px)": {
-            // Example: for medium screens and above (768px and higher)
-            flexDirection: "column",
-            display: "flex",
-            flexWrap: "wrap",
-            alignContent: "space-between",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            height: "100%",
-          },
-        }}
-      >
-        {Object.keys(listofservices).map((heading) => {
-          return (
-            <>
-              <Typography
-                className="text"
-                sx={{
-                  fontFamily: `'Ubuntu', sans-serif !important`,
-                  color: "rgb(54 177 191) !important",
-                  padding: "8px 0",
-                }}
-                width={{ sm: "100%", md: "30%" }}
-              >
-                {heading}
-              </Typography>
-              {listofservices[heading].map((v) => {
-                return (
-                  <Typography sx={{ padding: "12px 0" }}>{v.name}</Typography>
-                );
-              })}
-            </>
-          );
-        })}
-      </Box>
-    </Container>
-  );
 };
 
 const Header = () => {
@@ -161,18 +114,108 @@ const Header = () => {
     serviceMenu.current.hidden = !serviceMenu.current.hidden;
     serviceMenuS.current.hidden = !serviceMenuS.current.hidden;
   };
+  const { updateData } = useData();
+  const sendData = (v) => {
+    updateData(v);
+  };
+
+  const isLinkActive = () => {
+    // Your custom logic to determine when the link should not be active
+    return false; // Return false to prevent the active class
+  };
+  const returnServicesMenu = () => {
+    // const handleServiceClick = (service) => {
+    //   setSelectedService(service);
+    // };
+  
+    return (
+      <Box className="smallscreen">
+        <Typography
+          variant="h5"
+          sx={{
+            "@media (max-width: 900px)": {
+              display: "none",
+            },
+            fontFamily: `'Ubuntu', sans-serif`,
+            fontSize: "19px",
+            width: "100%",
+          }}
+        >
+          SERVICES
+        </Typography>
+        <Box
+          width={"100%"}
+          sx={{
+            "@media (min-width: 900px)": {
+              // Example: for medium screens and above (768px and higher)
+              flexDirection: "column",
+              display: "flex",
+              flexWrap: "wrap",
+              alignContent: "space-between",
+              justifyContent: "flex-start",
+              alignItems: "flex-start",
+              height: "100%",
+            },
+          }}
+        >
+          {Object.keys(listofservices).map((heading) => {
+            return (
+              <Box
+                key={heading}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  flexWrap: "nowrap",
+                  alignContent: "flex-start",
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                }}
+              >
+                <Typography
+                  className="text"
+                  sx={{
+                    fontFamily: `'Ubuntu', sans-serif !important`,
+                    color: "rgb(54 177 191) !important",
+                    padding: "8px 0",
+                  }}
+                  width={{ sm: "100%", md: "30%" }}
+                >
+                  {heading}
+                </Typography>
+                {listofservices[heading].map((v) => {
+                  return (
+                    <NavLink
+                      key={v.id}
+                      id="navlink"
+                      className="anchorstyle"
+                      to={v.link}
+                      onClick={() => {
+                        sendData(v);
+                        handleServicesClick();
+                      }}
+                    >
+                      {v.name}
+                    </NavLink>
+                  );
+                })}
+              </Box>
+            );
+          })}
+        </Box>
+      </Box>
+    );
+  };
 
   const drawer = (
     <Box sx={{ textAlign: "center" }}>
       <ul className="mobile-navigation">
-        {pages.map((item) => {
+        {pages.map((item, num) => {
           if (item.name != "Services") {
             return (
-              <li>
+              <li key={window.crypto.randomUUID()}>
                 <NavLink
-                  activeClassName="active"
-                  key={item.name}
-                  className={"mobile-service-button"}
+                  key={item.id}
+                  className={"active mobile-service-button"}
                   to={item.link}
                   onClick={() => {
                     serviceMenu.current.hidden = true;
@@ -185,7 +228,7 @@ const Header = () => {
             );
           } else {
             return (
-              <li>
+              <li key={window.crypto.randomUUID()}>
                 <Anchor
                   onClick={handleServicesClick}
                   ref={serviceButtonS}
@@ -207,7 +250,7 @@ const Header = () => {
         })}
         <Button
           to={"/contact-us"}
-          class="btn btn-primary"
+          className="btn btn-primary"
           onClick={() => {
             navigate("/contact-us");
           }}
@@ -228,7 +271,7 @@ const Header = () => {
           sx={{ bgcolor: "rgb(0 0 0/50%)", padding: "0 25px" }}
           ref={navbarRef}
         >
-          <Container maxWidth="xl">
+          <Container maxwidth="xl">
             <Toolbar
               disableGutters
               sx={{
@@ -277,12 +320,16 @@ const Header = () => {
                     margin: 0,
                   }}
                 >
-                  {pages.map((page) => {
+                  {pages.map((page, num) => {
                     if (page.name != "Services") {
                       return (
-                        <li className="header-items">
+                        <li
+                          className="header-items"
+                          key={window.crypto.randomUUID()}
+                        >
                           <NavLink
-                            activeClassName={"active"}
+                            key={page.id}
+                            activeclassname={"active"}
                             className={"button-header"}
                             to={page.link}
                             style={{}}
@@ -293,10 +340,13 @@ const Header = () => {
                       );
                     } else {
                       return (
-                        <li className="header-items">
+                        <li
+                          className="header-items"
+                          key={window.crypto.randomUUID()}
+                        >
                           <Anchor
                             ref={serviceButton}
-                            activeClassName={"active"}
+                            activeclassname={"active"}
                             onClick={handleServicesClick}
                             className={"button-header drop-down"}
                             style={{
@@ -312,13 +362,10 @@ const Header = () => {
                       );
                     }
                   })}
-                  {/* <li> */}
-
-                  {/* </li> */}
                 </ul>
                 <Button
                   to={"/contact-us"}
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={() => {
                     navigate("/contact-us");
                   }}

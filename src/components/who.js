@@ -46,7 +46,6 @@ const Who = () => {
       <Container
         className="who-text"
         sx={{ alignItems: "center", justifyContent: "center", color: "white" }}
-        onScr
       >
         <Typography
           variant="h4"
@@ -72,88 +71,88 @@ const Who = () => {
         <Container className="counterContainer" id="counterContainer-large">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number" data-target="14">
+              <Typography pb={2} className="timer count-number" data-target="14">
                 14+
               </Typography>
-              <Typography class="stats-text">Years in Innovation</Typography>
+              <Typography className="stats-text">Years in Innovation</Typography>
             </Grid>
 
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number" data-target="500">
+              <Typography pb={2} className="timer count-number" data-target="500">
                 500+
               </Typography>
-              <Typography class="stats-text">Engineering Team</Typography>
+              <Typography className="stats-text">Engineering Team</Typography>
             </Grid>
             <Grid item xs={6} sm={4}>
-              <Typography pb={2} class="timer count-number" data-target="2500">
+              <Typography pb={2} className="timer count-number" data-target="2500">
                 2500+
               </Typography>
-              <Typography class="stats-text">Products Delivered</Typography>
+              <Typography className="stats-text">Products Delivered</Typography>
             </Grid>
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number" data-target="20">
+              <Typography pb={2} className="timer count-number" data-target="20">
                 20+
               </Typography>
-              <Typography class="stats-text">Industries Served</Typography>
+              <Typography className="stats-text">Industries Served</Typography>
             </Grid>
 
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number" data-target="600">
+              <Typography pb={2} className="timer count-number" data-target="600">
                 600+
               </Typography>
-              <Typography class="stats-text">Portfolio Startups</Typography>
+              <Typography className="stats-text">Portfolio Startups</Typography>
             </Grid>
             <Grid item xs={6} sm={4}>
-              <Typography pb={2} class="timer count-number" data-target="30">
+              <Typography pb={2} className="timer count-number" data-target="30">
                 30+
               </Typography>
-              <Typography class="stats-text">Innovation Events</Typography>
+              <Typography className="stats-text">Innovation Events</Typography>
             </Grid>
           </Grid>
         </Container>
         <Container className="counterContainer" id="counterContainer-small">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number" data-target="14">
+              <Typography pb={2} className="timer count-number" data-target="14">
                 14+
               </Typography>
-              <Typography class="stats-text">Years in Innovation</Typography>
+              <Typography className="stats-text">Years in Innovation</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number" data-target="500">
+              <Typography pb={2} className="timer count-number" data-target="500">
                 500+
               </Typography>
-              <Typography class="stats-text">Engineering Team</Typography>
+              <Typography className="stats-text">Engineering Team</Typography>
             </Grid>
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number" data-target="2500">
+              <Typography pb={2} className="timer count-number" data-target="2500">
                 2500+
               </Typography>
-              <Typography class="stats-text">Products Delivered</Typography>
+              <Typography className="stats-text">Products Delivered</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number" data-target="20">
+              <Typography pb={2} className="timer count-number" data-target="20">
                 20+
               </Typography>
-              <Typography class="stats-text">Industries Served</Typography>
+              <Typography className="stats-text">Industries Served</Typography>
             </Grid>
           </Grid>
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} class="timer count-number" data-target="600">
+              <Typography pb={2} className="timer count-number" data-target="600">
                 600+
               </Typography>
-              <Typography class="stats-text">Portfolio Startups</Typography>
+              <Typography className="stats-text">Portfolio Startups</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography pb={2} class="timer count-number" data-target="30">
+              <Typography pb={2} className="timer count-number" data-target="30">
                 30+
               </Typography>
-              <Typography class="stats-text">Innovation Events</Typography>
+              <Typography className="stats-text">Innovation Events</Typography>
             </Grid>
           </Grid>
         </Container>

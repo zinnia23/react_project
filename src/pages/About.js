@@ -78,11 +78,11 @@ const About = () => {
               alignItems: "center",
             }}
           >
-            <img src={Company} id="mission"></img>
+            <img src={Company}></img>
           </Grid>
         </Grid>
       </Container>
-      <section class="background">
+      <section className="background">
         <Container>
           <h2>OUR CORE VALUES</h2>
           <Grid container spacing={4} pt={5}>
@@ -128,7 +128,7 @@ const About = () => {
               alignItems: "center",
             }}
           >
-            <img src={Vision} id="mission"></img>
+            <img src={Vision}></img>
           </Grid>
           <Grid
             item
