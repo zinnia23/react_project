@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import "../styles/About.css";
@@ -9,12 +9,12 @@ import Avatar2 from "../images/avatar (2).svg";
 import Avatar3 from "../images/avatar (3).svg";
 import Avatar4 from "../images/avatar.svg";
 
-const data1 = [
+var data1 = [
   {
     id: 1,
     img: Avatar1,
     name: "Adnan",
-    text: "CEO",
+    text: "USA",
   },
   {
     id: 2,
@@ -35,31 +35,16 @@ const data1 = [
     text: "CFO",
   },
 ];
-const data2 = [
-  {
-    id: 1,
-    img: Avatar1,
-    name: "Scott",
-    text: "EVP",
-  },
-  {
-    id: 2,
-    img: Avatar2,
-    name: "Adam",
-    text: "Consultant",
-  },
-  {
-    id: 3,
-    img: Avatar3,
-    name: "Jennifer",
-    text: "HR",
-  },
+
+var data2 = [
+
 ];
-const data3 = [
+
+var data3 = [
   {
     id: 1,
     img: Avatar1,
-    name: "Vijay",
+    name: "Management",
     text: "Director",
   },
   {
@@ -88,7 +73,6 @@ const StyledTabs = styled((props) => (
     backgroundColor: "transparent",
   },
   "& .MuiTabs-indicatorSpan": {
-    // maxWidth: 40,
     width: "100%",
     backgroundColor: "#17a2b8",
   },
@@ -142,11 +126,67 @@ function a11yProps(index) {
   };
 }
 
-export default function Ourteam() {
-  const [value, setValue] = React.useState(0);
-  useState(() => {
+const Ourteam = () => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/employees/")
+      .then(response => response.json())
+      .then(data => {
+        console.log("-----------------------------------------");
+        data1 = [];
+        data2 = [];
+        data3 = [];
+        for (var i=0 ; i < data.length ; i++){
+          var e_type = data[i]['employee_type']
+          if (e_type === "India"){
+            console.log("indian")
+            const newData = {
+              id: i+1,
+              img: data[i]['image'],
+              name: data[i]['name'],
+              text: data[i]['designation'],
+              desc: data[i]['intro'],
+              linked : data[i]['linkedin_profile']
+            };
+            data2.push(newData);
+            
+          }
+          else if (e_type === "US"){
+            console.log("amreeka")
+            const newData = {
+              id: i+1,
+              img: data[i]['image'],
+              name: data[i]['name'],
+              text: data[i]['designation'],
+              desc: data[i]['intro'],
+              linked : data[i]['linkedin_profile']
+            };
+            data1.push(newData);
+          }
+          else if (e_type === "Management"){
+            console.log("management")
+            const newData = {
+              id: i+1,
+              img: data[i]['image'],
+              name: data[i]['name'],
+              text: data[i]['designation'],
+              desc: data[i]['intro'],
+              linked : data[i]['linkedin_profile']
+            };
+            data3.push(newData);
+          }
+          
+        }
+        console.log("---------------------------------------");
+
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
+
     window.scroll(0, 0);
-  });
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -166,7 +206,7 @@ export default function Ourteam() {
         <Typography
           variant="h1"
           align="center"
-          style={{fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8" }}
+          style={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8" }}
         >
           in Each Other!
         </Typography>
@@ -187,7 +227,7 @@ export default function Ourteam() {
           >
             <StyledTab label="USA" {...a11yProps(0)} />
             <StyledTab label="India" {...a11yProps(1)} />
-            <StyledTab label="Pakistan" {...a11yProps(2)} />
+            <StyledTab label="Management" {...a11yProps(2)} />
           </StyledTabs>
         </Box>
         <Container>
@@ -204,4 +244,6 @@ export default function Ourteam() {
       </Box>
     </>
   );
-}
+};
+
+export default Ourteam;

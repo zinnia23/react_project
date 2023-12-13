@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/About.css";
 import { Container, Typography, Link, Grid } from "@mui/material";
 import Card from "react-bootstrap/Card";
-
+import linkedinLogo from "../images/linkedin-logo.png";
 const Managment = ({ details }) => {
   return (
     <section>
@@ -19,7 +19,6 @@ const Managment = ({ details }) => {
                       borderRadius: "50%",
                       width: "150px",
                       paddingBottom: "10px",
-                      
                     }}
                   />
                   <Typography
@@ -32,9 +31,7 @@ const Managment = ({ details }) => {
                   >
                     {item.name}
                   </Typography>
-                  <Typography align="center"  sx={{
-                      fontSize: "16px",
-                    }}>
+                  <Typography align="center" sx={{ fontSize: "16px" }}>
                     {item.text}
                   </Typography>
                 </div>
@@ -61,11 +58,41 @@ const Managment = ({ details }) => {
                     align="left"
                     sx={{ fontSize: "18px" }}
                   >
-                    Ad magna ullamco quis occaecat ut. Nisi sunt labore in velit
-                    non nostrud Lorem. Dolor et nisi incididunt amet tempor
-                    irure labore eu. Incididunt sint sunt laboris nulla nulla
-                    adipisicing minim pariatur irure ex nisi exercitation sit.
+                    {item.desc}
                   </Typography>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    <img
+                      src={linkedinLogo}
+                      alt="LinkedIn Logo"
+                      style={{
+                        width: "20px",
+                        marginRight: "5px",
+                      }}
+                    />
+                    <Typography
+                      variant="h6"
+                      align="right"
+                      sx={{
+                        fontSize: "18px",
+                        cursor: "pointer",
+                        textDecoration: "underline",
+                      }}
+                    >
+                      <a
+                        href={item.linked}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.linked}
+                      </a>
+                    </Typography>
+                  </div>
                 </Card.Body>
               </Card>
             </Grid>

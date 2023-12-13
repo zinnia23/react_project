@@ -47,6 +47,9 @@ const team = [
   { id: 3, text: "Pakistan" },
 ];
 
+
+
+
 const Footer = () => {
   return (
     <>

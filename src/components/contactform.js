@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../styles/HomeStyles.css";
 import { Container, Typography, Button, Grid, TextField } from "@mui/material";
 
@@ -9,7 +9,7 @@ const Contactform = ({ details }) => {
     name: "",
     company: "",
     jobTitle: "",
-    workEmail: "",
+    email: "",
     city: "",
     country: "",
     website: "",
@@ -19,7 +19,7 @@ const Contactform = ({ details }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("YOUR_API_ENDPOINT", {
+      const response = await fetch("http://127.0.0.1:8000/api/tickets/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,12 +29,13 @@ const Contactform = ({ details }) => {
 
       if (response.ok) {
         console.log("Form submitted successfully!");
+        alert('Your Ticket Has been generated')
         // Optionally, you can reset the form fields after successful submission
         setFormData({
           name: "",
           company: "",
           jobTitle: "",
-          workEmail: "",
+          email: "",
           city: "",
           country: "",
           website: "",
@@ -51,11 +52,13 @@ const Contactform = ({ details }) => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({
-      ...formData,
+    console.log(`Setting ${id} to ${value}`);
+    setFormData((prevData) => ({
+      ...prevData,
       [id]: value,
-    });
+    }));
   };
+
   return (
     <div style={{ backgroundImage: `url(${img})`, padding: "20px" }}>
       <Container
@@ -95,33 +98,33 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-              
                 label="Name"
                 placeholder="Enter Name"
                 value={formData.name}
                 onChange={handleInputChange}
+                id="name"
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
-              
                 label="Company"
                 placeholder="Enter Company"
                 value={formData.company}
                 onChange={handleInputChange}
+                id="company"
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
-              
                 label="Job Title"
                 placeholder="Enter Job Title"
                 value={formData.jobTitle}
                 onChange={handleInputChange}
+                id="jobTitle"
               />
             </Grid>
           </Grid>
@@ -130,33 +133,33 @@ const Contactform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-              
                 label="Work Email"
                 placeholder="Enter Email"
-                value={formData.workEmail}
+                value={formData.email}
                 onChange={handleInputChange}
+                id="email"
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
-              
                 label="City"
                 placeholder="Enter City"
                 value={formData.city}
                 onChange={handleInputChange}
+                id="city"
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
-              
                 label="Country"
                 placeholder="Enter Country"
                 value={formData.country}
                 onChange={handleInputChange}
+                id="country"
               />
             </Grid>
           </Grid>
@@ -164,36 +167,35 @@ const Contactform = ({ details }) => {
             <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
-              
                 label="Website"
                 placeholder="Enter Website"
                 value={formData.website}
                 onChange={handleInputChange}
+                id="website"
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
                 required
                 fullWidth
-              
                 label="How Did You Hear About Us"
                 placeholder=""
                 value={formData.howDidYouHear}
                 onChange={handleInputChange}
+                id="howDidYouHear"
               />
             </Grid>
           </Grid>
           <TextField
             fullWidth
             pb={5}
-          
             label="Message"
             placeholder="Enter Your Message"
             value={formData.message}
             onChange={handleInputChange}
+            id="message"
           />
           <Button
-            
             sx={{ float: "right", mt: 2 }}
             variant="contained"
             onClick={handleSubmit}
@@ -205,4 +207,5 @@ const Contactform = ({ details }) => {
     </div>
   );
 };
+
 export default Contactform;

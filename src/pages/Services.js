@@ -8,7 +8,7 @@ import { useData } from "../DataContext";
 const details = {
   img: background,
   title: `We'd love to hear from you`,
-  desc: `We'd love to hear from you`,
+  // desc: `We'd love to hear from you`,
   color: "black",
 };
 
@@ -48,7 +48,7 @@ const Services = () => {
         }}
       >
         <Grid container spacing={1} p={5}>
-          <Grid item sm={12} md={6} >
+          <Grid item sm={12} md={12} >
             <Box p={5} sx={{backgroundColor:"white", height:"100%"}}>
               <Typography
                 align="center"
@@ -63,7 +63,7 @@ const Services = () => {
               </Typography>
             </Box>
           </Grid>
-          <Grid item sm={12} md={6}>
+          <Grid item sm={6} md={12}>
             <Form details={details} />
           </Grid>
         </Grid>

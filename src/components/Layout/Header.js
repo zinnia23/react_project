@@ -27,9 +27,7 @@ const listofservices = {
   "Application Development & Maintenance": [
     {
       id: 1,
-      name: "Mobile Application Development",  // i m using data from these arrays "name,desc,image"
-      //so whatever data u want to apply I'll say plz hardcode it in these arrays accordingly. 
-      //Bari mushkil se apply hua ha yar
+      name: "Mobile Application Development",      
       link: "/services",
       desc: "hahdoadajdpaid",
       image: im,
@@ -46,11 +44,11 @@ const listofservices = {
     { id: 9, name: "Internet of Things", link: "/services" },
     { id: 10, name: "Extended Reality", link: "/services" },
   ],
-  Creative: [
+  "Creative": [
     { id: 11, name: "Prototyping", link: "/services" },
     { id: 12, name: "User Experience Design", link: "/services" },
   ],
-  Technologies: [
+  "Technologies": [
     { id: 13, name: "Python Development", link: "/services" },
     { id: 14, name: "React Native Development", link: "/services" },
     { id: 15, name: "ReactJS Development", link: "/services" },
@@ -62,6 +60,44 @@ const listofservices = {
 };
 
 const Header = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/services/");
+        // Handle response as needed, e.g., parse JSON
+        // You may also want to check for successful response status
+        if (response.ok) {
+          const data = await response.json();
+          console.log("API Response:", data);
+          // alert("API CALLED");
+          listofservices["Application Development & Maintenance"] = []
+          console.log(listofservices["Application Development & Maintenance"])
+          // listofservices["Application Development & Maintenance"] = {}
+          for (var i=0 ;i<data.length ;i++){
+            var names = data[i]['name']
+            const newData = {
+              id: i+1,
+              name: names,
+              link : "/services",
+              desc: data[i]['description'],
+              img: data[i]['image'],
+            };
+            listofservices["Application Development & Maintenance"].push(newData);
+            console.log("done")
+          }
+        } else {
+          console.error("Failed to fetch data from the API");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // The empty dependency array ensures that this effect runs only once on mount
+
+
+
   const useScrollAlerter = (ref) => {
     useEffect(() => {
       const handleScroll = (event) => {
