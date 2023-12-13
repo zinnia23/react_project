@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -14,46 +14,31 @@ import {
   ListItemText,
   Divider,
   Container,
-  TextField,
 } from "@mui/material";
 import Logo from "./../../images/mainlogo.png";
 import "../../styles/HomeStyles.css";
 import Form from "react-bootstrap/Form";
 
-const data = [
-  { id: 1, text: "Mobile Application Development" },
-  { id: 2, text: "Custom Web Development" },
-  { id: 3, text: "Product Discovery" },
-  { id: 4, text: "DevOps as a Service" },
-  { id: 5, text: "Salesforce Consulting" },
-  { id: 6, text: "AWS Activate" },
-  { id: 7, text: "Artificial Intelligence" },
-  { id: 8, text: "Blockchain" },
-  { id: 9, text: "Internet of Things" },
-  { id: 10, text: "Extended Reality" },
-  { id: 11, text: "Prototyping" },
-  { id: 12, text: "User Experience Design" },
-  { id: 13, text: "Python Development" },
-  { id: 14, text: "React Native Development" },
-  { id: 15, text: "ReactJS Development" },
-  { id: 16, text: "PHP Development" },
-  { id: 17, text: "Angular Development" },
-  { id: 18, text: "Full Stack Developers" },
-  { id: 19, text: "WordPress Development" },
-];
 const team = [
   { id: 1, text: "USA" },
   { id: 2, text: "India" },
   { id: 3, text: "Pakistan" },
 ];
 
-
-
-
 const Footer = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    // Make a GET request to fetch services data
+    fetch("http://127.0.0.1:8000/api/services/")
+      .then((response) => response.json())
+      .then((data) => setServices(data))
+      .catch((error) => console.error("Error fetching services:", error));
+  }, []); // Empty dependency array ensures the effect runs once when the component mounts
+
   return (
     <>
-      <Box sx={{ bgcolor: "black", color: "white", padding:{xs:"50px",md:"100px" }}}>
+      <Box sx={{ bgcolor: "black", color: "white", padding: { xs: "50px", md: "100px" } }}>
         <Grid container spacing={8} pb={3}>
           <Grid item xs={12} md={6}>
             <img src={Logo} alt="logo" width="200" />
@@ -71,7 +56,7 @@ const Footer = () => {
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Grid container spacing={{xs:"1",md:"10"}}>
+            <Grid container spacing={{ xs: "1", md: "10" }}>
               <Grid item xs={12} md={6}>
                 <Typography
                   variant="h5"
@@ -97,10 +82,10 @@ const Footer = () => {
                   Services
                 </Typography>
                 <List className="list">
-                  {data.map((item) => (
+                  {services.map((item) => (
                     <ListItem key={item.id}>
                       <ListItemText
-                        primary={item.text}
+                        primary={item.name}
                         class="listitem"
                         sx={{ padding: "0" }}
                       />
@@ -108,18 +93,17 @@ const Footer = () => {
                   ))}
                 </List>
               </Grid>
-              {/* <Grid item sm={12} md={4}></Grid> */}
             </Grid>
           </Grid>
         </Grid>
         <Divider sx={{ borderColor: "white" }} />
         <Grid container>
           <Grid item xs={12} md={4} pb={2}>
-            <Typography pt={3} sx={{ fontFamily: `'Ubuntu', sans-serif`, textAlign:{xs:"center",md:"left"} }}>
+            <Typography pt={3} sx={{ fontFamily: `'Ubuntu', sans-serif`, textAlign: { xs: "center", md: "left" } }}>
               Stay Connected With Our Latest Insights
             </Typography>
             <Box
-            pt={2}
+              pt={2}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -142,12 +126,12 @@ const Footer = () => {
               Let's Connect
             </Typography>
             <Box
-            pl={{md:3}}          
-              sx={{               
+              pl={{ md: 3 }}
+              sx={{
                 my: 1,
-                display:"flex",
-                alignItems:"center",
-                justifyContent:"center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 "& svg": {
                   fontSize: "30px",
                   cursor: "pointer",
@@ -168,25 +152,24 @@ const Footer = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={4} pb={2}>
-            <Typography pt={3} sx={{ fontSize: "13px", color: "#17a2b8",textAlign:{xs:"center"} }}>
+            <Typography pt={3} sx={{ fontSize: "13px", color: "#17a2b8", textAlign: { xs: "center" } }}>
               © 2023 Hash Technologies LLC
             </Typography>
             <Box
               pt={2}
             >
               <Typography
-                // pr={1}        
                 sx={{
                   fontSize: "10px",
                   color: "white",
-                  textAlign:{xs:"center"}
+                  textAlign: { xs: "center" },
                 }}
               >
                 Site Map | Terms of Use | Privacy Policy
               </Typography>
             </Box>
           </Grid>
-        </Grid>       
+        </Grid>
       </Box>
     </>
   );
