@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -22,7 +23,6 @@ import Form from "react-bootstrap/Form";
 const team = [
   { id: 1, text: "USA" },
   { id: 2, text: "India" },
-  { id: 3, text: "Pakistan" },
 ];
 
 const Footer = () => {
@@ -51,9 +51,11 @@ const Footer = () => {
               sectors and hence this makes Hash Technologies a one-stop solution
               for all the IT & HR requirements.
             </Typography>
-            <Button variant="outlined" id="learnbutton">
-              Learn More
-            </Button>
+            <Link to="/about">
+              <Button variant="outlined" id="learnbutton">
+                Learn More
+              </Button>
+            </Link>
           </Grid>
           <Grid item xs={12} md={6}>
             <Grid container spacing={{ xs: "1", md: "10" }}>
@@ -67,9 +69,11 @@ const Footer = () => {
                 </Typography>
                 <List className="list">
                   {team.map((item) => (
-                    <ListItem key={item.id}>
-                      <ListItemText primary={item.text} />
-                    </ListItem>
+                    <Link to="/our-team" key={item.id}>
+                      <ListItem>
+                        <ListItemText primary={item.text} />
+                      </ListItem>
+                    </Link>
                   ))}
                 </List>
               </Grid>
@@ -84,11 +88,13 @@ const Footer = () => {
                 <List className="list">
                   {services.map((item) => (
                     <ListItem key={item.id}>
-                      <ListItemText
-                        primary={item.name}
-                        class="listitem"
-                        sx={{ padding: "0" }}
-                      />
+                      <Link to={{ pathname: "/services", state: { serviceData: item } }}>
+                        <ListItemText
+                          primary={item.name}
+                          class="listitem"
+                          sx={{ padding: "0" }}
+                        />
+                      </Link>
                     </ListItem>
                   ))}
                 </List>

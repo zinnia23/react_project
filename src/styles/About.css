@@ -71,6 +71,16 @@
         color: #fff;
    
 }
+#image-careers{
+    background-color: steelblue;
+    height: 100vh;
+    background-image: url(../images/careers_bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+
+}
 #about-image{
     height: 100vh;
     background-color: steelblue;
@@ -94,4 +104,16 @@
     #mission{
         display: none;
     }
+  }
+  .job-card {
+    width: 500px;
+    height: 200px;
+    position: relative;
+    margin-top: 20px;
+    border: 2px solid transparent; /* Ensure there's a border for the transition effect */
+    transition: background-color 0.3s;
+  }
+  
+  .job-card:hover {
+    background-color: #e0e0e0; /* Change the color as needed */
   }

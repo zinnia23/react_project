@@ -1,22 +1,21 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
 import "../styles/About.css";
-import Image from "../images/aboutbg.jpg";
 import Company from "../images/company.jpg";
 import Vision from "../images/vision.jpg";
 import Mission from "../images/mission.jpg";
-import Bg from '../images/contactformbg.jpg'
+import Bg from '../images/contactformbg.jpg';
 import Contact from "../components/contactform";
-
 
 const details = [
   {
-      img: Bg,
-      title: 'Contact Hash Technologies',
-      desc: "We appreciate your interest in Hash Technologies. Please fill out the form below to get in touch with us.",
-      color:"black",
-    },
-]
+    img: Bg,
+    title: 'Contact Hash Technologies',
+    desc: "We appreciate your interest in Hash Technologies. Please fill out the form below to get in touch with us.",
+    color: "black",
+  },
+];
+
 const About = () => {
   useState(() => {
     window.scroll(0, 0);
@@ -26,28 +25,38 @@ const About = () => {
     <>
       <Box id="about-image" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         <div className="home" style={{ marginBottom: "50px" }}>
-        <Typography
-          variant="h1"
-          align="center"
-          className="text-light"
-          sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px" }}
-        >
-          Learn About
-        </Typography>
-        <Typography
-          variant="h1"
-          align="center"
-          style={{fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8" }}
-        >
-          Who We Are!
-        </Typography>
+          <Typography
+            variant="h1"
+            align="center"
+            className="text-light"
+            sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px" }}
+          >
+            Learn About
+          </Typography>
+          <Typography
+            variant="h1"
+            align="center"
+            style={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8" }}
+          >
+            Who We Are!
+          </Typography>
         </div>
       </Box>
       <Container sx={{ fontFamily: `'Ubuntu', sans-serif` }}>
         <Grid container p={5} spacing={5}>
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "flex-start",
+            }}
+          >
             <h2>OUR COMPANY</h2>
-            <p style={{}}>
+            <p>
               Founded in 2021, Hash Technologies has come a long way growing in
               different sectors like Public/Private Healthcare Education
               Hospitality Retail Banking Financials & Manufacturing Etc To
@@ -78,7 +87,7 @@ const About = () => {
               alignItems: "center",
             }}
           >
-            <img src={Company}></img>
+            <img src={Company} alt="Company" style={{ width: "100%", height: "auto" }} />
           </Grid>
         </Grid>
       </Container>
@@ -128,7 +137,8 @@ const About = () => {
               alignItems: "center",
             }}
           >
-            <img src={Vision}></img>
+                        <img src={Vision} alt="Vision" style={{ width: "100%", height: "auto" }} />
+
           </Grid>
           <Grid
             item
@@ -188,9 +198,11 @@ const About = () => {
           </Grid>
         </Grid>
       </Container>
-      <div>
-        <Contact details={details}/>
-      </div>
+      <div style={{ textAlign: "center", fontWeight: "bold", fontSize: "24px", margin: "20px 0" }}>
+  Feel Free To Contact Us
+</div>
+<Contact details={details}/>
+
     </>
   );
 };

@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   AppBar,
   Box,
+  Button,
+  Container,
   Drawer,
   IconButton,
-  Button,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -12,108 +13,68 @@ import MiniLogo from "../../images/minilogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
-import { Anchor, Container, Nav } from "react-bootstrap";
+import { Anchor } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import im from "../../images/aboutbg.jpg";
 import { DataContext, useData } from "../../DataContext";
+
 
 const pages = [
   { id: 1, name: "Home", link: "/" },
   { id: 2, name: "Services", link: "" },
   { id: 3, name: "Our Team", link: "/our-team" },
   { id: 4, name: "About", link: "/about" },
+  { id: 4, name: "Careers", link: "/jobs" },
 ];
-const listofservices = {
-  "Application Development & Maintenance": [
-    {
-      id: 1,
-      name: "Mobile Application Development",      
-      link: "/services",
-      desc: "hahdoadajdpaid",
-      image: im,
-    },
-    { id: 2, name: "Custom Web Development", link: "/services" },
-    { id: 3, name: "Product Discovery", link: "/services" },
-    { id: 4, name: "DevOps as a Service", link: "/services" },
-    { id: 5, name: "Salesforce Consulting", link: "/services" },
-    { id: 6, name: "AWS Activate", link: "/services" },
-  ],
-  "Emerging Technologies": [
-    { id: 7, name: "Artificial Intelligence", link: "/services" },
-    { id: 8, name: "Blockchain", link: "/services" },
-    { id: 9, name: "Internet of Things", link: "/services" },
-    { id: 10, name: "Extended Reality", link: "/services" },
-  ],
-  "Creative": [
-    { id: 11, name: "Prototyping", link: "/services" },
-    { id: 12, name: "User Experience Design", link: "/services" },
-  ],
-  "Technologies": [
-    { id: 13, name: "Python Development", link: "/services" },
-    { id: 14, name: "React Native Development", link: "/services" },
-    { id: 15, name: "ReactJS Development", link: "/services" },
-    { id: 16, name: "PHP Development", link: "/services" },
-    { id: 17, name: "Angular Development", link: "/services" },
-    { id: 18, name: "Full Stack Developers", link: "/services" },
-    { id: 19, name: "WordPress Development", link: "/services" },
-  ],
-};
 
 const Header = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:8000/api/services/");
-        // Handle response as needed, e.g., parse JSON
-        // You may also want to check for successful response status
-        if (response.ok) {
-          const data = await response.json();
-          console.log("API Response:", data);
-          // alert("API CALLED");
-          listofservices["Application Development & Maintenance"] = []
-          console.log(listofservices["Application Development & Maintenance"])
-          // listofservices["Application Development & Maintenance"] = {}
-          for (var i=0 ;i<data.length ;i++){
-            var names = data[i]['name']
-            const newData = {
-              id: i+1,
-              name: names,
-              link : "/services",
-              desc: data[i]['description'],
-              img: data[i]['image'],
-            };
-            listofservices["Application Development & Maintenance"].push(newData);
-            console.log("done")
-          }
-        } else {
-          console.error("Failed to fetch data from the API");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+  const [listofservices, setListofservices] = useState({
+    "Application Development & Maintenance": [],
+  });
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/services/");
+      if (response.ok) {
+        const data = await response.json();
+        const newData = data.map((item, index) => ({
+          id: index + 1,
+          name: item.name,
+          link: "/services",
+          desc: item.description,
+          img: item.image,
+        }));
+        setListofservices({
+          "Application Development & Maintenance": newData,
+        });
+      } else {
+        console.error("Failed to fetch data from the API");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
-  }, []); // The empty dependency array ensures that this effect runs only once on mount
-
-
-
+  }, []);
   const useScrollAlerter = (ref) => {
     useEffect(() => {
-      const handleScroll = (event) => {
+      const handleScroll = () => {
         if (window.scrollY > 200) {
-          // console.log(window.scrollY);
           navbarRef.current.style.backgroundColor = "rgb(0 0 0/100%)";
         } else {
           navbarRef.current.style.backgroundColor = "rgb(0 0 0/50%)";
         }
       };
+
       window.addEventListener("scroll", handleScroll);
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
     }, [ref]);
   };
+
   const useOutsideClickAlerter = (ref, buttonRef) => {
     useEffect(() => {
       function handleClickOutside(event) {
@@ -132,6 +93,7 @@ const Header = () => {
       };
     }, [ref, buttonRef]);
   };
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const serviceMenu = useRef();
@@ -141,28 +103,25 @@ const Header = () => {
   useOutsideClickAlerter(serviceMenu, serviceButton);
   const serviceMenuS = useRef();
   const serviceButtonS = useRef();
-  // hndle menu click
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  //menu drawer
+
   const handleServicesClick = () => {
     serviceMenu.current.hidden = !serviceMenu.current.hidden;
     serviceMenuS.current.hidden = !serviceMenuS.current.hidden;
+
   };
   const { updateData } = useData();
   const sendData = (v) => {
     updateData(v);
   };
 
-  const isLinkActive = () => {
-    // Your custom logic to determine when the link should not be active
-    return false; // Return false to prevent the active class
-  };
   const returnServicesMenu = () => {
-    // const handleServiceClick = (service) => {
-    //   setSelectedService(service);
-    // };
+    const servicesPerColumn = 7;
+    const services = listofservices["Application Development & Maintenance"];
+    const columnsCount = Math.ceil(services.length / servicesPerColumn);
   
     return (
       <Box className="smallscreen">
@@ -175,6 +134,7 @@ const Header = () => {
             fontFamily: `'Ubuntu', sans-serif`,
             fontSize: "19px",
             width: "100%",
+            height: "10%",
           }}
         >
           SERVICES
@@ -183,70 +143,68 @@ const Header = () => {
           width={"100%"}
           sx={{
             "@media (min-width: 900px)": {
-              // Example: for medium screens and above (768px and higher)
-              flexDirection: "column",
               display: "flex",
               flexWrap: "wrap",
-              alignContent: "space-between",
-              justifyContent: "flex-start",
-              alignItems: "flex-start",
-              height: "100%",
+              justifyContent: "space-between",
             },
           }}
         >
-          {Object.keys(listofservices).map((heading) => {
-            return (
-              <Box
-                key={heading}
+          {Array.from({ length: columnsCount }).map((_, columnIndex) => (
+            <Box
+              key={`column-${columnIndex}`}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                flexWrap: "nowrap",
+                alignContent: "flex-start",
+                justifyContent: "center",
+                alignItems: "flex-start",
+              }}
+            >
+              <Typography
+                className="text"
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  flexWrap: "nowrap",
-                  alignContent: "flex-start",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
+                  fontFamily: `'Ubuntu', sans-serif !important`,
+                  color: "rgb(54 177 191) !important",
+                  padding: "8px 0",
                 }}
+                width={{ sm: "100%", md: "30%" }}
               >
-                <Typography
-                  className="text"
-                  sx={{
-                    fontFamily: `'Ubuntu', sans-serif !important`,
-                    color: "rgb(54 177 191) !important",
-                    padding: "8px 0",
-                  }}
-                  width={{ sm: "100%", md: "30%" }}
-                >
-                  {heading}
-                </Typography>
-                {listofservices[heading].map((v) => {
-                  return (
-                    <NavLink
-                      key={v.id}
-                      id="navlink"
-                      className="anchorstyle"
-                      to={v.link}
-                      onClick={() => {
-                        sendData(v);
-                        handleServicesClick();
-                      }}
-                    >
-                      {v.name}
-                    </NavLink>
-                  );
-                })}
-              </Box>
-            );
-          })}
+                {services[columnIndex * servicesPerColumn]?.category || ''}
+              </Typography>
+              {services
+                .slice(
+                  columnIndex * servicesPerColumn,
+                  (columnIndex + 1) * servicesPerColumn
+                )
+                .map((v) => (
+                  <NavLink
+                    key={v.id}
+                    id="navlink"
+                    className="anchorstyle"
+                    to={v.link}
+                    onClick={() => {
+                      sendData(v);
+                      handleServicesClick();
+                    }}
+                  >
+                    {v.name}
+                  </NavLink>
+                ))}
+            </Box>
+          ))}
         </Box>
       </Box>
     );
   };
+  
+  
 
   const drawer = (
     <Box sx={{ textAlign: "center" }}>
       <ul className="mobile-navigation">
         {pages.map((item, num) => {
-          if (item.name != "Services") {
+          if (item.name !== "Services") {
             return (
               <li key={window.crypto.randomUUID()}>
                 <NavLink
@@ -357,7 +315,7 @@ const Header = () => {
                   }}
                 >
                   {pages.map((page, num) => {
-                    if (page.name != "Services") {
+                    if (page.name !== "Services") {
                       return (
                         <li
                           className="header-items"
@@ -424,7 +382,6 @@ const Header = () => {
           anchor="top"
           variant="persistent"
           open={mobileOpen}
-          // onClose={handleDrawerToggle}
           sx={{
             display: { sm: "block", md: "none" },
             "& .MuiDrawer-paper": {
@@ -441,4 +398,5 @@ const Header = () => {
     </Box>
   );
 };
+
 export default Header;

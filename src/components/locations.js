@@ -25,8 +25,8 @@ const Location = () => {
           Locations
         </Typography>
         <Box>
-          <Grid container spacing={5}>
-            <Grid item xs={12} md={4}>
+          <Grid container spacing={5} justifyContent="center" alignItems="center">
+            <Grid item xs={6} md={5}>
               <Card className="effect" style={{ minHeight: "350px" }}>
                 <Card.Body>
                   <div class="location-card">
@@ -51,7 +51,7 @@ const Location = () => {
                 </Card.Body>
               </Card>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={6} md={5}>
               <Card className="effect" style={{ minHeight: "350px" }}>
                 <Card.Body>
                   <div class="location-card">
@@ -76,31 +76,7 @@ const Location = () => {
                 </Card.Body>
               </Card>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Card className="effect" style={{ minHeight: "350px" }}>
-                <Card.Body>
-                  <div class="location-card">
-                    <img src={pak} class="p-3" width="129px"></img>
-                  </div>
-                  <div class="p-3">
-                    <Typography
-                      align="center"
-                      sx={{
-                        fontFamily: `'Ubuntu', sans-serif`,
-                        fontSize: "28px",
-                      }}
-                    >
-                      Pakistan
-                    </Typography>
-                  </div>
-                  <div class="p-3">
-                    <Card.Text align="center">
-                      Hyderabad, Telangana 500008.
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Grid>
+            
           </Grid>
         </Box>
       </Container>

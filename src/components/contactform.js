@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "../styles/HomeStyles.css";
+import { toast } from "react-toastify";
 import { Container, Typography, Button, Grid, TextField } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import CustomPopup from "./CustomPopup"; // Import your custom popup component
+
+
 
 const Contactform = ({ details }) => {
   const { img, title, desc, color } = details;
@@ -17,7 +22,22 @@ const Contactform = ({ details }) => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+
+  const handleOpenPopup = (message) => {
+    setPopupMessage(message);
+    setPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+  };
+
   const handleSubmit = async () => {
+    setLoading(true);
+
     try {
       const response = await fetch("http://127.0.0.1:8000/api/tickets/", {
         method: "POST",
@@ -29,8 +49,7 @@ const Contactform = ({ details }) => {
 
       if (response.ok) {
         console.log("Form submitted successfully!");
-        alert('Your Ticket Has been generated')
-        // Optionally, you can reset the form fields after successful submission
+        handleOpenPopup("Your Ticket Has been generated");
         setFormData({
           name: "",
           company: "",
@@ -44,9 +63,13 @@ const Contactform = ({ details }) => {
         });
       } else {
         console.error("Error submitting form:", response.statusText);
+        handleOpenPopup("Error submitting form");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      handleOpenPopup("Error submitting form");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -199,9 +222,21 @@ const Contactform = ({ details }) => {
             sx={{ float: "right", mt: 2 }}
             variant="contained"
             onClick={handleSubmit}
+            disabled={loading} // Disable the button while loading
+
           >
-            Submit
+             {loading ? (
+              <CircularProgress size={24} color="inherit" />
+            ) : (
+              "Submit"
+            )}
           </Button>
+
+          <CustomPopup
+          isOpen={popupOpen}
+          onClose={handleClosePopup}
+          message={popupMessage}
+        />
         </Container>
       </Container>
     </div>

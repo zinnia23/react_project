@@ -1,65 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
-import "../styles/About.css";
 import { Container, Box, Typography, Tabs, Tab } from "@mui/material";
 import Managment from "../components/managment";
+import "../styles/About.css";
 import Avatar1 from "../images/avatar (1).svg";
 import Avatar2 from "../images/avatar (2).svg";
 import Avatar3 from "../images/avatar (3).svg";
 import Avatar4 from "../images/avatar.svg";
-
-var data1 = [
-  {
-    id: 1,
-    img: Avatar1,
-    name: "Adnan",
-    text: "USA",
-  },
-  {
-    id: 2,
-    img: Avatar2,
-    name: "Ali",
-    text: "CO Founder",
-  },
-  {
-    id: 3,
-    img: Avatar3,
-    name: "Sara",
-    text: "CTO",
-  },
-  {
-    id: 4,
-    img: Avatar4,
-    name: "Amina",
-    text: "CFO",
-  },
-];
-
-var data2 = [
-
-];
-
-var data3 = [
-  {
-    id: 1,
-    img: Avatar1,
-    name: "Management",
-    text: "Director",
-  },
-  {
-    id: 2,
-    img: Avatar2,
-    name: "Ali",
-    text: "Director Testing",
-  },
-  {
-    id: 3,
-    img: Avatar3,
-    name: "Bhumi",
-    text: "Associate Director",
-  },
-];
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -128,61 +76,47 @@ function a11yProps(index) {
 
 const Ourteam = () => {
   const [value, setValue] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [data1, setData1] = useState([]);
+  const [data2, setData2] = useState([]);
+  const [data3, setData3] = useState([]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/employees/")
-      .then(response => response.json())
-      .then(data => {
-        console.log("-----------------------------------------");
-        data1 = [];
-        data2 = [];
-        data3 = [];
-        for (var i=0 ; i < data.length ; i++){
-          var e_type = data[i]['employee_type']
-          if (e_type === "India"){
-            console.log("indian")
-            const newData = {
-              id: i+1,
-              img: data[i]['image'],
-              name: data[i]['name'],
-              text: data[i]['designation'],
-              desc: data[i]['intro'],
-              linked : data[i]['linkedin_profile']
-            };
-            data2.push(newData);
-            
-          }
-          else if (e_type === "US"){
-            console.log("amreeka")
-            const newData = {
-              id: i+1,
-              img: data[i]['image'],
-              name: data[i]['name'],
-              text: data[i]['designation'],
-              desc: data[i]['intro'],
-              linked : data[i]['linkedin_profile']
-            };
-            data1.push(newData);
-          }
-          else if (e_type === "Management"){
-            console.log("management")
-            const newData = {
-              id: i+1,
-              img: data[i]['image'],
-              name: data[i]['name'],
-              text: data[i]['designation'],
-              desc: data[i]['intro'],
-              linked : data[i]['linkedin_profile']
-            };
-            data3.push(newData);
-          }
-          
-        }
-        console.log("---------------------------------------");
+      .then((response) => response.json())
+      .then((data) => {
+        const newData1 = [];
+        const newData2 = [];
+        const newData3 = [];
 
+        for (var i = 0; i < data.length; i++) {
+          var e_type = data[i]["employee_type"];
+          const newData = {
+            id: i + 1,
+            img: data[i]["image"],
+            name: data[i]["name"],
+            text: data[i]["designation"],
+            desc: data[i]["intro"],
+            linked: data[i]["linkedin_profile"],
+          };
+
+          if (e_type === "India") {
+            newData2.push(newData);
+          } else if (e_type === "US") {
+            newData1.push(newData);
+          } else if (e_type === "Management") {
+            newData3.push(newData);
+          }
+        }
+
+        setData1(newData1);
+        setData2(newData2);
+        setData3(newData3);
+        setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching data:", error);
+        setLoading(false);
       });
 
     window.scroll(0, 0);
@@ -191,6 +125,10 @@ const Ourteam = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
