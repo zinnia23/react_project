@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import Card from "react-bootstrap/Card";
+import { NavLink } from "react-router-dom";
+
+import Usa from "../../images/usa1.png";
+import India from "../../images/india1.png";
+import { DataContext, useData } from "../../DataContext";
+
 import {
   Box,
   Typography,
@@ -25,24 +32,52 @@ const team = [
   { id: 2, text: "India" },
 ];
 
+
 const Footer = () => {
-  const [services, setServices] = useState([]);
+  const [listofservices, setListofservices] = useState({
+    "Application Development & Maintenance": [],
+  });
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/services/");
+      if (response.ok) {
+        const data = await response.json();
+
+        const newData = data.map((item, index) => ({
+          id: index + 1,
+          name: item.name,
+          link: "/services",
+          desc: item.description,
+          img: item.image,
+        }));
+        setListofservices({
+          "Application Development & Maintenance": newData,
+        });
+      } else {
+        console.error("Failed to fetch data from the API");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    // Make a GET request to fetch services data
-    fetch("http://127.0.0.1:8000/api/services/")
-      .then((response) => response.json())
-      .then((data) => setServices(data))
-      .catch((error) => console.error("Error fetching services:", error));
-  }, []); // Empty dependency array ensures the effect runs once when the component mounts
+    fetchData();
+  }, []);
 
+  const { updateData } = useData();
+  const sendData = (v) => {
+    updateData(v);
+  };
+  const services = listofservices["Application Development & Maintenance"];
   return (
     <>
       <Box sx={{ bgcolor: "black", color: "white", padding: { xs: "50px", md: "100px" } }}>
         <Grid container spacing={8} pb={3}>
           <Grid item xs={12} md={6}>
             <img src={Logo} alt="logo" width="200" />
-            <Typography paragraph sx={{ fontSize: "15px" }}>
+            <Typography paragraph sx={{ fontSize: "15px", paddingTop: "35px" }}>
               Founded in 2021, Hash Technologies has come a long way growing in
               different sectors like Public/Private Healthcare Education
               Hospitality Retail Banking Financials & Manufacturing Etc To
@@ -56,25 +91,98 @@ const Footer = () => {
                 Learn More
               </Button>
             </Link>
+
+
+            <Grid container justifyContent="center" alignItems="center" paddingTop={"45px"} sx={{ margin: 0, width: '100%' }}>
+              <Grid item xs={12} md={6} sx={{ margin: 0, padding: 0 }}>
+                <div class="location-card">
+                  <img src={Usa} class="pb-4"></img>
+                </div>
+                <div class="p-3">
+                  <Typography
+                    align="center"
+                    sx={{
+                      fontFamily: `'Ubuntu', sans-serif`,
+                      fontSize: "28px",
+                    }}
+                  >
+                    USA
+                  </Typography>
+                </div>
+                <Typography
+                  align="center"
+                  sx={{
+                    fontFamily: `'Ubuntu', sans-serif`,
+                    fontSize: "18px",
+                  }}
+                >
+                  Hash Technologies LLC
+
+                </Typography>
+                <div class="p-3">
+                  <Card.Text align="center">
+                    40315 Michigan Ave #1055 Canton,
+                    MI 48188
+                  </Card.Text>
+                </div>
+
+              </Grid>
+              <Grid item xs={12} md={6} sx={{ margin: 0, padding: 0 }}>
+
+                <div class="location-card">
+                  <img src={India} class="p-3"></img>
+                </div>
+                <div class="p-3">
+                  <Typography
+                    align="center"
+                    sx={{
+                      fontFamily: `'Ubuntu', sans-serif`,
+                      fontSize: "28px",
+                    }}
+                  >
+                    India
+                  </Typography>
+                </div>
+                <Typography
+                  align="center"
+                  sx={{
+                    fontFamily: `'Ubuntu', sans-serif`,
+                    fontSize: "18px",
+                  }}
+                >
+                  Hash Techno Fusion Pvt Ltd
+
+                </Typography>
+                <div class="p-3">
+                  <Card.Text align="center">
+                    8-1-400/60, Tolichowki, Hyderabad, Telangana 500008
+                  </Card.Text>
+                </div>
+
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item xs={12} md={6}>
             <Grid container spacing={{ xs: "1", md: "10" }}>
               <Grid item xs={12} md={6}>
                 <Typography
                   variant="h5"
-                  align="left"
+                  align="left"  
                   sx={{ fontFamily: `'Ubuntu', sans-serif` }}
                 >
                   Our Team
                 </Typography>
                 <List className="list">
-                  {team.map((item) => (
-                    <Link to="/our-team" key={item.id}>
-                      <ListItem>
-                        <ListItemText primary={item.text} />
-                      </ListItem>
-                    </Link>
-                  ))}
+                  <Link to="/our-team/1">
+                    <ListItem button>
+                      <ListItemText primary="India" />
+                    </ListItem>
+                  </Link>
+                  <Link to="/our-team/0">
+                    <ListItem button>
+                      <ListItemText primary="USA" />
+                    </ListItem>
+                  </Link>
                 </List>
               </Grid>
               <Grid item xs={12} md={6}>
@@ -85,19 +193,24 @@ const Footer = () => {
                 >
                   Services
                 </Typography>
-                <List className="list">
-                  {services.map((item) => (
-                    <ListItem key={item.id}>
-                      <Link to={{ pathname: "/services", state: { serviceData: item } }}>
-                        <ListItemText
-                          primary={item.name}
-                          class="listitem"
-                          sx={{ padding: "0" }}
-                        />
-                      </Link>
-                    </ListItem>
-                  ))}
-                </List>
+
+                {services.map((v) => (
+                  <div key={v.id} style={{ marginBottom: "8px" }}>
+                    <NavLink
+                      style={{ color: "white", textDecoration: "none" }} // Inline styles for color and text decoration
+                      to={v.link}
+                      onClick={() => {
+                        sendData(v);
+                        window.scrollTo(0, 0); // Scroll to the top of the page
+                      }}
+                    >
+                      {v.name}
+                    </NavLink>
+                  </div>
+                ))}
+
+
+
               </Grid>
             </Grid>
           </Grid>
@@ -143,11 +256,6 @@ const Footer = () => {
                   cursor: "pointer",
                   mr: 2,
                 },
-                "& svg:hover": {
-                  color: "#17a2b8",
-                  transform: "translateX(5px)",
-                  transition: "all 400ms",
-                },
               }}
             >
               <InstagramIcon />
@@ -158,25 +266,39 @@ const Footer = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={4} pb={2}>
-            <Typography pt={3} sx={{ fontSize: "13px", color: "#17a2b8", textAlign: { xs: "center" } }}>
-              © 2023 Hash Technologies LLC
+            <Typography pt={3} sx={{ fontFamily: `'Ubuntu', sans-serif`, textAlign: { xs: "center", md: "right" } }}>
+              Contact Information
             </Typography>
             <Box
               pt={2}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
             >
-              <Typography
-                sx={{
-                  fontSize: "10px",
-                  color: "white",
-                  textAlign: { xs: "center" },
-                }}
-              >
-                Site Map | Terms of Use | Privacy Policy
-              </Typography>
+              <Typography>Phone: +1 248-592-9236</Typography>
+            </Box>
+            <Box
+              pt={1}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Typography>Email: info@hashtechnologies.com</Typography>
             </Box>
           </Grid>
         </Grid>
       </Box>
+      <Typography
+        variant="subtitle1"
+        align="center"
+        sx={{ backgroundColor: "black", color: "white", padding: "20px 0" }}
+      >
+        © 2024 Hash Technologies. All Rights Reserved.
+      </Typography>
     </>
   );
 };

@@ -48,13 +48,13 @@ const Who = () => {
         sx={{ alignItems: "center", justifyContent: "center", color: "white" }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           align="center"
           sx={{ fontFamily: `'Ubuntu', sans-serif` }}
         >
           Who We Are
         </Typography>
-        <Typography paragraph align="center" pt={4}>
+        <Typography paragraph align="center" pt={4} fontSize={"20px"}>
           We, at Hash Technologies, provide you world-class and highly
           satisfactory services across various verticals in IT-Services & HR
           Services. In IT-Services we provide, Software & Hardware Solutions,
@@ -71,8 +71,8 @@ const Who = () => {
         <Container className="counterContainer" id="counterContainer-large">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sm={4} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} className="timer count-number" data-target="14">
-                14+
+              <Typography pb={2} className="timer count-number" data-target="11">
+                11+
               </Typography>
               <Typography className="stats-text">Years in Innovation</Typography>
             </Grid>
@@ -115,8 +115,8 @@ const Who = () => {
         <Container className="counterContainer" id="counterContainer-small">
           <Grid container mt={5} spacing={1} sx={{ textAlign: "center" }}>
             <Grid item xs={6} sx={{ borderRight: "2px solid white" }}>
-              <Typography pb={2} className="timer count-number" data-target="14">
-                14+
+              <Typography pb={2} className="timer count-number" data-target="11">
+                11+
               </Typography>
               <Typography className="stats-text">Years in Innovation</Typography>
             </Grid>

@@ -150,10 +150,29 @@ const Jobform = ({ details }) => {
           paragraph
           color={color}
           pb={2}
-          sx={{ fontSize: "20px" }}
+          sx={{ fontSize: "20px", whiteSpace: 'pre-line' }}
         >
-          {job_description}
+          {job_description.split('\n').map((line, index) => {
+            if (line.trim().startsWith(';;bold')) {
+              const boldText = line.trim().substring(6); // Extract the text after ';;bold'
+              return (
+                <React.Fragment key={index}>
+                  <b>{boldText}</b>
+                  <br /> {/* Add line break after bold text */}
+                </React.Fragment>
+              );
+            } else {
+              return (
+                <React.Fragment key={index}>
+                  {line}
+                  <br /> {/* Add line break after normal text */}
+                </React.Fragment>
+              );
+            }
+          })}
         </Typography>
+
+
         <Container
           ref={formContainerRef}
           sx={{ backgroundColor: "white", padding: "20px", height: "100%" }}

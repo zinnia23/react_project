@@ -26,8 +26,8 @@ const Location = () => {
         </Typography>
         <Box>
           <Grid container spacing={5} justifyContent="center" alignItems="center">
-            <Grid item xs={6} md={5}>
-              <Card className="effect" style={{ minHeight: "350px" }}>
+            <Grid item xs={12} md={5}>
+              <Card className="effect" style={{ minHeight: "450px" }}>
                 <Card.Body>
                   <div class="location-card">
                     <img src={Usa} class="pb-4"></img>
@@ -45,14 +45,19 @@ const Location = () => {
                   </div>
                   <div class="p-3">
                     <Card.Text align="center">
-                      40315 Michigan Ave, Canton, Michigan 48188, US
+                      40315 Michigan Ave #1055 Canton,                    
+                      <br></br>
+                      MI 48188
+                      <br></br>
+                      <br></br>
+                      Phone: +1 779-232-9110
                     </Card.Text>
                   </div>
                 </Card.Body>
               </Card>
             </Grid>
-            <Grid item xs={6} md={5}>
-              <Card className="effect" style={{ minHeight: "350px" }}>
+            <Grid item xs={12} md={5}>
+              <Card className="effect" style={{ minHeight: "450px" }}>
                 <Card.Body>
                   <div class="location-card">
                     <img src={india} class="p-3"></img>
@@ -70,13 +75,18 @@ const Location = () => {
                   </div>
                   <div class="p-3">
                     <Card.Text align="center">
-                      Hyderabad, Telangana 500008.
+                      8-1-400/60, Tolichowki, Hyderabad, Telangana 500008
+                      <br></br>
+                      <br></br>
+                      Phone: +91 8686564347
+                      <br></br>
+                      +91 8977862561
                     </Card.Text>
                   </div>
                 </Card.Body>
               </Card>
             </Grid>
-            
+
           </Grid>
         </Box>
       </Container>

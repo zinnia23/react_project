@@ -89,7 +89,7 @@ const Contactform = ({ details }) => {
           alignItems: "center",
           justifyContent: "center",
           color: "black",
-          padding: { xs: "30px", md: "30px 80px" },
+          padding: { xs: "0px", md: "30px 80px" },
         }}
       >
         <Typography
@@ -114,7 +114,7 @@ const Contactform = ({ details }) => {
           {desc}
         </Typography>
         <Container
-          sx={{ backgroundColor: "white", padding: "70px", height: "100%" }}
+          sx={{ backgroundColor: "white", paddingBottom: "70px", height: "100%" }}
         >
           <Grid container spacing={2} pb={3}>
             <Grid item xs={12} md={4}>

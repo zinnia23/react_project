@@ -20,6 +20,13 @@ body {
   position: absolute;
   padding: 10px;
 }
+
+@media screen and (max-width: 768px) {
+  .main-heading {
+    font-size: 10px; /* Adjusted font size for mobile devices */
+  }
+}
+
 #heading h1 {
   font-weight: bold;
   font-size: 6vw;

@@ -9,7 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import MiniLogo from "../../images/minilogo.png";
+import MiniLogo from "../../images/mainlogo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
@@ -108,10 +108,17 @@ const Header = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleDrawerItemClick = () => {
+    setMobileOpen(false); // Close the drawer when an item is clicked
+  };
+
   const handleServicesClick = () => {
     serviceMenu.current.hidden = !serviceMenu.current.hidden;
     serviceMenuS.current.hidden = !serviceMenuS.current.hidden;
-
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth" // Optional: Adds smooth scrolling behavior
+    });
   };
   const { updateData } = useData();
   const sendData = (v) => {
@@ -186,6 +193,7 @@ const Header = () => {
                     onClick={() => {
                       sendData(v);
                       handleServicesClick();
+                      handleDrawerItemClick();
                     }}
                   >
                     {v.name}
@@ -211,10 +219,7 @@ const Header = () => {
                   key={item.id}
                   className={"active mobile-service-button"}
                   to={item.link}
-                  onClick={() => {
-                    serviceMenu.current.hidden = true;
-                    serviceMenuS.current.hidden = true;
-                  }}
+                  onClick={handleDrawerItemClick} // Add onClick handler
                 >
                   {item.name}
                 </NavLink>
@@ -235,6 +240,7 @@ const Header = () => {
                   id="service-menu-s"
                   ref={serviceMenuS}
                   className="smallservice"
+                
                 >
                   {returnServicesMenu()}
                 </Box>
@@ -247,6 +253,7 @@ const Header = () => {
           className="btn btn-primary"
           onClick={() => {
             navigate("/contact-us");
+            handleDrawerItemClick(); // Close drawer when Contact button is clicked
           }}
           style={{ float: "left", margin: "6px 0" }}
         >
@@ -293,7 +300,7 @@ const Header = () => {
                 variant="h6"
                 component="div"
               >
-                <img src={MiniLogo} alt="logo" height="50" width="50" />
+                <img src={MiniLogo} alt="logo" height="90" width="140" />
               </NavLink>
               <Box
                 width={"100%"}
@@ -362,6 +369,7 @@ const Header = () => {
                   className="btn btn-primary"
                   onClick={() => {
                     navigate("/contact-us");
+                    handleDrawerItemClick(); // Close drawer when Contact button is clicked
                   }}
                   style={{ float: "right" }}
                 >

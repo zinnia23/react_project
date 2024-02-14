@@ -3,24 +3,60 @@ import "../styles/About.css";
 import { Container, Typography, Link, Grid } from "@mui/material";
 import Card from "react-bootstrap/Card";
 import linkedinLogo from "../images/linkedin-logo.png";
+
 const Managment = ({ details }) => {
   return (
     <section>
-      <Grid container spacing={2}>
+      <Container>
         {details.map((item) => {
           return (
-            <Grid item xs={12} sm={6} md={4} key={item.id}>
-              <Card id="hovercard">
-                <div id="nohoverbody">
-                  <Card.Img
-                    variant="top"
-                    src={item.img}
+            <div
+              key={item.id}
+              style={{
+                marginBottom: "20px",
+                width: "90%", // Adjust container width as needed
+              }}
+            >
+              <Card>
+                <div
+                  // id="nohoverbody"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "20px",
+                  }}
+                >
+                  <div
                     style={{
-                      borderRadius: "50%",
-                      width: "150px",
-                      paddingBottom: "10px",
+                      width: "150px", // Fixed width for the image holder
+                      marginBottom: "20px", // Spacing between image holder and text
+                      position: "relative",
                     }}
-                  />
+                  >
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%", // Ensure image fills the holder
+                        objectFit: "cover", // Maintain aspect ratio
+                      }}
+                    />
+                    <a href={item.linked} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={linkedinLogo}
+                        alt="LinkedIn Logo"
+                        style={{
+                          position: "absolute",
+                          bottom: "5px",
+                          right: "5px",
+                          width: "20px",
+                          cursor: "pointer",
+                        }}
+                      />
+                    </a>
+                  </div>
                   <Typography
                     align="center"
                     sx={{
@@ -34,71 +70,19 @@ const Managment = ({ details }) => {
                   <Typography align="center" sx={{ fontSize: "16px" }}>
                     {item.text}
                   </Typography>
-                </div>
-                <Card.Body id="hoverbody">
-                  <Typography
-                    align="left"
-                    sx={{
-                      fontFamily: `'Ubuntu', sans-serif`,
-                      fontSize: "30px",
-                    }}
-                    pb={1}
-                  >
-                    {item.name}
-                  </Typography>
-                  <Typography
-                    align="left"
-                    pb={1}
-                    sx={{ fontSize: "23px", fontWeight: "600" }}
-                  >
-                    {item.text}
-                  </Typography>
                   <Typography
                     variant="h5"
-                    align="left"
-                    sx={{ fontSize: "18px" }}
+                    align="center"
+                    sx={{ fontSize: "16px", whiteSpace: "pre-wrap" }} // Ensure line breaks are respected
                   >
                     {item.desc}
                   </Typography>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      alignItems: "flex-end",
-                    }}
-                  >
-                    <img
-                      src={linkedinLogo}
-                      alt="LinkedIn Logo"
-                      style={{
-                        width: "20px",
-                        marginRight: "5px",
-                      }}
-                    />
-                    <Typography
-                      variant="h6"
-                      align="right"
-                      sx={{
-                        fontSize: "18px",
-                        cursor: "pointer",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      <a
-                        href={item.linked}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.linked}
-                      </a>
-                    </Typography>
-                  </div>
-                </Card.Body>
+                </div>
               </Card>
-            </Grid>
+            </div>
           );
         })}
-      </Grid>
+      </Container>
     </section>
   );
 };

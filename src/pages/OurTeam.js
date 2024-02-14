@@ -4,10 +4,6 @@ import { styled } from "@mui/material/styles";
 import { Container, Box, Typography, Tabs, Tab } from "@mui/material";
 import Managment from "../components/managment";
 import "../styles/About.css";
-import Avatar1 from "../images/avatar (1).svg";
-import Avatar2 from "../images/avatar (2).svg";
-import Avatar3 from "../images/avatar (3).svg";
-import Avatar4 from "../images/avatar.svg";
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -74,7 +70,7 @@ function a11yProps(index) {
   };
 }
 
-const Ourteam = () => {
+const OurTeam = () => {
   const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(true);
   const [data1, setData1] = useState([]);
@@ -104,7 +100,7 @@ const Ourteam = () => {
             newData2.push(newData);
           } else if (e_type === "US") {
             newData1.push(newData);
-          } else if (e_type === "Management") {
+          } else if (e_type === "Directors") {
             newData3.push(newData);
           }
         }
@@ -165,7 +161,7 @@ const Ourteam = () => {
           >
             <StyledTab label="USA" {...a11yProps(0)} />
             <StyledTab label="India" {...a11yProps(1)} />
-            <StyledTab label="Management" {...a11yProps(2)} />
+            <StyledTab label="Directors" {...a11yProps(2)} />
           </StyledTabs>
         </Box>
         <Container>
@@ -184,4 +180,4 @@ const Ourteam = () => {
   );
 };
 
-export default Ourteam;
+export default OurTeam;

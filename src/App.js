@@ -21,6 +21,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/our-team" element={<OurTeam />} />
+          <Route path="/our-team/:tab" element={<OurTeam />} /> {/* Updated route for OurTeam with parameter */}
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/apply" element={<Apply />} />
