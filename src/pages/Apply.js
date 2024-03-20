@@ -6,7 +6,6 @@ import Location from "../components/locations";
 import Bg from "../images/contactformbg.jpg";
 import email from "../images/email.png";
 import "../styles/About.css";
-
 const Apply = () => {
   const [details, setDetails] = useState({
     img: Bg,
@@ -48,7 +47,7 @@ const Apply = () => {
         sx={{ fontFamily: `'Ubuntu', sans-serif` }}
       >
         <img src={email} width="32px" alt="email-icon" />
-        Info@hashtechnologiesllc.com
+        Info@hashtechno.com
       </Typography>
     </>
   );

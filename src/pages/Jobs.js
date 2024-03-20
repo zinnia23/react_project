@@ -78,7 +78,7 @@ const Jobs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/jobs");
+        const response = await fetch("https://hashtech.pythonanywhere.com/api/jobs");
         if (response.ok) {
           const data = await response.json();
           setJobOpenings(data);
@@ -96,7 +96,7 @@ const Jobs = () => {
   const handleApplyNowClick = (job) => {
     setSelectedJob(job);
     localStorage.setItem('selectedJob', JSON.stringify(job));
-    navigate("/apply", { state: { selectedJob: job } });
+    navigate("/apply/"+ job.id, { state: { selectedJob: job } });
   };
 
   return (
@@ -104,30 +104,52 @@ const Jobs = () => {
 
 
       <div id="image-careers" className="home" style={{ marginBottom: "0px" }}>
-        <Typography
-          variant="h1"
-          align="center"
-          className="text-light"
-          sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px" }}
-        >
-          Hash Technologies
-        </Typography>
-        <Typography
-          variant="h1"
-          align="center"
-          style={{
-            fontFamily: `'Ubuntu', sans-serif`,
-            fontSize: "65px",
-            color: "#17a2b8",
-          }}
-        >
-          Careers
-        </Typography>
+      <Typography
+      variant="h1"
+      align="center"
+      className="text-light"
+      sx={{
+        fontFamily: `'Ubuntu', sans-serif`,
+        fontSize: "65px",
+        '@media (max-width: 600px)': {
+          fontSize: "40px"
+        }
+      }}
+    >
+      Hash Technologies
+    </Typography>
+    <Typography
+      variant="h1"
+      align="center"
+      sx={{
+        fontFamily: `'Ubuntu', sans-serif`,
+        fontSize: "65px",
+        color: "#17a2b8",
+        '@media (max-width: 600px)': {
+          fontSize: "40px"
+        }
+      }}
+    >
+      Careers
+    </Typography>
       </div>
       <div style={{ backgroundColor: "#17a2b8", color: "#fff", textAlign: "center", padding: "5% 5%" }}>
-        <Typography variant="h3" component="div" style={{ fontWeight: "bold",  marginBottom: "20px",  paddingLeft: "15%", paddingRight: "15%" }}>
-          Why Choose a Career with Hash Technologies?
-        </Typography>
+      <Typography
+      component="div"
+      variant="p"
+      style={{
+        fontSize: "40px",
+        fontWeight: "bold",
+        marginBottom: "20px",
+        paddingLeft: "15%",
+        paddingRight: "15%",
+        '@media (max-width: 600px)': {
+          fontSize: "20px"
+        }
+      }}
+    >
+      Why Choose a Career with Hash Technologies?
+    </Typography>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
           <div style={{ flex: "1 1 300px", margin: "10px",  paddingLeft: "5%", paddingRight: "5%" }}>
             <Typography variant="h4" component="div" style={{ fontWeight: "bold" }}>

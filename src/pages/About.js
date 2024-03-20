@@ -25,21 +25,21 @@ const About = () => {
     <>
       <Box id="about-image" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         <div className="home" style={{ marginBottom: "50px" }}>
-          <Typography
-            variant="h1"
-            align="center"
-            className="text-light"
-            sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px" }}
-          >
-            Learn About
-          </Typography>
-          <Typography
-            variant="h1"
-            align="center"
-            style={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8" }}
-          >
-            Who We Are!
-          </Typography>
+        <Typography
+        variant="h1"
+        align="center"
+        className="text-light"
+        sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", '@media (max-width: 600px)': { fontSize: "40px" } }}
+      >
+        Learn About
+      </Typography>
+      <Typography
+        variant="h1"
+        align="center"
+        sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8", '@media (max-width: 600px)': { fontSize: "40px" } }}
+      >
+        Who We Are!
+      </Typography>
         </div>
       </Box>
       <Container sx={{  }}>
@@ -67,6 +67,7 @@ const About = () => {
 
               <br />
               <br />
+              
               In parallel, our HR Services division is geared towards delivering unparalleled support and solutions to meet your human resource needs. From talent acquisition and recruitment strategies to workforce management, training & development programs, performance evaluation frameworks, and HR consulting, we are committed to facilitating the growth and success of your organization through effective human capital management.
 
               <br />

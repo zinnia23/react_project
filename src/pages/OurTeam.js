@@ -49,7 +49,7 @@ const CustomTabPanel = (props) => {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 0 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -78,7 +78,7 @@ const OurTeam = () => {
   const [data3, setData3] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/employees/")
+    fetch("https://hashtech.pythonanywhere.com/api/employees/")
       .then((response) => response.json())
       .then((data) => {
         const newData1 = [];
@@ -129,21 +129,21 @@ const OurTeam = () => {
   return (
     <>
       <div id="image-team" className="home" style={{ marginBottom: "50px" }}>
-        <Typography
-          variant="h1"
-          align="center"
-          className="text-light"
-          sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px" }}
-        >
-          Bringing Out the Best
-        </Typography>
-        <Typography
-          variant="h1"
-          align="center"
-          style={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8" }}
-        >
-          in Each Other!
-        </Typography>
+      <Typography
+        variant="h1"
+        align="center"
+        className="text-light"
+        sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", '@media (max-width: 600px)': { fontSize: "40px" } }}
+      >
+        Bringing Out the Best
+      </Typography>
+      <Typography
+        variant="h1"
+        align="center"
+        sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8", '@media (max-width: 600px)': { fontSize: "40px" } }}
+      >
+        in Each Other!
+      </Typography>
       </div>
 
       <Box sx={{ width: "100%" }}>

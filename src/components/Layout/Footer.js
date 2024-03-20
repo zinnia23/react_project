@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import Tw from "../../images/X_logo.png";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Card from "react-bootstrap/Card";
@@ -40,14 +40,14 @@ const Footer = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/services/");
+      const response = await fetch("https://hashtech.pythonanywhere.com/api/services/");
       if (response.ok) {
         const data = await response.json();
 
         const newData = data.map((item, index) => ({
           id: index + 1,
           name: item.name,
-          link: "/services",
+          link: "/services/"+item.id,
           desc: item.description,
           img: item.image,
         }));
@@ -78,7 +78,7 @@ const Footer = () => {
           <Grid item xs={12} md={6}>
             <img src={Logo} alt="logo" width="200" />
             <Typography paragraph sx={{ fontSize: "15px", paddingTop: "35px" }}>
-              Founded in 2021, Hash Technologies has come a long way growing in
+              Hash Technologies has come a long way growing in
               different sectors like Public/Private Healthcare Education
               Hospitality Retail Banking Financials & Manufacturing Etc To
               continue with our success and to keep a well-satisfied clientele
@@ -167,7 +167,7 @@ const Footer = () => {
               <Grid item xs={12} md={6}>
                 <Typography
                   variant="h5"
-                  align="left"  
+                  align="left"
                   sx={{ fontFamily: `'Ubuntu', sans-serif` }}
                 >
                   Our Team
@@ -259,36 +259,22 @@ const Footer = () => {
               }}
             >
               <InstagramIcon />
-              <TwitterIcon />
-              <GitHubIcon />
+              <LinkedInIcon />
               <YouTubeIcon />
               <FacebookIcon />
+              <img src={Tw} alt="Twitter Logo" style={{ height: "30px", width: "30px", }} />
+
             </Box>
           </Grid>
           <Grid item xs={12} md={4} pb={2}>
             <Typography pt={3} sx={{ fontFamily: `'Ubuntu', sans-serif`, textAlign: { xs: "center", md: "right" } }}>
               Contact Information
             </Typography>
-            <Box
-              pt={2}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Typography>Phone: +1 248-592-9236</Typography>
-            </Box>
-            <Box
-              pt={1}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Typography>Email: info@hashtechnologies.com</Typography>
-            </Box>
+              <Typography pt={3} sx={{  textAlign: { xs: "center", md: "right" } }}>
+                Phone: +1 779 232 9110             </Typography>
+
+              <Typography pt={3} sx={{  textAlign: { xs: "center", md: "right" } }}>
+                Email: Info@hashtechno.com             </Typography>
           </Grid>
         </Grid>
       </Box>

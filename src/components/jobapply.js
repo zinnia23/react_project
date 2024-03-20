@@ -1,23 +1,16 @@
-import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/HomeStyles.css";
-import { Container, Typography, Button, Grid, TextField } from "@mui/material";
+import { Box, Container, Typography, Button, Grid, TextField } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WorkIcon from "@mui/icons-material/Work";
 import CustomPopup from "./CustomPopup"; // Import your custom popup component
 
-const Jobform = ({ details }) => {
+const Jobform = () => {
   const history = useNavigate(); // React Router's useHistory hook
+  const { id } = useParams(); // Extract ID from the URL
 
-  const {
-    img,
-    title,
-    location,
-    experience_required,
-    job_description,
-    color,
-  } = details;
-
+  const [jobData, setJobData] = useState(null);
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -40,7 +33,6 @@ const Jobform = ({ details }) => {
   const handleClosePopup = () => {
     setPopupOpen(false);
     history("/jobs");
-
   };
 
   const handleSubmit = async () => {
@@ -55,9 +47,9 @@ const Jobform = ({ details }) => {
       formDataToSend.append("website", formData.website);
       formDataToSend.append("cover_letter", formData.cover_letter);
       formDataToSend.append("cv", formData.cv);
-      formDataToSend.append("title", title);
+      formDataToSend.append("title", jobData.title); // Use jobData.title
 
-      const response = await fetch("http://127.0.0.1:8000/api/careers/", {
+      const response = await fetch("https://hashtech.pythonanywhere.com/api/careers/", {
         method: "POST",
         body: formDataToSend,
       });
@@ -72,7 +64,7 @@ const Jobform = ({ details }) => {
       // Redirect to the jobs.js page after successful submission
     } catch (error) {
       console.error("There was a problem with the submission:", error.message);
-      handleOpenPopup("Error submitting application");
+      handleOpenPopup("https://hashtech.pythonanywhere.com/mitting application");
     } finally {
       setLoading(false);
     }
@@ -105,8 +97,29 @@ const Jobform = ({ details }) => {
   const fileInputRef = useRef(null);
   const formContainerRef = useRef(null);
 
+  useEffect(() => {
+    const fetchJobData = async () => {
+      try {
+        const response = await fetch("https://hashtech.pythonanywhere.com/api/jobs/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch job data");
+        }
+        const data = await response.json();
+        const jobWithId = data.find(job => job.id === parseInt(id));
+        if (!jobWithId) {
+          throw new Error("Job with the given ID not found");
+        }
+        setJobData(jobWithId);
+      } catch (error) {
+        console.error("Error fetching job data:", error);
+      }
+    };
+
+    fetchJobData();
+  }, [id]);
+
   return (
-    <div style={{ backgroundImage: `url(${img})`, padding: "20px" }}>
+    <div style={{ backgroundImage: `url(${jobData?.img})`, padding: "20px" }}>
       <Container
         sx={{
           alignItems: "center",
@@ -124,7 +137,7 @@ const Jobform = ({ details }) => {
         </Button>
         <Typography
           align="left"
-          color={color}
+          color={jobData?.color}
           pb={4}
           sx={{
             fontFamily: `'Ubuntu', sans-serif`,
@@ -132,46 +145,26 @@ const Jobform = ({ details }) => {
             fontWeight: "bold",
           }}
         >
-          {title}
+          {jobData?.title}
         </Typography>
         <Typography
           align="left"
-          color={color}
+          color={jobData?.color}
           paragraph
           sx={{ fontSize: "27px", display: "flex", alignItems: "center" }}
         >
           <LocationOnIcon sx={{ mr: 1 }} />
-          {location}
+          {jobData?.location}
           <WorkIcon sx={{ mr: 1, ml: 2 }} />
-          {experience_required} Years
+          {jobData?.experience_required} Years
         </Typography>
-        <Typography
-          align="justify"
-          paragraph
-          color={color}
-          pb={2}
-          sx={{ fontSize: "20px", whiteSpace: 'pre-line' }}
-        >
-          {job_description.split('\n').map((line, index) => {
-            if (line.trim().startsWith(';;bold')) {
-              const boldText = line.trim().substring(6); // Extract the text after ';;bold'
-              return (
-                <React.Fragment key={index}>
-                  <b>{boldText}</b>
-                  <br /> {/* Add line break after bold text */}
-                </React.Fragment>
-              );
-            } else {
-              return (
-                <React.Fragment key={index}>
-                  {line}
-                  <br /> {/* Add line break after normal text */}
-                </React.Fragment>
-              );
-            }
-          })}
-        </Typography>
-
+        <Box p={2} sx={{ backgroundColor: "white" }}>
+          <Typography
+            paragraph
+            sx={{ fontSize: "20px" }}
+            dangerouslySetInnerHTML={{ __html: jobData?.job_description }}
+          />
+        </Box>
 
         <Container
           ref={formContainerRef}
@@ -179,7 +172,7 @@ const Jobform = ({ details }) => {
         >
           <Typography
             align="left"
-            color={color}
+            color={jobData?.color}
             pb={4}
             sx={{
               fontFamily: `'Ubuntu', sans-serif`,
@@ -216,11 +209,15 @@ const Jobform = ({ details }) => {
               <TextField
                 required
                 fullWidth
-                label="CV (PDF, DOC, DOCX)"
-                placeholder="Click To Choose File"
+                label={formData.cv ? formData.cv.name : "CV (PDF, DOC, DOCX)"}
                 onClick={handleChooseFile}
+                placeholder="File Has been Selected"
                 id="cv"
+                InputProps={{
+                  readOnly: true,
+                }}
               />
+
               <input
                 ref={fileInputRef}
                 type="file"

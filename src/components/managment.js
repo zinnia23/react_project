@@ -24,7 +24,7 @@ const Managment = ({ details }) => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    padding: "20px",
+                    padding: "0px",
                   }}
                 >
                   <div
@@ -67,16 +67,16 @@ const Managment = ({ details }) => {
                   >
                     {item.name}
                   </Typography>
-                  <Typography align="center" sx={{ fontSize: "16px" }}>
+                  <Typography align="center" sx={{ fontSize: "16px", fontWeight:"bold" }}>
                     {item.text}
                   </Typography>
+                  <br></br>
                   <Typography
                     variant="h5"
                     align="center"
-                    sx={{ fontSize: "16px", whiteSpace: "pre-wrap" }} // Ensure line breaks are respected
-                  >
-                    {item.desc}
-                  </Typography>
+                    sx={{ fontSize: "16px", textAlign: "center"}} 
+                    dangerouslySetInnerHTML={{ __html: item.desc }}
+                  />
                 </div>
               </Card>
             </div>

@@ -11,7 +11,7 @@ export const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{ sharedData, updateData }}>
+    <DataContext.Provider value={{ sharedData, updateData, setSharedData }}>
       {children}
     </DataContext.Provider>
   );
@@ -22,4 +22,5 @@ export const useData = () => {
     if (!context) {
       throw new Error('useData must be used within a DataProvider');
     }
-    return context;};
+    return context;
+};

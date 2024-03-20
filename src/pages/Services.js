@@ -1,9 +1,10 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { Box, Typography, Container, Grid } from "@mui/material";
 import Form from "../components/contactform";
 import "../styles/About.css";
 import background from "./../images/contactformbg.jpg";
 import { useData } from "../DataContext";
+import { useParams } from "react-router-dom";
 
 const details = {
   img: background,
@@ -13,10 +14,37 @@ const details = {
 };
 
 const Services = () => {
-  const { sharedData } = useData();
-  console.log('sharedData');
-  console.log(sharedData);
-  console.log(sharedData);
+
+
+  const { id } = useParams();
+  const { sharedData, setSharedData } = useData();
+
+  useEffect(() => {
+    const fetchServiceById = async () => {
+      try {
+        // Fetch all services
+        const response = await fetch("https://hashtech.pythonanywhere.com/api/services/");
+        if (!response.ok) {
+          throw new Error("Failed to fetch services");
+        }
+        const services = await response.json();
+
+        // Find the relevant service based on the ID
+        const service = services.find((service) => service.id === parseInt(id));
+        if (!service) {
+          throw new Error("Service not found");
+        }
+
+        // Update sharedData with the found service
+        setSharedData(service);
+      } catch (error) {
+        console.error("Error fetching or processing service:", error);
+      }
+    };
+
+    fetchServiceById();
+  }, [id, setSharedData]);
+
 
   return (
     <>
@@ -25,110 +53,41 @@ const Services = () => {
         className="home"
         style={{ marginBottom: "50px" }}
       >
-        <Typography
-          variant="h1"
-          align="center"
-          className="text-light"
-          sx={{
-            fontFamily: `'Ubuntu', sans-serif`,
-            fontSize: "65px",
-          }}
-        >
-          Services
-        </Typography>
-        <Typography
-          variant="h1"
-          align="center"
-          style={{
-            fontFamily: `'Ubuntu', sans-serif`,
-            fontSize: "65px",
-            color: "#17a2b8",
-          }}
-        >
-          We Provide!
-        </Typography>
-      </div>
-      <Container
-        sx={{
-          backgroundImage: `url(${sharedData.image})`, // Replace with your image URL
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          marginBottom: "20px",
-        }}
-      >
-        <Grid container  >
-          <Grid item sm={12} md={12}>
-            <Box p={5} sx={{ backgroundColor: "white", height: "100%" }}>
-              <Typography
-                align="center"
-                variant="h1"
-                color="black"
-                sx={{
-                  fontSize: "30px",
-                  fontFamily: `'Ubuntu', sans-serif`,
-                }}
-              >
-                {sharedData.name}
-              </Typography>
-              <Typography
-                align="center"
-                color="black"
-                mt={5}
-                paragraph
-                sx={{
-                  fontSize: "18px",
-                  whiteSpace: "pre-line", // Add this CSS property
-                  "@media (max-width: 600px)": {
-                    fontSize: "16px", // Adjust font size for mobile screens
-                  },
-                }}
-              >
-{sharedData.desc.split("\n").map((line, index) => (
-  <React.Fragment key={index}>
-    {line.trim().startsWith(';;bold') ? (
       <Typography
+        variant="h1"
         align="center"
-        sx={{
-          fontSize: "22px",
-          "@media (max-width: 600px)": {
-            fontSize: "20px",
-            marginLeft: "-30px",
-            marginRight: "-35px", // Adjust font size for mobile screens
-          },
-        }}
-        fontWeight="bold"
-        lineHeight={2.4}
-        mt={index === 0 ? 0 : 2} // Add margin top only for the first subheading
+        className="text-light"
+        sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", '@media (max-width: 600px)': { fontSize: "40px" } }}
       >
-        {line.trim().substring(6)} {/* Extract the text after ';;bold' */}
+        Services
       </Typography>
-    ) : (
       <Typography
-        sx={{
-          fontSize: "16px",
-          lineHeight: "2.5",
-          align: "center",
-          "@media (max-width: 600px)": {
-            fontSize: "16px", 
-            marginLeft: "-30px",
-            marginRight: "-35px",
-          },
-        }}
+        variant="h1"
+        align="center"
+        sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", color: "#17a2b8", '@media (max-width: 600px)': { fontSize: "40px" } }}
       >
-        {line}
+        We Provide!
       </Typography>
-    )}
-  </React.Fragment>
-))}
+      </div>
 
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item sm={12} md={12}>
-            <Form details={details} />
-          </Grid>
+
+
+      <Grid container  >
+        <Grid item sm={12} md={12}>
+        <Box p={2} marginLeft={"13%"} marginRight={"13%"}>
+            <Typography textAlign="left" variant="h4">{sharedData.name}</Typography>
+            <br></br>
+            <br></br>
+            <div textAlign="left" dangerouslySetInnerHTML={{ __html: sharedData.description }} />
+            <br></br>
+            <br></br>
+          </Box>
         </Grid>
-      </Container>
+
+        <Grid item sm={12} md={12}>
+          <Form details={details} />
+        </Grid>
+      </Grid>
     </>
   );
 };

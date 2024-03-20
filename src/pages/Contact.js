@@ -34,7 +34,7 @@ const Contact = () => {
         sx={{ fontFamily: `'Ubuntu', sans-serif` }}
       >
         <img src={email} width="32px"></img>
-        Info@hashtechnologiesllc.com
+        Info@hashtechno.com
       </Typography>
     </>
   );
