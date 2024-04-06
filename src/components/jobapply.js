@@ -4,6 +4,7 @@ import "../styles/HomeStyles.css";
 import { Box, Container, Typography, Button, Grid, TextField } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WorkIcon from "@mui/icons-material/Work";
+import JobTypeIcon from "@mui/icons-material/CompassCalibration";
 import CustomPopup from "./CustomPopup"; // Import your custom popup component
 
 const Jobform = () => {
@@ -49,7 +50,7 @@ const Jobform = () => {
       formDataToSend.append("cv", formData.cv);
       formDataToSend.append("title", jobData.title); // Use jobData.title
 
-      const response = await fetch("https://hashtech.pythonanywhere.com/api/careers/", {
+      const response = await fetch("http://127.0.0.1:8000/api/careers/", {
         method: "POST",
         body: formDataToSend,
       });
@@ -64,7 +65,7 @@ const Jobform = () => {
       // Redirect to the jobs.js page after successful submission
     } catch (error) {
       console.error("There was a problem with the submission:", error.message);
-      handleOpenPopup("https://hashtech.pythonanywhere.com/mitting application");
+      handleOpenPopup("http://127.0.0.1:8000/mitting application");
     } finally {
       setLoading(false);
     }
@@ -100,7 +101,7 @@ const Jobform = () => {
   useEffect(() => {
     const fetchJobData = async () => {
       try {
-        const response = await fetch("https://hashtech.pythonanywhere.com/api/jobs/");
+        const response = await fetch("http://127.0.0.1:8000/api/jobs/");
         if (!response.ok) {
           throw new Error("Failed to fetch job data");
         }
@@ -157,6 +158,8 @@ const Jobform = () => {
           {jobData?.location}
           <WorkIcon sx={{ mr: 1, ml: 2 }} />
           {jobData?.experience_required} Years
+          <JobTypeIcon sx={{ mr: 1, ml: 2 }} />
+          {jobData?.job_type} 
         </Typography>
         <Box p={2} sx={{ backgroundColor: "white" }}>
           <Typography
@@ -241,7 +244,7 @@ const Jobform = () => {
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
-                required
+                
                 fullWidth
                 label="Website"
                 placeholder="Enter Website"

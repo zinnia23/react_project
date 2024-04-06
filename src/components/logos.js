@@ -57,7 +57,7 @@ const Logos = () => {
       }}
     >
       <Typography align="center" pb={5} sx={{ fontSize: "35px",fontFamily: `'Ubuntu', sans-serif` }}>
-        Diversity Is Our Superpower
+        Diversity Is Our Core Strength
       </Typography>
       <ImageList
       sx={{ width: "100%", height: "auto" }}

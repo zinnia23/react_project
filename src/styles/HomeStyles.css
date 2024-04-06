@@ -118,7 +118,9 @@ body {
   z-index: -1;
 }
 .background {
-  background-image: linear-gradient(to right, #0abbbe, #3992f3);
+  background-image: url(../images/whowearebg.jpg) !important;
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 50px 15px;
 }
 .learnMore {

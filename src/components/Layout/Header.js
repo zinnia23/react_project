@@ -17,14 +17,16 @@ import { Anchor } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import im from "../../images/aboutbg.jpg";
 import { DataContext, useData } from "../../DataContext";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 const pages = [
   { id: 1, name: "Home", link: "/" },
   { id: 2, name: "Services", link: "" },
   { id: 3, name: "Our Team", link: "/our-team" },
-  { id: 4, name: "About", link: "/about" },
-  { id: 4, name: "Careers", link: "/jobs" },
+  { id: 4, name: "Clients", link: "/clients" },
+  { id: 5, name: "About", link: "/about" },
 ];
 
 const Header = () => {
@@ -34,13 +36,13 @@ const Header = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://hashtech.pythonanywhere.com/api/services/");
+      const response = await fetch("http://127.0.0.1:8000/api/services/");
       if (response.ok) {
         const data = await response.json();
         const newData = data.map((item, index) => ({
           id: index + 1,
           name: item.name,
-          link: "/services/"+item.id,
+          link: "/services/" + item.id,
           desc: item.description,
           img: item.image,
         }));
@@ -129,7 +131,7 @@ const Header = () => {
     const servicesPerColumn = 7;
     const services = listofservices["Application Development & Maintenance"];
     const columnsCount = Math.ceil(services.length / servicesPerColumn);
-  
+
     return (
       <Box className="smallscreen">
         <Typography
@@ -205,8 +207,8 @@ const Header = () => {
       </Box>
     );
   };
-  
-  
+
+
 
   const drawer = (
     <Box sx={{ textAlign: "center" }}>
@@ -240,7 +242,7 @@ const Header = () => {
                   id="service-menu-s"
                   ref={serviceMenuS}
                   className="smallservice"
-                
+
                 >
                   {returnServicesMenu()}
                 </Box>
@@ -248,9 +250,20 @@ const Header = () => {
             );
           }
         })}
+
+
+          <DropdownButton
+            id="dropdown-basic-button"
+            title="Careers"
+            style={{ textAlign: "left", marginLeft:"-12px", paddingTop:"2%", paddingBottom:"2%"}}
+          >
+            <Dropdown.Item href="post-your-resume">Post your Resume</Dropdown.Item>
+            <Dropdown.Item href="jobs">Open Positions</Dropdown.Item>
+          </DropdownButton>
+
         <Button
           to={"/contact-us"}
-          className="btn btn-primary"
+          className="btny btn-primaryy"
           onClick={() => {
             navigate("/contact-us");
             handleDrawerItemClick(); // Close drawer when Contact button is clicked
@@ -272,6 +285,7 @@ const Header = () => {
           sx={{ bgcolor: "rgb(0 0 0/50%)", padding: "0 25px" }}
           ref={navbarRef}
         >
+
           <Container maxwidth="xl">
             <Toolbar
               disableGutters
@@ -338,7 +352,9 @@ const Header = () => {
                             {page.name}
                           </NavLink>
                         </li>
+
                       );
+
                     } else {
                       return (
                         <li
@@ -359,14 +375,24 @@ const Header = () => {
                           >
                             {page.name}
                           </Anchor>
+
                         </li>
                       );
                     }
                   })}
+                  <DropdownButton
+                    id="dropdown-basic-button"
+                    title="Careers"
+                    style={{ backgroundColor: 'transparent ', borderColor: 'transparent', color: 'inherit' }}
+                  >
+                    <Dropdown.Item href="post-your-resume">Post your Resume</Dropdown.Item>
+                    <Dropdown.Item href="jobs">Open Positions</Dropdown.Item>
+                  </DropdownButton>
                 </ul>
+
                 <Button
                   to={"/contact-us"}
-                  className="btn btn-primary"
+                  className="btny btn-primaryy"
                   onClick={() => {
                     navigate("/contact-us");
                     handleDrawerItemClick(); // Close drawer when Contact button is clicked

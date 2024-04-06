@@ -6,11 +6,13 @@ import Location from "../components/locations";
 import Bg from "../images/contactformbg.jpg";
 import email from "../images/email.png";
 import "../styles/About.css";
+
 const Apply = () => {
   const [details, setDetails] = useState({
     img: Bg,
     title: "Python Developer",
     location: "India",
+    job_type: "Hybrid",
     experience_required: "3+",
     job_description:
       "We appreciate your interest in Hash Technologies. Please fill out the form below to get in touch with us.",
@@ -27,16 +29,17 @@ const Apply = () => {
      if (savedJob) {
        setDetails(JSON.parse(savedJob));
      }
+     window.scrollTo(0, 700);
    }, []);
 
   return (
     <>
-      <div className="home" id="contact-image">
+      <div className="home" id="contact-image1">
         <div align="center" sx={{ fontFamily: `'Ubuntu', sans-serif` }}>
           <h1 className="text-light" style={{ fontSize: "65px" }}>
             Work is Fun!
           </h1>
-          <h1 style={{ fontSize: "65px", color: "#17a2b8" }}>At Hash Tech</h1>
+          <h1 style={{ fontSize: "65px", color: "#17a2b8" }}>At Hash Technologies</h1>
         </div>
       </div>
       <Form details={details} />

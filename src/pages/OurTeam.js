@@ -78,7 +78,7 @@ const OurTeam = () => {
   const [data3, setData3] = useState([]);
 
   useEffect(() => {
-    fetch("https://hashtech.pythonanywhere.com/api/employees/")
+    fetch("http://127.0.0.1:8000/api/employees/")
       .then((response) => response.json())
       .then((data) => {
         const newData1 = [];

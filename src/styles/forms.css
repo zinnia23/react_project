@@ -1,0 +1,82 @@
+/* Styles for the form container */
+.form-container {
+  width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+}
+
+/* Styles specifically for the form */
+.custom-form {
+  width: 100%; /* Adjusted width for responsiveness */
+}
+
+/* Styles for form groups */
+.custom-form .form-group {
+  margin-bottom: 15px;
+}
+
+/* Styles for labels */
+.custom-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Styles for form inputs */
+.custom-form input[type="text"],
+.custom-form input[type="email"],
+.custom-form input[type="tel"],
+.custom-form input[type="file"],
+.custom-form textarea,
+.custom-form input[type="url"],
+.custom-form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Styles for the submit button */
+.custom-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Button now spans full width */
+}
+
+/* Styles for select dropdown */
+.custom-form select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23777"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-container {
+    width: 90%; /* Adjusted width for smaller screens */
+    padding: 10px; /* Adjusted padding for smaller screens */
+  }
+
+  /* Adjust font size for smaller screens */
+  .custom-form input[type="text"],
+  .custom-form input[type="email"],
+  .custom-form input[type="tel"],
+  .custom-form input[type="file"],
+  .custom-form textarea,
+  .custom-form input[type="url"],
+  .custom-form select {
+    font-size: 14px;
+  }
+}

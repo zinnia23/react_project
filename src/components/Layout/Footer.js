@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import Usa from "../../images/usa1.png";
 import India from "../../images/india1.png";
 import { DataContext, useData } from "../../DataContext";
+import CustomPopup from "../CustomPopup"; // Import your custom popup component
 
 import {
   Box,
@@ -33,6 +34,8 @@ const team = [
 ];
 
 
+
+
 const Footer = () => {
   const [listofservices, setListofservices] = useState({
     "Application Development & Maintenance": [],
@@ -40,14 +43,14 @@ const Footer = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://hashtech.pythonanywhere.com/api/services/");
+      const response = await fetch("http://127.0.0.1:8000/api/services/");
       if (response.ok) {
         const data = await response.json();
 
         const newData = data.map((item, index) => ({
           id: index + 1,
           name: item.name,
-          link: "/services/"+item.id,
+          link: "/services/" + item.id,
           desc: item.description,
           img: item.image,
         }));
@@ -62,13 +65,24 @@ const Footer = () => {
     }
   };
 
+
+  
+
   useEffect(() => {
     fetchData();
   }, []);
-
   const { updateData } = useData();
   const sendData = (v) => {
     updateData(v);
+  };
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  const handleButtonClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsPopupOpen(false);
   };
   const services = listofservices["Application Development & Maintenance"];
   return (
@@ -81,7 +95,7 @@ const Footer = () => {
               Hash Technologies has come a long way growing in
               different sectors like Public/Private Healthcare Education
               Hospitality Retail Banking Financials & Manufacturing Etc To
-              continue with our success and to keep a well-satisfied clientele
+              continue with our success and to keep a well-satisfied clientele,
               we are keeping our focus to deliver our best services in these
               sectors and hence this makes Hash Technologies a one-stop solution
               for all the IT & HR requirements.
@@ -235,9 +249,16 @@ const Footer = () => {
                 placeholder="Your Email Address"
                 aria-describedby="passwordHelpBlock"
               />
-              <Button size="medium" id="headerbutton">
-                Submit
-              </Button>
+              <div>
+                <Button size="medium" id="headerbutton" onClick={handleButtonClick}>
+                  Submit
+                </Button>
+                <CustomPopup
+                  isOpen={isPopupOpen}
+                  onClose={handleClose}
+                  message="You have been subscribed to our newsletter"
+                />
+              </div>
             </Box>
           </Grid>
           <Grid item xs={12} md={4} pb={2}>
@@ -270,11 +291,11 @@ const Footer = () => {
             <Typography pt={3} sx={{ fontFamily: `'Ubuntu', sans-serif`, textAlign: { xs: "center", md: "right" } }}>
               Contact Information
             </Typography>
-              <Typography pt={3} sx={{  textAlign: { xs: "center", md: "right" } }}>
-                Phone: +1 779 232 9110             </Typography>
+            <Typography pt={3} sx={{ textAlign: { xs: "center", md: "right" } }}>
+              Phone: +1 779 232 9110             </Typography>
 
-              <Typography pt={3} sx={{  textAlign: { xs: "center", md: "right" } }}>
-                Email: Info@hashtechno.com             </Typography>
+            <Typography pt={3} sx={{ textAlign: { xs: "center", md: "right" } }}>
+              Email: Info@hashtechno.com             </Typography>
           </Grid>
         </Grid>
       </Box>

@@ -55,15 +55,7 @@ const Who = () => {
           Who We Are
         </Typography>
         <Typography paragraph align="center" pt={4} fontSize={"20px"}>
-          We, at Hash Technologies, provide you world-class and highly
-          satisfactory services across various verticals in IT-Services & HR
-          Services. In IT-Services we provide, Software & Hardware Solutions,
-          DevSecOps, Digital Marketing, Web Development, Cloud Solutions, Data
-          Management & Analytics, Machine Learning & AI, business technologies,
-          consulting services, implementation services, advisory services and
-          managed services. In HR-Services we Provide, Professional Staffing,
-          Talent Acquisition, Resource outsourcing, Project management,
-          Leadership Development & Training/Coaching.
+        Hash Technologies stands as a premier provider of esteemed services renowned for their excellence across a diverse spectrum of Information Technology (IT) and Human Resources (HR) verticals. Within our IT Services domain, we offer an extensive array of solutions including Software and Hardware provisioning, DevSecOps implementation, Digital Marketing strategies, Web Development expertise, Cloud Solutions deployment, Data Management and Analytics proficiency, Project Management solutions, cutting-edge capabilities in Machine Learning and Artificial Intelligence (AI), Business Technology consultations, as well as specialized services in Consulting, Implementation, Advisory, and Managed Services. Our HR Services portfolio is distinguished by its comprehensive offerings, encompassing Professional Staffing solutions, Talent Acquisition expertise, Resource Outsourcing capabilities, Leadership Development programs, and bespoke Training and Coaching initiatives.
         </Typography>
         <Link className="learnMore" underline="none" variant="h5" color="white" href="/about">
           Learn More

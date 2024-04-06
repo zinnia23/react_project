@@ -1,57 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Box, Typography, Card, Button, CardContent } from "@mui/material";
+import { Typography, Card, Button, CardContent } from "@mui/material";
 import RoomIcon from '@mui/icons-material/Room';
 import WorkIcon from '@mui/icons-material/Work';
+import JobTypeIcon from "@mui/icons-material/CompassCalibration";
 
-const JobCard = ({ title, location, experience_required, className, onApplyNowClick }) => (
-  <Card
-    className={`job-card ${className}`}
-    style={{
-      maxWidth: "500px",
-      margin: "20px auto",
-      position: "relative",
-      border: "2px solid #ccc",
-      cursor: "pointer",
-      transition: "background-color 0.3s, cursor 0.3s",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-    }}
-  >
-    <CardContent style={{ padding: "20px" }}>
-      <Button
-        sx={{ float: "right" }}
-        variant="contained"
-        onClick={onApplyNowClick}
-        style={{
-          fontSize: "14px",
-          paddingLeft: "8px", // Decreased button font size
-          alignSelf: "flex-end",
-        }}
-      >
-        Apply Now
+const ITEMS_PER_PAGE = 12;
+
+const JobCard = ({ title, location, experience_required, className, job_type, onApplyNowClick }) => (
+  <Card className={`job-card ${className}`} onClick={onApplyNowClick} style={{ maxWidth: "500px", margin: "20px auto", position: "relative", border: "2px solid #ccc", cursor: "pointer", transition: "background-color 0.3s, cursor 0.3s", display: "flex", flexDirection: "column" }}>
+    <CardContent style={{ padding: "20px", flexGrow: 1 }}>
+      <Button sx={{ float: "right" }} variant="contained" style={{ fontSize: "14px", paddingLeft: "8px", alignSelf: "flex-end" }}>
+        Learn More
       </Button>
       <Typography variant="h5" component="div" style={{ fontSize: "1.5rem" }}>
         {title}
       </Typography>
     </CardContent>
-    <CardContent
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "10px 20px",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "flex-end" }}>
+    <CardContent style={{ alignItems: "flex-end", justifyContent: "space-between", padding: "0px 20px 10px", marginTop: "auto" }}>
+      <div style={{ display: "flex", alignItems: "flex-end", paddingBottom: "5px" }}>
         <RoomIcon fontSize="small" style={{ marginRight: "5px" }} />
         <Typography color="text.secondary" style={{ fontSize: "1rem" }}>
           {location}
         </Typography>
       </div>
-      <div style={{ display: "flex", alignItems: "flex-end" }}>
+      <div style={{ display: "flex", alignItems: "flex-end", paddingBottom: "5px" }}>
+        <JobTypeIcon fontSize="small" style={{ marginRight: "5px" }} />
+        <Typography color="text.secondary" style={{ fontSize: "1rem" }}>
+          {job_type}
+        </Typography>
+      </div>
+      <div style={{ display: "flex", alignItems: "flex-end", paddingBottom: "5px" }}>
         <WorkIcon fontSize="small" style={{ marginRight: "5px" }} />
         <Typography color="text.secondary" style={{ fontSize: "1rem" }}>
           {experience_required} Years
@@ -61,24 +41,24 @@ const JobCard = ({ title, location, experience_required, className, onApplyNowCl
   </Card>
 );
 
-
 JobCard.propTypes = {
   title: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   experience_required: PropTypes.string.isRequired,
+  job_type: PropTypes.string.isRequired,
   className: PropTypes.string,
   onApplyNowClick: PropTypes.func.isRequired,
 };
 
 const Jobs = () => {
   const [jobOpenings, setJobOpenings] = useState([]);
-  const [selectedJob, setSelectedJob] = useState(null);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://hashtech.pythonanywhere.com/api/jobs");
+        const response = await fetch("http://127.0.0.1:8000/api/jobs");
         if (response.ok) {
           const data = await response.json();
           setJobOpenings(data);
@@ -94,64 +74,68 @@ const Jobs = () => {
   }, []);
 
   const handleApplyNowClick = (job) => {
-    setSelectedJob(job);
     localStorage.setItem('selectedJob', JSON.stringify(job));
-    navigate("/apply/"+ job.id, { state: { selectedJob: job } });
+    navigate("/apply/" + job.id, { state: { selectedJob: job } });
   };
+
+  const totalPages = Math.ceil(jobOpenings.length / ITEMS_PER_PAGE);
+  const paginatedJobOpenings = jobOpenings.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    window.scrollTo({ top: 1355, behavior: 'smooth' });
+  }, [page]);
 
   return (
     <>
-
-
       <div id="image-careers" className="home" style={{ marginBottom: "0px" }}>
-      <Typography
-      variant="h1"
-      align="center"
-      className="text-light"
-      sx={{
-        fontFamily: `'Ubuntu', sans-serif`,
-        fontSize: "65px",
-        '@media (max-width: 600px)': {
-          fontSize: "40px"
-        }
-      }}
-    >
-      Hash Technologies
-    </Typography>
-    <Typography
-      variant="h1"
-      align="center"
-      sx={{
-        fontFamily: `'Ubuntu', sans-serif`,
-        fontSize: "65px",
-        color: "#17a2b8",
-        '@media (max-width: 600px)': {
-          fontSize: "40px"
-        }
-      }}
-    >
-      Careers
-    </Typography>
+        <Typography
+          variant="h1"
+          align="center"
+          className="text-light"
+          sx={{
+            fontFamily: `'Ubuntu', sans-serif`,
+            fontSize: "65px",
+            '@media (max-width: 600px)': {
+              fontSize: "40px"
+            }
+          }}
+        >
+          Hash Technologies
+        </Typography>
+        <Typography
+          variant="h1"
+          align="center"
+          sx={{
+            fontFamily: `'Ubuntu', sans-serif`,
+            fontSize: "65px",
+            color: "#17a2b8",
+            '@media (max-width: 600px)': {
+              fontSize: "40px"
+            }
+          }}
+        >
+          Careers
+        </Typography>
       </div>
       <div style={{ backgroundColor: "#17a2b8", color: "#fff", textAlign: "center", padding: "5% 5%" }}>
-      <Typography
-      component="div"
-      variant="p"
-      style={{
-        fontSize: "40px",
-        fontWeight: "bold",
-        marginBottom: "20px",
-        paddingLeft: "15%",
-        paddingRight: "15%",
-        '@media (max-width: 600px)': {
-          fontSize: "20px"
-        }
-      }}
-    >
-      Why Choose a Career with Hash Technologies?
-    </Typography>
+        <Typography
+          component="div"
+          variant="p"
+          style={{
+            fontSize: "40px",
+            fontWeight: "bold",
+            marginBottom: "20px",
+            paddingLeft: "15%",
+            paddingRight: "15%",
+            '@media (max-width: 600px)': {
+              fontSize: "20px"
+            }
+          }}
+        >
+          Why Choose a Career with Hash Technologies?
+        </Typography>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-          <div style={{ flex: "1 1 300px", margin: "10px",  paddingLeft: "5%", paddingRight: "5%" }}>
+          <div style={{ flex: "1 1 300px", margin: "10px", paddingLeft: "5%", paddingRight: "5%" }}>
             <Typography variant="h4" component="div" style={{ fontWeight: "bold" }}>
               Creativity and Freedom
             </Typography>
@@ -159,7 +143,7 @@ const Jobs = () => {
               We believe in giving our employees the creative space and freedom to explore, innovate, and excel in their roles.
             </Typography>
           </div>
-          <div style={{ flex: "1 1 300px", margin: "10px",  paddingLeft: "5%", paddingRight: "5%" }}>
+          <div style={{ flex: "1 1 300px", margin: "10px", paddingLeft: "5%", paddingRight: "5%" }}>
             <Typography variant="h4" component="div" style={{ fontWeight: "bold" }}>
               Diversity and Inclusion
             </Typography>
@@ -167,7 +151,7 @@ const Jobs = () => {
               Hash Technologies is committed to fostering an inclusive workplace where different cultures are celebrated, and diverse perspectives are valued.
             </Typography>
           </div>
-          <div style={{ flex: "1 1 300px", margin: "10px",  paddingLeft: "5%", paddingRight: "5%" }}>
+          <div style={{ flex: "1 1 300px", margin: "10px", paddingLeft: "5%", paddingRight: "5%" }}>
             <Typography variant="h4" component="div" style={{ fontWeight: "bold" }}>
               Collaboration and Efficiency
             </Typography>
@@ -178,7 +162,7 @@ const Jobs = () => {
 
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-        <div style={{ flex: "1 1 300px", margin: "10px", paddingLeft: "10%", paddingRight: "10%" }}>
+          <div style={{ flex: "1 1 300px", margin: "10px", paddingLeft: "10%", paddingRight: "10%" }}>
             <Typography variant="h4" component="div" style={{ fontWeight: "bold" }}>
               Career Development
             </Typography>
@@ -223,32 +207,12 @@ const Jobs = () => {
         If you resonate with our values and share the belief in creating a workplace where innovation thrives, ownership is nurtured, and collaboration is celebrated, we invite you to join us today. Let's make a difference together, and let your career shine at Hash Technologies. Explore exciting opportunities and be a part of our dynamic team where innovation meets excellence. Join us and be a catalyst for positive change in the world of technology and digital transformation.
       </Typography>
 
-      <Typography
-        variant="h2"
-        align="center"
-        style={{
-          fontFamily: `'Ubuntu', sans-serif`,
-          fontWeight: "bold",
-          fontSize: "28px",
-          marginTop: "40px",
-        }}
-      >
+      <Typography variant="h2" align="center" style={{ fontWeight: "bold", fontSize: "28px", marginTop: "40px" }}>
         CURRENT JOB OPENINGS
       </Typography>
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          gap: "1px",
-          marginTop: "20px",
-          marginBottom: "40px",
-          marginLeft: "10px",
-          marginRight: "10px",
-        }}
-      >
-        {jobOpenings.map((job, index) => (
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "1px", marginTop: "20px", marginBottom: "40px", marginLeft: "10px", marginRight: "10px" }}>
+        {paginatedJobOpenings.map((job, index) => (
           <JobCard
             key={index}
             {...job}
@@ -256,6 +220,38 @@ const Jobs = () => {
           />
         ))}
       </div>
+
+      {/* Pagination buttons */}
+      {totalPages > 1 && (
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+          <Button onClick={() => setPage(prevPage => Math.max(prevPage - 1, 1))} disabled={page === 1}>
+            Previous
+          </Button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <Button
+              key={i}
+              onClick={() => setPage(i + 1)}
+              disabled={page === i + 1}
+              style={{
+                backgroundColor: page === i + 1 ? 'blue' : 'transparent',
+                color: page === i + 1 ? 'white' : 'black',
+                borderRadius: '90%',
+                width: '20px',
+                height: '30px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 5px' // Adjust the margin as needed
+              }}
+            >
+              {i + 1}
+            </Button>
+          ))}
+          <Button onClick={() => setPage(prevPage => Math.min(prevPage + 1, totalPages))} disabled={page === totalPages}>
+            Next
+          </Button>
+        </div>
+      )}
     </>
   );
 };

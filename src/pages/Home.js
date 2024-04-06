@@ -5,6 +5,7 @@ import Logos from "./../components/logos";
 import Contact from "./../components/contactform";
 import { Link } from "react-router-dom";
 import Banner from "../images/homebg.mp4";
+// import Banner from "../images/formbg.mp4";
 import background from "./../images/contactbg.jpg";
 import hr1 from "./../images/hr1.jpg";
 import trasform from "./../images/transformwithus.jpg";
@@ -14,8 +15,7 @@ import { Typography, Grid, Container } from "@mui/material";
 const details = {
   img: background,
   title: `We'd love to hear from you`,
-  desc: `We'd love to hear from you`,
-  color: "white",
+  color: "black",
 };
 
 const Home = () => {
@@ -96,7 +96,7 @@ const Home = () => {
               alignItems: "flex-start",
             }}
           >
-            <img src={trasform} alt="Example" style={{ maxWidth: "100%", height: "auto" }} />
+            <img src={trasform} alt="Example" style={{ maxWidth: "100%", height: "auto", paddingBottom:"40px" , paddingTop:"20px" }} />
           </Grid>
         </Grid>
 
@@ -112,7 +112,7 @@ const Home = () => {
               alignItems: "flex-start",
             }}
           >
-            <img src={hr1} alt="Example" style={{ maxWidth: "100%", height: "auto" }} />
+            <img src={hr1} alt="Example" style={{ maxWidth: "100%", height: "80%", marginTop:"-15%" }} />
           </Grid>
 
           <Grid

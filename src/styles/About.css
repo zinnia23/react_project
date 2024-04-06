@@ -82,10 +82,30 @@
     color: #fff;
 
 }
+#about-image1{
+    height: 100vh;
+    background-color: steelblue;
+    background-image: url(../images/applyjobposition.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+
+}
+#about-image2{
+    height: 100vh;
+    background-color: steelblue;
+    background-image: url(../images/clientsbg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+
+}
 #about-image{
     height: 100vh;
     background-color: steelblue;
-    background-image: url(../images/aboutbg.jpg);
+    background-image: url(../images/wearewho.avif);
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;
@@ -94,7 +114,16 @@
 }
 #contact-image{
     background-color: steelblue;
-    background-image: url(../images/contact.jpg);
+    background-image: url(../images/contact\ us.png);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+
+}
+#contact-image1{
+    background-color: steelblue;
+    background-image: url(../images/workisfun.jpeg);
     background-size: cover;
     background-position: center;
     background-blend-mode: multiply;

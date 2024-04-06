@@ -12,6 +12,14 @@
   text-decoration: none;
   color: white;
 } */
+
+
+.transparent-bg-dropdown.btn {
+  background-color: transparent !important;
+  border-color: transparent !important; /* Optionally, make border transparent too */
+  color: inherit !important; /* Optionally, inherit text color */
+}
+
 .smallscreen {
   padding: 1.5em 7em !important;
   height: 100%;
@@ -44,9 +52,15 @@
 ul li.header-items {
   padding: 15px 10px 15px;
 }
-.btn.btn-primary {
-  background-color: #17a2b8 !important;
+.btny.btn-primaryy {
+  background-color:#17a2b8 !important;
   color: white;
+}
+.btn.btn-primary {
+  background-color:transparent !important;
+  border-color:transparent !important;
+  color: white;
+  font-size: larger;
 }
 .button-header {
   text-decoration: none;
