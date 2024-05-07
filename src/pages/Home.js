@@ -5,12 +5,11 @@ import Logos from "./../components/logos";
 import Contact from "./../components/contactform";
 import { Link } from "react-router-dom";
 import Banner from "../images/homebg.mp4";
-// import Banner from "../images/formbg.mp4";
+import BannerMobile from "../images/homebg_mobile.mp4"; // Import mobile video
 import background from "./../images/contactbg.jpg";
-import hr1 from "./../images/hr1.jpg";
+import hr1 from "./../images/hr1.png";
 import trasform from "./../images/transformwithus.jpg";
 import { Typography, Grid, Container } from "@mui/material";
-
 
 const details = {
   img: background,
@@ -25,17 +24,17 @@ const Home = () => {
 
   const statementStyle = {
     backgroundColor: "white",
-    color: "#17a2b8", // Text color changed to #17a2b8
+    color: "#17a2b8",
     marginBottom: "20px",
-    borderRadius: "10px", // Added rounded corners
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)", // Added a subtle shadow
-    fontFamily: "Ubuntu, sans-serif", // Stylish font family
+    borderRadius: "10px",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+    fontFamily: "Ubuntu, sans-serif",
   };
 
   const textStyle = {
     fontSize: "16px",
     lineHeight: "1.6",
-    fontFamily: "Ubuntu, sans-serif", // Stylish font family
+    fontFamily: "Ubuntu, sans-serif",
   };
 
   return (
@@ -49,14 +48,15 @@ const Home = () => {
           <h3>It’s not just a statement! it's an invitation to join hands with a dynamic technology partner committed to shaping the future.</h3>
           <h3>Join us on this transformative journey and witness the power of collaboration, innovation, and expertise. Let your business evolve, adapt, and thrive with Hash Technologies - where transformation is not just a destination but a continuous and exciting journey.</h3>
         </div>
-       
+
 
         <Link to="/about" className="learn-button">
+
           LEARN MORE
         </Link>
       </div>
       <Container sx={{}}>
-      
+
         <Grid container paddingTop={0} spacing={5}>
           <Grid
             item
@@ -96,7 +96,7 @@ const Home = () => {
               alignItems: "flex-start",
             }}
           >
-            <img src={trasform} alt="Example" style={{ maxWidth: "100%", height: "auto", paddingBottom:"40px" , paddingTop:"20px" }} />
+            <img src={trasform} alt="Example" style={{ maxWidth: "100%", height: "auto", paddingBottom: "40px", paddingTop: "20px" }} />
           </Grid>
         </Grid>
 
@@ -112,7 +112,19 @@ const Home = () => {
               alignItems: "flex-start",
             }}
           >
-            <img src={hr1} alt="Example" style={{ maxWidth: "100%", height: "80%", marginTop:"-15%" }} />
+            <img
+              src={hr1}
+              alt="Example"
+              style={{
+                maxWidth: "100%",
+                minHeight: "80%",
+                marginTop: "-15%",
+                width: "100%",
+                '@media only screen and (min-width: 600px)': {
+                  width: "100%",
+                }
+              }}
+            />
           </Grid>
 
           <Grid
@@ -131,17 +143,19 @@ const Home = () => {
               solutions to meet your human resource needs. From talent acquisition and recruitment
               strategies to workforce management, training & development programs, performance
               evaluation frameworks, and HR consulting, we are committed to facilitating the growth and
-              success of your organization through effective human capital management.              <br />
+              success of your organization through effective human capital management.
+              <br />
               <br />
               At Hash Technologies, our team of skilled professionals combines industry knowledge with
               technological prowess to offer bespoke services that align seamlessly with your objectives. We
               prioritize client satisfaction, aiming not just to meet but exceed expectations, ensuring a
-              partnership that fosters growth, efficiency, and success in all facets of your business.              <br />
+              partnership that fosters growth, efficiency, and success in all facets of your business.
               <br />
-              As founded by the curios minds and seasoned partners with decades of industry experience
-              Hash Technologies directors has come a long way growing in different sectors like
-              Public/Private Healthcare Education Hospitality Retail Banking Financials & Manufacturing Etc.
-              to continue with our success and to keep a well-satisfied clientele, we are keeping our focus to
+              <br />
+              As founded by the curious minds and seasoned partners with decades of industry experience,
+              Hash Technologies directors have come a long way, growing in different sectors like
+              Public/Private Healthcare Education Hospitality Retail Banking Financials & Manufacturing, etc.
+              To continue with our success and to keep a well-satisfied clientele, we are keeping our focus to
               deliver our best services in these sectors and hence this makes Hash Technologies a one-stop
               solution for all IT requirements.
             </p>
@@ -150,9 +164,17 @@ const Home = () => {
 
 
       </Container>
-      <video autoPlay muted loop className="background-video">
-        <source src={Banner} type="video/mp4" />
-      </video>
+      {/* Conditional rendering of video based on screen size */}
+      {window.innerWidth <= 600 ? (
+        <video autoPlay muted loop className="background-video" style={{ objectFit: 'cover', width: '100%', height: '100%' }}>
+          <source src={BannerMobile} type="video/mp4" />
+        </video>
+
+      ) : (
+        <video autoPlay muted loop className="background-video"  style={{ objectFit: 'cover', width: '100%', height: '100%' }}>
+          <source src={Banner} type="video/mp4" />
+        </video>
+      )}
       <Who />
       <Logos />
       <Contact details={details} />

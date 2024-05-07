@@ -9,7 +9,7 @@ const ImageSlider = ({ images }) => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % (images.length - 2));
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); 
   }, [images.length]);
 
   const goToPreviousSlide = () => {

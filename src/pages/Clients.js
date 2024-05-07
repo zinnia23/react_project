@@ -9,7 +9,7 @@ const Clients = () => {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/client-colab/');
+                const response = await fetch('https://hashtech.pythonanywhere.com/api/client-colab/');
                 if (!response.ok) {
                     throw new Error('Failed to fetch images');
                 }
@@ -38,7 +38,7 @@ const Clients = () => {
                         className="text-light"
                         sx={{ fontFamily: `'Ubuntu', sans-serif`, fontSize: "65px", '@media (max-width: 600px)': { fontSize: "40px" } }}
                     >
-                        Check Out
+                        Our Clients
                     </Typography>
                     <Typography
                         variant="h1"
@@ -63,16 +63,15 @@ const Clients = () => {
                         paddingTop: "5%"
                     }}
                 >
-                    <h2>Why are you Important to us?</h2>
+                    <h2>Our Clients</h2>
                     <p>
-                        Clients are important to us for several critical reasons. Firstly, they are the foundation of our business success, as their patronage directly contributes to our growth and sustainability. Building strong relationships with clients fosters trust, loyalty, and repeat business, which are vital for long-term success. Additionally, clients provide valuable feedback that helps us improve our products or services to better meet their needs. By prioritizing client satisfaction and understanding their goals, we can tailor our offerings and provide exceptional service, ultimately leading to mutual success and a positive reputation in the market. Therefore, our clients are not just customers but partners in our journey towards excellence.
-                    </p>
+                    At Hash Technologies LLC, our commitment lies in delivering innovative solutions that empower our clients to achieve their objectives consistently. We recognize the paramount significance of adhering to project timelines while maintaining the highest quality standards. Whether our clients require staffing solutions or comprehensive project management, we pride ourselves on not just meeting but exceeding their expectations. Our ethos revolves around unwavering dedication, relentless pursuit of excellence, and a steadfast focus on our clients' success. With every endeavor, we strive to set new benchmarks in the realm of technological solutions, ensuring that our clients always remain ahead of the curve.                    </p>
                 </Grid>
             </Container>
 
             <div>
-                <h1 style={{ textAlign: "center" }}>Collaboration With Companies</h1>
-                <br />
+                {/* <h1 style={{ textAlign: "center" }}>Collaboration With Companies</h1>
+                <br /> */}
                 {images.length > 0 && <ImageSlider images={images} />}
             </div>
 
@@ -80,7 +79,7 @@ const Clients = () => {
                 Feel Free To Contact Us
 
                 <Contact details={[{
-                    img: "http://127.0.0.1:8000/media/contactformbg_images/background2.jpg",
+                    img: "https://hashtech.pythonanywhere.com/media/contactformbg_images/background2.jpg",
                     title: 'Contact Hash Technologies',
                     desc: "We appreciate your interest in Hash Technologies. Please fill out the form below to get in touch with us.",
                     color: "black",

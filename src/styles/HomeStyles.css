@@ -14,20 +14,20 @@ body {
 }
 
 #heading{
-  background-color: rgb(0, 0, 0, 0.8);  /* border-left: red ; */
+  background-color: rgb(0, 0,0 , 0.8);  /* border-left: red ; */
   width: auto;
   box-sizing: border-box;
   position: top;
-  padding: 10px;
+  padding: 0px;
 }
 #sbuheading{
   background-color: rgb(0, 0, 0, 0.8);  /* border-left: red ; */
   width: auto;
-  box-sizing: border-box;
+  box-sizing: initial;
   margin-left: 10%;
   margin-right: 10%;
   position: top;
-  padding: 10px;
+  padding: 0px;
   color: white;
 }
 
@@ -264,7 +264,3 @@ body {
 .carousel-control-next-icon {
   background-image: url(../images/next.png) !important;
 }
-
-
-
-

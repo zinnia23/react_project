@@ -60,7 +60,7 @@ const Form = () => {
       // Append resume file
       formDataWithFile.append('cv', e.target.cv.files[0]);
 
-      const response = await fetch('http://127.0.0.1:8000/api/postresume/', {
+      const response = await fetch('https://hashtech.pythonanywhere.com/api/postresume/', {
         method: 'POST',
         body: formDataWithFile
       });

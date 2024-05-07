@@ -6,7 +6,7 @@ import RoomIcon from '@mui/icons-material/Room';
 import WorkIcon from '@mui/icons-material/Work';
 import JobTypeIcon from "@mui/icons-material/CompassCalibration";
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 9;
 
 const JobCard = ({ title, location, experience_required, className, job_type, onApplyNowClick }) => (
   <Card className={`job-card ${className}`} onClick={onApplyNowClick} style={{ maxWidth: "500px", margin: "20px auto", position: "relative", border: "2px solid #ccc", cursor: "pointer", transition: "background-color 0.3s, cursor 0.3s", display: "flex", flexDirection: "column" }}>
@@ -23,7 +23,7 @@ const JobCard = ({ title, location, experience_required, className, job_type, on
         <RoomIcon fontSize="small" style={{ marginRight: "5px" }} />
         <Typography color="text.secondary" style={{ fontSize: "1rem" }}>
           {location}
-        </Typography>
+        </Typography>ojfajajej a jjjejahhraiiruyye ajjrhakenna  hheuuak
       </div>
       <div style={{ display: "flex", alignItems: "flex-end", paddingBottom: "5px" }}>
         <JobTypeIcon fontSize="small" style={{ marginRight: "5px" }} />
@@ -58,7 +58,7 @@ const Jobs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/jobs");
+        const response = await fetch("https://hashtech.pythonanywhere.com/api/jobs");
         if (response.ok) {
           const data = await response.json();
           setJobOpenings(data);

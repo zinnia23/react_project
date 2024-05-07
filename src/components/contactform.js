@@ -39,7 +39,7 @@ const Contactform = ({ details }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/tickets/", {
+      const response = await fetch("https://hashtech.pythonanywhere.com/api/tickets/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +105,7 @@ const Contactform = ({ details }) => {
           {title}
         </Typography>
         <Typography
-          align="justify"
+          // align="justify"
           paragraph
           color={color}
           pb={2}

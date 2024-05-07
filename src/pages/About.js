@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
 import "../styles/About.css";
 import Company from "../images/company.jpg";
-import Company1 from "../images/company1.jpg";
+import Company1 from "../images/company1.png";
 import Vision from "../images/vision.jpg";
 import Mission from "../images/mission.jpg";
 import Bg from '../images/contactformbg.jpg';
@@ -20,7 +20,7 @@ const details = [
 const About = () => {
   useState(() => {
     window.scroll(0, 0);
-  });
+  });     
 
   return (
     <>

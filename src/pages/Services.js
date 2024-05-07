@@ -23,7 +23,7 @@ const Services = () => {
     const fetchServiceById = async () => {
       try {
         // Fetch all services
-        const response = await fetch("http://127.0.0.1:8000/api/services/");
+        const response = await fetch("https://hashtech.pythonanywhere.com/api/services/");
         if (!response.ok) {
           throw new Error("Failed to fetch services");
         }

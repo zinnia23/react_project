@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/HomeStyles.css";
-import { Box, Container, Typography, Button, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Grid,
+  TextField,
+} from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WorkIcon from "@mui/icons-material/Work";
 import JobTypeIcon from "@mui/icons-material/CompassCalibration";
@@ -50,10 +57,13 @@ const Jobform = () => {
       formDataToSend.append("cv", formData.cv);
       formDataToSend.append("title", jobData.title); // Use jobData.title
 
-      const response = await fetch("http://127.0.0.1:8000/api/careers/", {
-        method: "POST",
-        body: formDataToSend,
-      });
+      const response = await fetch(
+        "https://hashtech.pythonanywhere.com/api/careers/",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -65,7 +75,9 @@ const Jobform = () => {
       // Redirect to the jobs.js page after successful submission
     } catch (error) {
       console.error("There was a problem with the submission:", error.message);
-      handleOpenPopup("http://127.0.0.1:8000/mitting application");
+      handleOpenPopup(
+        "https://hashtech.pythonanywhere.com/mitting application"
+      );
     } finally {
       setLoading(false);
     }
@@ -101,12 +113,14 @@ const Jobform = () => {
   useEffect(() => {
     const fetchJobData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/jobs/");
+        const response = await fetch(
+          "https://hashtech.pythonanywhere.com/api/jobs/"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch job data");
         }
         const data = await response.json();
-        const jobWithId = data.find(job => job.id === parseInt(id));
+        const jobWithId = data.find((job) => job.id === parseInt(id));
         if (!jobWithId) {
           throw new Error("Job with the given ID not found");
         }
@@ -120,7 +134,13 @@ const Jobform = () => {
   }, [id]);
 
   return (
-    <div style={{ backgroundImage: `url(${jobData?.img})`, padding: "20px" }}>
+    <div
+      style={{
+        backgroundImage: `url(${jobData?.img})`,
+        padding: "20px",
+        backgroundSize: "cover",
+      }}
+    >
       <Container
         sx={{
           alignItems: "center",
@@ -142,7 +162,7 @@ const Jobform = () => {
           pb={4}
           sx={{
             fontFamily: `'Ubuntu', sans-serif`,
-            fontSize: "40px",
+            fontSize: { xs: "24px", md: "40px" },
             fontWeight: "bold",
           }}
         >
@@ -152,26 +172,35 @@ const Jobform = () => {
           align="left"
           color={jobData?.color}
           paragraph
-          sx={{ fontSize: "27px", display: "flex", alignItems: "center" }}
-        >
+          sx={{
+            fontSize: { xs: "16px", md: "27px" },
+            display: "flex",
+            alignItems: "center",
+          }}
+        >  
           <LocationOnIcon sx={{ mr: 1 }} />
           {jobData?.location}
           <WorkIcon sx={{ mr: 1, ml: 2 }} />
-          {jobData?.experience_required} Years
+            {jobData?.experience_required} Years
           <JobTypeIcon sx={{ mr: 1, ml: 2 }} />
-          {jobData?.job_type} 
+          {jobData?.job_type}
         </Typography>
         <Box p={2} sx={{ backgroundColor: "white" }}>
           <Typography
             paragraph
-            sx={{ fontSize: "20px" }}
+            sx={{ fontSize: { xs: "14px", md: "20px" } }}
             dangerouslySetInnerHTML={{ __html: jobData?.job_description }}
           />
         </Box>
 
         <Container
           ref={formContainerRef}
-          sx={{ backgroundColor: "white", padding: "20px", height: "100%" }}
+          sx={{
+            backgroundColor: "white",
+            padding: "20px",
+            height: "100%",
+            mt: { xs: "20px", md: "50px" },
+          }}
         >
           <Typography
             align="left"
@@ -179,7 +208,7 @@ const Jobform = () => {
             pb={4}
             sx={{
               fontFamily: `'Ubuntu', sans-serif`,
-              fontSize: "20px",
+              fontSize: { xs: "18px", md: "20px" },
               fontWeight: "bold",
             }}
           >
@@ -244,7 +273,6 @@ const Jobform = () => {
             </Grid>
             <Grid item xs={12} md={4}>
               <TextField
-                
                 fullWidth
                 label="Website"
                 placeholder="Enter Website"

@@ -36,7 +36,7 @@ const Header = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/services/");
+      const response = await fetch("https://hashtech.pythonanywhere.com/api/services/");
       if (response.ok) {
         const data = await response.json();
         const newData = data.map((item, index) => ({

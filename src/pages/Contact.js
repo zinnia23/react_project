@@ -26,7 +26,7 @@ const Contact = () => {
         </div>
       </div>
       <Form details={details} />
-      <Location />
+      {/* <Location /> */}
       <Typography
         pb={5}
         variant="h5"
