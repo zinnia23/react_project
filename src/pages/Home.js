@@ -112,6 +112,9 @@ const Home = () => {
               alignItems: "flex-start",
             }}
           >
+            <br></br>
+            <br></br>
+            <br></br>
             <img
               src={hr1}
               alt="Example"

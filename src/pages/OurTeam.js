@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import { Container, Box, Typography, Tabs, Tab } from "@mui/material";
@@ -70,12 +71,26 @@ function a11yProps(index) {
   };
 }
 
+const getTabIndexFromUrl = (pathname) => {
+  const match = pathname.match(/\/our-team\/(\d+)/);
+  if (match) {
+    const tabIndex = parseInt(match[1]);
+    return tabIndex >= 0 && tabIndex <= 2 ? tabIndex : 0; // Ensure the tab index is within range
+  }
+  return 0; // Default to the first tab if no parameter is found
+};
+
 const OurTeam = () => {
-  const [value, setValue] = useState(0);
+  const location = useLocation();
+  const [value, setValue] = useState(getTabIndexFromUrl(location.pathname));
   const [loading, setLoading] = useState(true);
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
+
+  useEffect(() => {
+    setValue(getTabIndexFromUrl(location.pathname)); // Update tab value when location changes
+  }, [location.pathname]);
 
   useEffect(() => {
     fetch("https://hashtech.pythonanywhere.com/api/employees/")
@@ -116,7 +131,7 @@ const OurTeam = () => {
       });
 
     window.scroll(0, 0);
-  }, []);
+  }, [location.pathname]); // Trigger useEffect when the location.pathname changes
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -125,6 +140,7 @@ const OurTeam = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
 
   return (
     <>

@@ -98,7 +98,7 @@ const About = () => {
               <img src={Company} alt="Company" style={{ width: "100%", height: "100%", marginBottom: "10px" }} />
             </Grid>
             <Grid item>
-              <img src={Company1} alt="Company" style={{ width: "100%", height: "120%" }} />
+              <img src={Company1} alt="Company" style={{ width: "100%", height: "100%" }} />
             </Grid>
           </Grid>
         </Grid>
