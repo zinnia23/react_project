@@ -8,7 +8,7 @@ import Banner from "../images/homebg.mp4";
 import BannerMobile from "../images/homebg_mobile.mp4"; // Import mobile video
 import background from "./../images/contactbg.jpg";
 import hr1 from "./../images/hr1.png";
-import trasform from "./../images/transformwithus.jpg";
+import hand1 from "./../images/hand4.jpeg";
 import { Typography, Grid, Container } from "@mui/material";
 
 const details = {
@@ -57,7 +57,7 @@ const Home = () => {
       </div>
       <Container sx={{}}>
 
-        <Grid container paddingTop={0} spacing={5}>
+        <Grid container spacing={5}>
           <Grid
             item
             xs={12}
@@ -69,7 +69,6 @@ const Home = () => {
               alignItems: "flex-start",
             }}
           >
-
             <p>
               At Hash Technologies, our commitment lies in delivering top-tier and exceptionally satisfying
               services spanning multiple domains within IT-Services and HR Services. We strive to set a
@@ -84,7 +83,6 @@ const Home = () => {
               technological infrastructure and drive your business forward.
             </p>
           </Grid>
-
           <Grid
             item
             xs={12}
@@ -96,7 +94,20 @@ const Home = () => {
               alignItems: "flex-start",
             }}
           >
-            <img src={trasform} alt="Example" style={{ maxWidth: "100%", height: "auto", paddingBottom: "40px", paddingTop: "20px" }} />
+            <div style={{ width: "100%", height: "100%" }}>
+              <img
+                src={hand1}
+                alt="Example"
+                style={{
+                  width: "100%", // Ensure the image width scales with its container
+                  height: "auto", // Allow the image height to adjust proportionally
+                  paddingTop: "20px",
+                  "@media (max-width: 600px)": {
+                    height: "10%  !important", // Adjust height for mobile view
+                  },
+                }}
+              />
+            </div>
           </Grid>
         </Grid>
 
@@ -142,6 +153,8 @@ const Home = () => {
             }}
           >
             <p>
+            <br />
+
               In parallel, our HR Services division is geared towards delivering unparalleled support and
               solutions to meet your human resource needs. From talent acquisition and recruitment
               strategies to workforce management, training & development programs, performance
@@ -174,7 +187,7 @@ const Home = () => {
         </video>
 
       ) : (
-        <video autoPlay muted loop className="background-video"  style={{ objectFit: 'cover', width: '100%', height: '100%' }}>
+        <video autoPlay muted loop className="background-video" style={{ objectFit: 'cover', width: '100%', height: '100%' }}>
           <source src={Banner} type="video/mp4" />
         </video>
       )}

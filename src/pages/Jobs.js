@@ -23,7 +23,7 @@ const JobCard = ({ title, location, experience_required, className, job_type, on
         <RoomIcon fontSize="small" style={{ marginRight: "5px" }} />
         <Typography color="text.secondary" style={{ fontSize: "1rem" }}>
           {location}
-        </Typography>ojfajajej a jjjejahhraiiruyye ajjrhakenna  hheuuak
+        </Typography>
       </div>
       <div style={{ display: "flex", alignItems: "flex-end", paddingBottom: "5px" }}>
         <JobTypeIcon fontSize="small" style={{ marginRight: "5px" }} />
